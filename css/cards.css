@@ -69,27 +69,28 @@
 }
 
 .service-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 20px;
-    background: linear-gradient(135deg, var(--primary-900), var(--primary-800));
-    color: var(--secondary-300);
-    border: 2px solid var(--secondary-600);
-    border-radius: 20px;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 24px;
+    background: linear-gradient(135deg, var(--secondary-50), var(--secondary-200));
+    color: var(--secondary-800);
+    border: 2px solid var(--secondary-400);
+    border-radius: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 32px;
-    box-shadow: var(--shadow-md);
+    font-size: 28px;
+    box-shadow: 0 4px 12px rgba(217, 119, 6, 0.15);
+    transition: all 0.3s ease;
 }
 
-.service-card:nth-child(2) .service-icon {
-    background: linear-gradient(135deg, var(--secondary-100), var(--secondary-200));
+.service-card:hover .service-icon {
+    transform: rotate(5deg) scale(1.1);
+    background: linear-gradient(135deg, var(--secondary-100), var(--secondary-300));
+    box-shadow: 0 8px 24px rgba(217, 119, 6, 0.25);
 }
 
-.service-card:nth-child(3) .service-icon {
-    background: linear-gradient(135deg, var(--warning-100), #fde68a);
-}
+/* Removed individual background overrides for better consistency */
 
 .service-title {
     font-size: 20px;

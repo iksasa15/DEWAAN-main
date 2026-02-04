@@ -30,7 +30,7 @@ function renderHomePage() {
         <div class="services-grid">
             <div class="service-card" onclick="navigateTo('requests')">
                 <div class="service-icon">
-                    <svg class="icon-svg icon-svg-lg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    <svg class="icon-svg icon-svg-lg" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                 </div>
                 <h3 class="service-title">تقديم الطلبات</h3>
                 <p class="service-desc">قدّم دعواك الإدارية إلكترونياً بخطوات بسيطة وواضحة</p>
@@ -82,7 +82,7 @@ function renderHomePage() {
             
             <div class="service-card" onclick="navigateTo('verdicts')">
                 <div class="service-icon">
-                    <svg class="icon-svg icon-svg-lg" viewBox="0 0 24 24"><path d="M12 7V3M7 8l-4 4 4 4M17 8l4 4-4 4"/></svg>
+                    <svg class="icon-svg icon-svg-lg" viewBox="0 0 24 24"><path d="M14.5 2L3.5 13L11 20.5L22 9.5L14.5 2Z"/><path d="M8 18L3 23"/><path d="M15 11l-5 5"/></svg>
                 </div>
                 <h3 class="service-title">الأحكام</h3>
                 <p class="service-desc">اطلع على الأحكام الصادرة وقدّم طلبات التنفيذ والاعتراض</p>
