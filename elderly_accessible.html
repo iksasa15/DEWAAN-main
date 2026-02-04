@@ -116,36 +116,38 @@
             border: 2px solid var(--primary-700);
         }
 
-        /* شريط تحكم بالحجم */
-        .size-controls {
+        /* أنماط أزرار التحكم (مطابقة لصفحة الكفيف) */
+        .accessibility-controls {
             position: fixed;
             top: 20px;
             left: 20px;
             z-index: 1000;
-            background: white;
-            padding: 10px;
-            border: 2px solid #333;
-            border-radius: 15px;
             display: flex;
+            flex-direction: column;
             gap: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .size-btn {
+        .a11y-btn {
+            background: white;
+            border: 2px solid var(--primary-700);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            font-size: 20px;
             width: 50px;
             height: 50px;
-            font-size: 24px !important;
-            padding: 0 !important;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--primary-50);
-            border: 2px solid var(--primary-700) !important;
-            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--primary-900);
+            font-weight: bold;
         }
 
-        .size-btn:hover {
-            background: var(--primary-200);
+        .a11y-btn:hover {
+            transform: scale(1.1);
+            background: var(--primary-50);
         }
 
         /* تحسين التباين في التذييل */
@@ -167,6 +169,136 @@
         /* إلغاء تثبيت الهيدر عند النزول */
         .header {
             position: static !important;
+        }
+
+        /* 
+           FIX: Force REM units for all text elements so they scale with root font-size change 
+           تحويل جميع الوحدات الثابتة إلى وحدات نسبية (rem) لتستجيب للتكبير
+        */
+
+        /* Typography System Overrides */
+        h1,
+        .h1,
+        .hero-title,
+        .logo-text h1 {
+            font-size: 2.5rem !important;
+        }
+
+        h2,
+        .h2,
+        .section-title,
+        .method-title {
+            font-size: 2rem !important;
+        }
+
+        h3,
+        .h3,
+        .card-title,
+        .service-title,
+        .verdict-title {
+            font-size: 1.5rem !important;
+        }
+
+        h4,
+        .h4,
+        .user-name {
+            font-size: 1.2rem !important;
+        }
+
+        p,
+        .hero-subtitle,
+        .method-description,
+        .verdict-content,
+        .service-desc {
+            font-size: 1rem !important;
+        }
+
+        /* Navigation */
+        .nav-item a {
+            font-size: 1.1rem !important;
+        }
+
+        .header-top {
+            font-size: 0.9rem !important;
+        }
+
+        .user-role,
+        .logo-text p {
+            font-size: 0.8rem !important;
+        }
+
+        /* Cards & Services */
+        .service-title {
+            font-size: 1.4rem !important;
+        }
+
+        .service-desc {
+            font-size: 1rem !important;
+        }
+
+        .service-feature {
+            font-size: 0.9rem !important;
+        }
+
+        /* Lists & Tables */
+        .case-number {
+            font-size: 1.2rem !important;
+        }
+
+        .case-status {
+            font-size: 0.9rem !important;
+        }
+
+        .case-detail-label {
+            font-size: 0.85rem !important;
+        }
+
+        .case-detail-value {
+            font-size: 1rem !important;
+        }
+
+        .session-date-day {
+            font-size: 1.2rem !important;
+        }
+
+        .session-info p {
+            font-size: 0.9rem !important;
+        }
+
+        /* Forms */
+        .form-label {
+            font-size: 1.1rem !important;
+        }
+
+        .form-control,
+        .btn {
+            font-size: 1rem !important;
+        }
+
+        .form-hint {
+            font-size: 0.85rem !important;
+        }
+
+        /* Footer */
+        .footer-section h3 {
+            font-size: 1.3rem !important;
+        }
+
+        .footer-links a {
+            font-size: 1rem !important;
+        }
+
+        .footer-bottom {
+            font-size: 0.9rem !important;
+        }
+
+        /* Smart Assistant Specifics */
+        .question-text {
+            font-size: 1.4rem !important;
+        }
+
+        .option-label {
+            font-size: 1.1rem !important;
         }
 
         /* أنماط الوصول (Accessibility) */
@@ -197,17 +329,17 @@
     <!-- رابط تخطي إلى المحتوى الرئيسي -->
     <a href="#main-content" class="skip-link">تجاوز إلى المحتوى الرئيسي</a>
 
-    <!-- أدوات تكبير الخط -->
-    <div class="size-controls" role="group" aria-label="أدوات التحكم في العرض">
-        <button class="size-btn" onclick="adjustSize(1)" title="تكبير الخط" aria-label="تكبير الخط"><span
+    <!-- أدوات التحكم (مطابقة لتصميم صفحة الكفيف) -->
+    <div class="accessibility-controls" role="group" aria-label="أدوات التحكم">
+        <button class="a11y-btn" onclick="adjustSize(1)" title="تكبير الخط" aria-label="تكبير الخط"><span
                 aria-hidden="true">A+</span></button>
-        <button class="size-btn" onclick="adjustSize(-1)" title="تصغير الخط" aria-label="تصغير الخط"><span
+        <button class="a11y-btn" onclick="adjustSize(-1)" title="تصغير الخط" aria-label="تصغير الخط"><span
                 aria-hidden="true">A-</span></button>
-        <button class="size-btn" onclick="resetSize()" title="الحجم الافتراضي"
+        <button class="a11y-btn" onclick="resetSize()" title="الحجم الافتراضي"
             aria-label="استعادة الحجم الافتراضي"><span aria-hidden="true">↺</span></button>
-        <button id="mic-btn" class="size-btn" onclick="toggleVoice()" title="تحدث لتكبير الصفحة"
+        <button id="mic-btn" class="a11y-btn" onclick="toggleVoice()" title="تحدث لتكبير الصفحة"
             aria-label="تشغيل التحكم الصوتي"><span aria-hidden="true">🎤</span></button>
-        <a href="accessibility_selection.html" class="size-btn" title="العودة" style="text-decoration: none !important;"
+        <a href="accessibility_selection.html" class="a11y-btn" title="العودة" style="text-decoration: none !important;"
             aria-label="العودة لصفحة الاختيار"><span aria-hidden="true">↩️</span></a>
     </div>
 
