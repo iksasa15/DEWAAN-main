@@ -32,6 +32,7 @@
             max-width: 800px;
             width: 100%;
             text-align: center;
+            position: relative;
         }
 
         .logo {
@@ -121,6 +122,66 @@
             font-size: 16px;
         }
 
+        /* تنسيق زر الميكروفون */
+        .mic-container {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mic-btn {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 2px solid #1a3a32;
+            color: #1a3a32;
+            font-size: 32px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mic-btn:hover {
+            transform: scale(1.1);
+            background: #f0f7f5;
+        }
+
+        .mic-btn.recording {
+            background: #dc2626;
+            border-color: #dc2626;
+            color: white;
+            animation: pulse 1.5s infinite;
+        }
+
+        .mic-status {
+            font-size: 18px;
+            color: #666;
+            min-height: 27px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+            }
+
+            70% {
+                transform: scale(1.1);
+                box-shadow: 0 0 0 10px rgba(220, 38, 38, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+            }
+        }
+
         /* للشاشات الصغيرة */
         @media (max-width: 600px) {
             .container {
@@ -147,8 +208,11 @@
 
         /* تقليل الحركة */
         @media (prefers-reduced-motion: reduce) {
-            .btn {
+
+            .btn,
+            .mic-btn {
                 transition: none;
+                animation: none;
             }
         }
 
@@ -194,6 +258,12 @@
                 كبار السن
             </a>
         </div>
+
+        <div class="mic-container">
+            <button id="micBtn" class="mic-btn" aria-label="تفعيل الأوامر الصوتية"
+                title="تحدث لاختيار الخيار">🎤</button>
+            <div id="micStatus" class="mic-status" aria-live="polite">اضغط وتحدث للاختيار</div>
+        </div>
     </main>
 
     <footer class="footer">
@@ -201,13 +271,13 @@
     </footer>
 
     <script>
-        // دالة لحفظ وضع الوصول المختار (اختياري، لتحسين التجربة لاحقاً)
+        // دالة لحفظ وضع الوصول المختار
         function setMode(mode) {
             localStorage.setItem('accessibilityMode', mode);
         }
 
+        // Accessibility Announcements
         const announcements = document.getElementById('announcements');
-
         function announce(msg) {
             announcements.textContent = '';
             setTimeout(() => announcements.textContent = msg, 100);
@@ -215,7 +285,7 @@
 
         window.addEventListener('load', () => {
             setTimeout(() => {
-                announce('مرحباً بك في ديوان المظالم. الرجاء اختيار الفئة المناسبة: الصم والبكم، الكفيف، أو كبار السن. اضغط Tab للتنقل.');
+                announce('مرحباً بك في ديوان المظالم. الرجاء اختيار الفئة المناسبة: الصم والبكم، الكفيف، أو كبار السن. اضغط Tab للتنقل أو استخدم الميكروفون للتحدث.');
                 document.getElementById('btn-deaf').focus();
             }, 800);
         });
@@ -225,6 +295,95 @@
                 announce(this.textContent.trim() + '. اضغط Enter للدخول.');
             });
         });
+
+        // Voice Recognition Logic
+        const micBtn = document.getElementById('micBtn');
+        const micStatus = document.getElementById('micStatus');
+        let recognition;
+        let isRecording = false;
+
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.lang = 'ar-SA';
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            recognition.onstart = function () {
+                isRecording = true;
+                micBtn.classList.add('recording');
+                micStatus.textContent = "جاري الاستماع...";
+                announce("جاري الاستماع، قل اختيارك مثال: كفيف");
+            };
+
+            recognition.onend = function () {
+                isRecording = false;
+                micBtn.classList.remove('recording');
+                if (micStatus.textContent === "جاري الاستماع...") {
+                    micStatus.textContent = "اضغط وتحدث للاختيار";
+                }
+            };
+
+            recognition.onresult = function (event) {
+                const transcript = event.results[0][0].transcript.trim(); // No toLowerCase for Arabic usually
+                micStatus.textContent = `سمعت: "${transcript}"`;
+                announce(`تم سماع: ${transcript}`);
+
+                processVoiceCommand(transcript);
+            };
+
+            recognition.onerror = function (event) {
+                console.error("Speech recognition error", event.error);
+                micStatus.textContent = "عذراً، لم أسمع جيداً";
+                stopRecording();
+            };
+
+            micBtn.addEventListener('click', toggleRecording);
+        } else {
+            micBtn.style.display = 'none';
+            micStatus.style.display = 'none';
+            console.log("Web Speech API not supported in this browser.");
+        }
+
+        function toggleRecording() {
+            if (isRecording) {
+                stopRecording();
+            } else {
+                startRecording();
+            }
+        }
+
+        function startRecording() {
+            if (recognition) {
+                try {
+                    recognition.start();
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+        }
+
+        function stopRecording() {
+            if (recognition) {
+                recognition.stop();
+            }
+        }
+
+        function processVoiceCommand(command) {
+            // Basic fuzzy matching for Arabic terms
+            if (command.includes('أصم') || command.includes('صم') || command.includes('بكم') || command.includes('أبكم')) {
+                document.getElementById('btn-deaf').click();
+            } else if (command.includes('كفيف') || command.includes('اعمى') || command.includes('بصر')) {
+                document.getElementById('btn-blind').click();
+            } else if (command.includes('سن') || command.includes('كبير') || command.includes('عجوز') || command.includes('شيخ')) {
+                document.getElementById('btn-elderly').click();
+            } else {
+                setTimeout(() => {
+                    micStatus.textContent = "لم يتم التعرف على الخيار، حاول مرة أخرى";
+                    announce("لم يتم التعرف على الخيار، حاول مرة أخرى");
+                }, 1500);
+            }
+        }
     </script>
 </body>
 
