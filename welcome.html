@@ -15,23 +15,58 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-            background: #1a3a32;
+            font-family: var(--font-primary);
+            background: var(--primary-950);
+            background-image: var(--mesh-judicial);
+            background-size: 200% 200%;
+            animation: meshMove 15s ease infinite;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 30px;
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        @keyframes meshMove {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            50% {
+                background-position: 100% 100%;
+            }
+
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+
+        @keyframes fadeInSlide {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .container {
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 50px;
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
             text-align: center;
+            background: rgba(2, 26, 21, 0.6);
+            padding: 60px 40px;
+            border-radius: var(--radius-xl);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInSlide 1s ease-out;
         }
 
         .logo {
@@ -40,10 +75,12 @@
         }
 
         h1 {
-            font-size: 42px;
-            color: #1a3a32;
-            margin-bottom: 15px;
-            font-weight: 700;
+            font-size: 48px;
+            color: var(--secondary-100);
+            margin-bottom: 12px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .subtitle {
@@ -85,8 +122,10 @@
         }
 
         .btn-primary {
-            background: #1a3a32;
-            color: #ffffff;
+            background: linear-gradient(135deg, var(--secondary-600), var(--secondary-700));
+            color: var(--white);
+            box-shadow: var(--shadow-gold);
+            border: none;
         }
 
         .btn-primary:hover {
@@ -96,9 +135,10 @@
         }
 
         .btn-secondary {
-            background: #ffffff;
-            color: #1a3a32;
-            border-color: #1a3a32;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
         }
 
         .btn-secondary:hover {
@@ -179,9 +219,8 @@
     <div id="announcements" aria-live="assertive" aria-atomic="true" class="sr-only"></div>
 
     <main class="container" role="main">
-        <div class="logo" aria-hidden="true">⚖️</div>
-        <h1>ديوان المظالم</h1>
-        <p class="subtitle">نظام الخدمات القضائية</p>
+        <h1>مُعين</h1>
+        <p class="subtitle">خدمات كبار السن وذوي الهمم</p>
 
         <p class="question">اختر طريقة الدخول:</p>
 
@@ -203,7 +242,7 @@
     </main>
 
     <footer class="footer">
-        <p>© 2025 ديوان المظالم - المملكة العربية السعودية</p>
+        <p>© 2025 مُعين - خدمات كبار السن وذوي الهمم</p>
     </footer>
 
     <script>

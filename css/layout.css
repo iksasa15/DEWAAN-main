@@ -2,19 +2,24 @@
 
 /* الهيدر */
 .header {
-    background: linear-gradient(135deg, var(--primary-800), var(--primary-900));
-    color: var(--text-inverse);
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    color: var(--text-primary);
     padding: 0;
     position: sticky;
     top: 0;
-    z-index: 100;
-    box-shadow: var(--shadow-lg);
+    z-index: 1000;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .header-top {
-    background: rgba(0, 0, 0, 0.1);
-    padding: 8px 0;
-    font-size: 13px;
+    background: var(--primary-950);
+    color: var(--primary-100);
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .header-top .container {
@@ -51,8 +56,11 @@
 }
 
 .logo-text h1 {
-    font-size: 22px;
-    font-weight: 700;
+    font-size: 24px;
+    font-weight: 800;
+    color: #000000;
+    margin: 0;
+    line-height: 1.2;
 }
 
 .logo-text p {
@@ -108,7 +116,13 @@
 
 /* التنقل الرئيسي */
 .main-nav {
-    background: var(--primary-700);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-light);
+    position: sticky;
+    top: 104px;
+    /* Adjust based on expanded header */
+    z-index: 999;
 }
 
 .nav-list {
@@ -122,21 +136,24 @@
     align-items: center;
     gap: 8px;
     padding: 14px 24px;
-    color: rgba(255, 255, 255, 0.8);
+    color: #000000;
     text-decoration: none;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
+    border-bottom: 4px solid transparent;
     border-radius: 8px 8px 0 0;
 }
 
 .nav-item a:hover,
 .nav-item.active a {
-    background: var(--white);
-    color: var(--primary-700);
+    background: var(--primary-50);
+    color: #000000;
+    border-bottom: 4px solid var(--secondary-600);
+    transition: all 0.3s ease;
 }
 
 .nav-icon {
-    font-size: 18px;
+    display: none;
 }
 
 /* Footer */
@@ -187,13 +204,15 @@
 
 /* البانر */
 .hero-banner {
-    background: linear-gradient(135deg, var(--primary-600), var(--primary-800));
+    background: linear-gradient(135deg, var(--primary-900), var(--primary-800));
     color: var(--text-inverse);
-    padding: 48px;
-    border-radius: 20px;
-    margin-bottom: 32px;
+    padding: 72px;
+    border-radius: var(--radius-xl);
+    margin-bottom: 48px;
     position: relative;
     overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    animation: fadeInSlide 0.8s ease-out;
 }
 
 .hero-banner::before {

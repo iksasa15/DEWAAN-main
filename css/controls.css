@@ -17,13 +17,18 @@
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
-    color: var(--text-inverse);
+    background: linear-gradient(135deg, var(--primary-900), var(--primary-800), var(--primary-900));
+    background-size: 200% 100%;
+    color: var(--white);
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, var(--primary-700), var(--primary-800));
-    transform: translateY(-2px);
+    background-position: center;
+    transform: translateY(-3px) scale(1.02);
     box-shadow: var(--shadow-lg);
 }
 
@@ -39,13 +44,20 @@
 }
 
 .btn-success {
-    background: linear-gradient(135deg, var(--secondary-500), var(--secondary-600));
-    color: var(--text-inverse);
+    background: linear-gradient(135deg, var(--secondary-600), var(--secondary-700), var(--secondary-600));
+    background-size: 200% 100%;
+    color: var(--white);
+    box-shadow: var(--shadow-gold);
+    border: none;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: shimmer 4s linear infinite;
 }
 
 .btn-success:hover {
-    background: linear-gradient(135deg, var(--secondary-600), var(--secondary-700));
-    transform: translateY(-2px);
+    background-size: 100% 100%;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(217, 119, 6, 0.4);
+    animation: none;
 }
 
 .btn-danger {
