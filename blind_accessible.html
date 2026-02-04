@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام الخدمات القضائية الإلكترونية - ديوان المظالم (نسخة ناطقة)</title>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/controls.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/modals.css">
+    <link rel="stylesheet" href="css/tables.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+
+    <style>
+        /* أنماط خاصة بالنسخة الناطقة */
+        .tts-active {
+            outline: 3px solid var(--primary-500) !important;
+            background-color: rgba(61, 137, 119, 0.1) !important;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(61, 137, 119, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .reading-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--primary-900);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            display: none;
+            z-index: 9999;
+            box-shadow: var(--shadow-lg);
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .reading-indicator.active {
+            display: flex;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .accessibility-controls {
+            position: fixed;
+            top: 100px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .a11y-btn {
+            background: white;
+            border: 1px solid var(--gray-300);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            font-size: 20px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .a11y-btn:hover {
+            transform: scale(1.1);
+            background: var(--primary-50);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- مؤشر القراءة -->
+    <div id="reading-indicator" class="reading-indicator">
+        🔊 جاري القراءة...
+    </div>
+
+    <!-- أزرار التحكم -->
+    <div class="accessibility-controls">
+        <button class="a11y-btn" onclick="stopSpeaking()" title="إيقاف القراءة">🔇</button>
+        <button class="a11y-btn" onclick="document.location.reload()" title="إعادة تحميل الصفحة">🔄</button>
+        <a href="accessibility_selection.html" class="a11y-btn" title="العودة للاختيار">↩️</a>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <span>📞 الدعم الفني: 920001234</span>
+                <span>📅 الجمعة، 17 يناير 2025</span>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container">
+                <div class="logo">
+                    <div class="logo-icon">⚖️</div>
+                    <div class="logo-text">
+                        <h1>ديوان المظالم</h1>
+                        <p>نظام الخدمات القضائية الإلكترونية</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <div class="user-menu">
+                        <div class="user-avatar">م</div>
+                        <div class="user-info">
+                            <div class="user-name">محمد العمري</div>
+                            <div class="user-role">مستفيد</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-list">
+                    <li class="nav-item active">
+                        <a href="#" data-section="home">
+                            <span class="nav-icon">🏠</span>
+                            الرئيسية
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" data-section="requests">
+                            <span class="nav-icon">📝</span>
+                            تقديم الطلبات
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" data-section="cases">
+                            <span class="nav-icon">📂</span>
+                            القضايا
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" data-section="verdicts">
+                            <span class="nav-icon">⚖️</span>
+                            الأحكام
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container" id="main-content">
+            <!-- المحتوى يتم تحميله ديناميكياً -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>⚖️ ديوان المظالم</h3>
+                    <p>منصة إلكترونية متكاملة تهدف لتسهيل الوصول إلى الخدمات القضائية الإدارية</p>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">تقديم دعوى جديدة</a></li>
+                        <li><a href="#">متابعة القضايا</a></li>
+                        <li><a href="#">الاستعلام عن الأحكام</a></li>
+                        <li><a href="#">الدعم الفني</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links">
+                        <li>📞 920001234</li>
+                        <li>📧 support@bog.gov.sa</li>
+                        <li>📍 الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة © 2025 ديوان المظالم - المملكة العربية السعودية</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/pages/home.js"></script>
+    <script src="js/pages/requests.js"></script>
+    <script src="js/pages/cases.js"></script>
+    <script src="js/pages/verdicts.js"></script>
+    <script src="js/components/stepper.js"></script>
+    <script src="js/components/fileUpload.js"></script>
+    <script src="js/components/modals.js"></script>
+    <script src="js/components/chatbot.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- TTS Logic -->
+    <script>
+        const synth = window.speechSynthesis;
+        const readingIndicator = document.getElementById('reading-indicator');
+        let currentUtterance = null;
+        let activeElement = null;
+
+        // إيقاف القراءة
+        function stopSpeaking() {
+            if (synth.speaking) {
+                synth.cancel();
+            }
+            readingIndicator.classList.remove('active');
+            if (activeElement) {
+                activeElement.classList.remove('tts-active');
+                activeElement = null;
+            }
+        }
+
+        // قراءة النص
+        function speak(text, element = null) {
+            stopSpeaking();
+
+            if (!text || text.trim() === '') return;
+
+            if (element) {
+                activeElement = element;
+                element.classList.add('tts-active');
+                // Scroll into view if needed
+                element.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ar-SA';
+            utterance.rate = 1;
+            utterance.pitch = 1;
+
+            utterance.onstart = () => {
+                readingIndicator.classList.add('active');
+            };
+
+            utterance.onend = () => {
+                readingIndicator.classList.remove('active');
+                if (element) {
+                    element.classList.remove('tts-active');
+                }
+            };
+
+            utterance.onerror = () => {
+                readingIndicator.classList.remove('active');
+                if (element) {
+                    element.classList.remove('tts-active');
+                }
+            };
+
+            currentUtterance = utterance;
+            synth.speak(utterance);
+        }
+
+        // معالجة النقرات للقراءة
+        document.addEventListener('click', (e) => {
+            // السماح بنقر الروابط والأزرار بشكل طبيعي، ولكن قراءتها أولاً
+            let target = e.target;
+
+            // تجاهل النقر على عنصر الجسم الرئيسي إذا لم يكن هناك نص مباشر
+            if (target === document.body || target === document.documentElement) return;
+
+            // البحث عن أقرب عنصر نصي
+            const closestText = target.closest('p, h1, h2, h3, h4, h5, h6, li, a, button, span, th, td, label, div.card-title, div.stat-value, div.stat-label');
+
+            if (closestText) {
+                let textToRead = closestText.innerText;
+                let prefix = '';
+
+                if (closestText.tagName === 'A') prefix = 'رابط: ';
+                else if (closestText.tagName === 'BUTTON') prefix = 'زر: ';
+
+                speak(prefix + textToRead, closestText);
+            } else if (target.innerText && target.innerText.trim().length > 0 && target.children.length === 0) {
+                // Fallback for leaf nodes with text
+                speak(target.innerText, target);
+            }
+        });
+
+        // قراءة عند التركيز (Focus) لدعم التنقل بلوحة المفاتيح
+        document.addEventListener('focusin', (e) => {
+            const target = e.target;
+            let textToRead = target.innerText || target.getAttribute('aria-label') || target.alt;
+
+            if (textToRead) {
+                let prefix = '';
+                if (target.tagName === 'A') prefix = 'رابط: ';
+                else if (target.tagName === 'BUTTON') prefix = 'زر: ';
+
+                speak(prefix + textToRead, target);
+            }
+        });
+
+        // رسالة ترحيب
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                speak('مرحباً بك في النسخة الناطقة من ديوان المظالم. تصميم مطابق للنسخة الأصلية مع ميزة القراءة عند النقر.', document.querySelector('h1'));
+            }, 1000);
+        });
+
+        // استئناف مراقبة المحتوى الديناميكي
+        // بما أن المحتوى يتم تحميله عبر JS، نحتاج لمراقبة التغييرات في DOM
+        const observer = new MutationObserver((mutations) => {
+            // يمكن إضافة منطق لقراءة المحتوى الجديد تلقائياً إذا رغبنا
+            // حالياً نكتفي بتمكين النقر على العناصر الجديدة
+        });
+
+        observer.observe(document.getElementById('main-content'), { childList: true, subtree: true });
+
+    </script>
+</body>
+
+</html>
