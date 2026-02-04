@@ -2,6 +2,19 @@
 
 function renderHomePage() {
     return `
+        <!-- تذكير بالدعوى الجديدة -->
+        <div class="alert alert-warning" style="margin-bottom: 16px; padding: 10px 16px; border-right-width: 4px; display: flex; align-items: center; justify-content: space-between; font-size: 13px;">
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <span style="font-size: 18px;">⚠️</span>
+                <span style="font-weight: 700;">المدعي: العنود الفيفي - المدعي عليه: وزارة الموارد البشرية</span>
+                <span style="color: #cbd5e1;">|</span>
+                <span><strong>الموضوع:</strong> إلغاء قرار إداري</span>
+                <span style="color: #cbd5e1;">|</span>
+                <span><strong>المحكمة:</strong> الإدارية بالرياض</span>
+            </div>
+            <button class="btn btn-sm btn-primary" style="padding: 4px 12px; font-size: 12px; height: auto;" onclick="navigateTo('cases')">التفاصيل</button>
+        </div>
+
         <div class="hero-banner">
             <div class="hero-content">
                 <h2 class="hero-title">مرحباً بك في نظام الخدمات القضائية الإلكترونية</h2>
@@ -12,6 +25,7 @@ function renderHomePage() {
                 </button>
             </div>
         </div>
+        
         
         <div class="services-grid">
             <div class="service-card" onclick="navigateTo('requests')">
