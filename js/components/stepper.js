@@ -16,21 +16,21 @@ function updateStepperUI() {
             step.classList.add('active');
         }
     });
-    
+
     // تحديث أزرار التنقل
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
-    
+
     if (prevBtn) {
         prevBtn.style.visibility = AppData.currentStep === 1 ? 'hidden' : 'visible';
     }
-    
+
     if (nextBtn) {
         if (AppData.currentStep === AppData.totalSteps) {
             nextBtn.style.display = 'none';
         } else {
             nextBtn.style.display = 'inline-flex';
-            
+
             // التحقق من إمكانية المتابعة في خطوة التحقق
             if (AppData.currentStep === 4) {
                 const isVerified = AppData.verificationStatus.status === 'verified';
@@ -54,12 +54,12 @@ function nextStep() {
         showNotification('يجب إتمام التحقق قبل المتابعة', 'warning');
         return;
     }
-    
+
     if (AppData.currentStep < AppData.totalSteps) {
         AppData.currentStep++;
         updateStepContent();
         updateStepperUI();
-        
+
         // التمرير لأعلى الصفحة
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -70,7 +70,7 @@ function prevStep() {
         AppData.currentStep--;
         updateStepContent();
         updateStepperUI();
-        
+
         // التمرير لأعلى الصفحة
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -78,16 +78,22 @@ function prevStep() {
 
 function updateStepContent() {
     const stepContent = document.getElementById('step-content');
-    switch(AppData.currentStep) {
+    switch (AppData.currentStep) {
         case 1:
             stepContent.innerHTML = renderStep1();
             break;
         case 2:
             stepContent.innerHTML = renderStep2();
+            if (typeof speak === 'function') {
+                speak("خطوة تصنيف الدعوى. يرجى اختيار نوع القضية المناسب لطلبك.");
+            }
             break;
         case 3:
             stepContent.innerHTML = renderStep3();
             initFileUpload();
+            if (typeof speak === 'function') {
+                speak("وصلت للمستندات والمرفقات، إذا عندك ملفات بترفعها؟");
+            }
             break;
         case 4:
             stepContent.innerHTML = renderStep4();
