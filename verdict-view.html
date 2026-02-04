@@ -13,60 +13,14 @@
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/cards.css">
     <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/modals.css">
+    <link rel="stylesheet" href="css/tables.css">
     <link rel="stylesheet" href="css/verdict-viewer.css">
 
     <style>
-        /* صفحة عرض الحكم الكاملة */
+        /* صفحة عرض الحكم */
         body {
             background: #f5f7fa;
-            margin: 0;
-            padding: 0;
-        }
-
-        .verdict-page-header {
-            background: linear-gradient(135deg, var(--primary-color), #1e3a5f);
-            color: white;
-            padding: 24px 0;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .verdict-page-header .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .verdict-page-title {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .verdict-page-title h1 {
-            margin: 0;
-            font-size: 24px;
-            font-weight: 600;
-        }
-
-        .back-button {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: background 0.2s;
-        }
-
-        .back-button:hover {
-            background: rgba(255, 255, 255, 0.3);
         }
 
         .verdict-page-content {
@@ -107,9 +61,21 @@
         }
 
         .verdict-section-body {
-            padding: 24px;
-            max-height: 70vh;
+            padding: 0;
+            max-height: 75vh;
             overflow-y: auto;
+        }
+
+        .pdf-viewer-container {
+            width: 100%;
+            height: 75vh;
+            border: none;
+        }
+
+        .pdf-viewer-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         .ai-section-header {
@@ -125,6 +91,14 @@
             color: rgba(255, 255, 255, 0.95);
         }
 
+        .ai-badge {
+            font-size: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
         @media (max-width: 968px) {
             .verdict-page-content {
                 grid-template-columns: 1fr;
@@ -135,52 +109,149 @@
 
 <body>
     <!-- Header -->
-    <div class="verdict-page-header">
-        <div class="container">
-            <div class="verdict-page-title">
-                <span style="font-size: 32px;">⚖️</span>
-                <h1 id="pageTitle">عرض صك الحكم</h1>
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <span style="display: flex; align-items: center; gap: 6px;">
+                    <svg class="icon-svg" style="width: 14px; height: 14px;" viewBox="0 0 24 24">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.28-2.28a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                    الدعم الفني: 920001234
+                </span>
+                <span style="display: flex; align-items: center; gap: 6px;">
+                    <svg class="icon-svg" style="width: 14px; height: 14px;" viewBox="0 0 24 24">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                        <line x1="16" y1="2" x2="16" y2="6" />
+                        <line x1="8" y1="2" x2="8" y2="6" />
+                        <line x1="3" y1="10" x2="21" y2="10" />
+                    </svg>
+                    الجمعة، 17 يناير 2025
+                </span>
             </div>
-            <button class="back-button" onclick="goBack()">
-                <span>←</span>
-                العودة للأحكام
-            </button>
         </div>
-    </div>
+        <div class="header-main">
+            <div class="container">
+                <div class="logo">
+                    <div class="logo-text">
+                        <h1>مُعين</h1>
+                        <p>خدمات كبار السن وذوي الهمم</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <div class="user-menu">
+                        <div class="user-avatar">ع</div>
+                        <div class="user-info">
+                            <div class="user-name">العنود الفيفي</div>
+                            <div class="user-role">مستفيد</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="index.html" data-section="home">
+                            الرئيسية
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#requests" data-section="requests">
+                            تقديم الطلبات
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#cases" data-section="cases">
+                            القضايا
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="index.html#verdicts" data-section="verdicts">
+                            الأحكام
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
     <!-- Main Content -->
-    <div class="verdict-page-content">
-        <!-- قسم صك الحكم -->
-        <div class="verdict-section">
-            <div class="verdict-section-header">
-                <h2>📄 صك الحكم الرسمي</h2>
-                <p id="verdictInfo">المستند الرسمي للحكم القضائي</p>
-            </div>
-            <div class="verdict-section-body" id="verdictDocumentContainer">
-                <div style="text-align: center; padding: 60px 20px; color: var(--text-muted);">
-                    <div style="font-size: 48px; margin-bottom: 16px;">⏳</div>
-                    <p>جاري تحميل صك الحكم...</p>
+    <main class="main-content">
+        <div class="container">
+            <div class="hero-banner" style="padding: 24px 48px;">
+                <div class="hero-content">
+                    <h2 class="hero-title" id="pageTitle">عرض صك الحكم</h2>
+                    <p class="hero-subtitle" id="verdictInfo">المستند الرسمي للحكم القضائي</p>
                 </div>
             </div>
-        </div>
 
-        <!-- قسم الشرح المبسط -->
-        <div class="verdict-section">
-            <div class="verdict-section-header ai-section-header">
-                <h2>
-                    🤖 الشرح الذكي للحكم
-                    <span class="ai-badge">Powered by GPT</span>
-                </h2>
-                <p>شرح مبسط وواضح للحكم وتبعاته</p>
-            </div>
-            <div class="verdict-section-body" id="aiExplanationContainer">
-                <div style="text-align: center; padding: 60px 20px; color: var(--text-muted);">
-                    <div style="font-size: 48px; margin-bottom: 16px;">⏳</div>
-                    <p>جاري تحميل قسم الشرح...</p>
+            <div class="verdict-page-content">
+                <!-- قسم صك الحكم -->
+                <div class="verdict-section">
+                    <div class="verdict-section-header">
+                        <h2>📄 صك الحكم الرسمي</h2>
+                        <p>المستند الرسمي للحكم القضائي</p>
+                    </div>
+                    <div class="verdict-section-body">
+                        <div class="pdf-viewer-container">
+                            <iframe src="Ahmed.pdf" type="application/pdf"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- قسم الشرح المبسط -->
+                <div class="verdict-section">
+                    <div class="verdict-section-header ai-section-header">
+                        <h2>
+                            🤖 الشرح الذكي للحكم
+                            <span class="ai-badge">Powered by GPT</span>
+                        </h2>
+                        <p>شرح مبسط وواضح للحكم وتبعاته</p>
+                    </div>
+                    <div class="verdict-section-body" id="aiExplanationContainer" style="padding: 24px;">
+                        <div style="text-align: center; padding: 60px 20px; color: var(--text-muted);">
+                            <div style="font-size: 48px; margin-bottom: 16px;">⏳</div>
+                            <p>جاري تحميل قسم الشرح...</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>مُعين</h3>
+                    <p>منصة إلكترونية متكاملة تهدف لتسهيل الوصول إلى الخدمات القضائية الإدارية</p>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">تقديم دعوى جديدة</a></li>
+                        <li><a href="#">متابعة القضايا</a></li>
+                        <li><a href="#">الاستعلام عن الأحكام</a></li>
+                        <li><a href="#">الدعم الفني</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links">
+                        <li>📞 920001234</li>
+                        <li>📧 support@bog.gov.sa</li>
+                        <li>📍 الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة © 2025 ديوان المظالم - المملكة العربية السعودية</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- JavaScript Files -->
     <script src="js/data.js"></script>
@@ -195,13 +266,18 @@
         // تحميل بيانات الحكم
         function loadVerdict() {
             if (!verdictId) {
-                showError('لم يتم تحديد الحكم');
+                // عرض الحكم الافتراضي
+                document.getElementById('pageTitle').textContent = 'عرض صك الحكم';
+                document.getElementById('verdictInfo').textContent = 'المستند الرسمي للحكم القضائي';
+                displayAIInitialState();
                 return;
             }
 
             const verdict = AppData.verdicts.find(v => v.id === verdictId);
             if (!verdict) {
-                showError('لم يتم العثور على الحكم');
+                document.getElementById('pageTitle').textContent = 'عرض صك الحكم';
+                document.getElementById('verdictInfo').textContent = 'المستند الرسمي للحكم القضائي';
+                displayAIInitialState();
                 return;
             }
 
@@ -210,58 +286,8 @@
             document.getElementById('verdictInfo').textContent = `صادر من ${verdict.court} بتاريخ ${verdict.date}`;
             document.title = `صك الحكم ${verdict.id} - ديوان المظالم`;
 
-            // عرض صك الحكم
-            displayVerdictDocument(verdict);
-
             // عرض الحالة الأولية للشرح
             displayAIInitialState(verdict);
-        }
-
-        // عرض صك الحكم
-        function displayVerdictDocument(verdict) {
-            const container = document.getElementById('verdictDocumentContainer');
-
-            if (verdict.fullText) {
-                container.innerHTML = `
-                    <div class="verdict-document">
-                        <div class="verdict-document-header">
-                            <div class="verdict-seal">⚖️</div>
-                            <h2>المملكة العربية السعودية</h2>
-                            <h3>ديوان المظالم</h3>
-                            <h3>${verdict.court}</h3>
-                        </div>
-                        
-                        <div class="verdict-document-body">
-                            ${formatVerdictText(verdict.fullText)}
-                        </div>
-                        
-                        <div class="verdict-document-footer">
-                            <div class="verdict-actions-bottom">
-                                <button class="btn btn-primary" onclick="downloadVerdictPDF()">
-                                    <span>⬇️</span>
-                                    تحميل PDF
-                                </button>
-                                <button class="btn btn-outline" onclick="printVerdictPDF()">
-                                    <span>🖨️</span>
-                                    طباعة
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            } else {
-                container.innerHTML = `
-                    <div style="text-align: center; padding: 60px 20px;">
-                        <div style="font-size: 48px; margin-bottom: 16px;">📄</div>
-                        <h3>النص الكامل غير متوفر</h3>
-                        <p style="color: var(--text-muted);">يمكنك تحميل صك الحكم من الزر أدناه</p>
-                        <button class="btn btn-primary" onclick="downloadVerdictPDF()">
-                            <span>⬇️</span>
-                            تحميل PDF
-                        </button>
-                    </div>
-                `;
-            }
         }
 
         // عرض الحالة الأولية للشرح
@@ -269,7 +295,7 @@
             const container = document.getElementById('aiExplanationContainer');
             container.innerHTML = `
                 <div class="ai-initial-state">
-                    <div class="ai-initial-icon">🤖</div>
+                    <div class="ai-initial-icon" style="font-size: 48px; margin-bottom: 16px;">🤖</div>
                     <h3>هل تحتاج شرحاً مبسطاً للحكم؟</h3>
                     <p>يمكن للذكاء الاصطناعي أن يشرح لك الحكم بطريقة سهلة ومبسطة، مع توضيح حقوقك والتزاماتك والخطوات التالية المتاحة.</p>
                     <button class="btn btn-primary btn-large" onclick="requestAIExplanationForPage()">
@@ -282,6 +308,11 @@
 
         // طلب الشرح من AI
         function requestAIExplanationForPage() {
+            if (!verdictId) {
+                showNotification('يرجى تحديد حكم معين للحصول على الشرح', 'warning');
+                return;
+            }
+
             const verdict = AppData.verdicts.find(v => v.id === verdictId);
             if (!verdict) return;
 
@@ -289,68 +320,6 @@
             const aiSection = { querySelector: () => container };
 
             verdictAIExplainer.explainVerdict(verdict, aiSection);
-        }
-
-        // تنسيق نص الحكم
-        function formatVerdictText(text) {
-            return text
-                .split('\n')
-                .map(line => {
-                    line = line.trim();
-                    if (!line) return '<br>';
-
-                    if (line.includes('باسم الله الرحمن الرحيم')) {
-                        return `<p class="verdict-bismillah">${line}</p>`;
-                    }
-
-                    if (line.startsWith('رقم الحكم:') || line.startsWith('رقم القضية:') || line.startsWith('تاريخ الجلسة:')) {
-                        return `<p class="verdict-meta-line"><strong>${line}</strong></p>`;
-                    }
-
-                    if (line.endsWith(':') && line.length < 50) {
-                        return `<h4 class="verdict-section-title">${line}</h4>`;
-                    }
-
-                    if (/^\d+\./.test(line)) {
-                        return `<p class="verdict-list-item">${line}</p>`;
-                    }
-
-                    return `<p class="verdict-text">${line}</p>`;
-                })
-                .join('');
-        }
-
-        // تحميل PDF
-        function downloadVerdictPDF() {
-            showNotification('جاري تحميل صك الحكم...', 'info');
-            setTimeout(() => {
-                showNotification('تم تحميل صك الحكم بنجاح', 'success');
-            }, 1500);
-        }
-
-        // طباعة
-        function printVerdictPDF() {
-            window.print();
-        }
-
-        // العودة للصفحة السابقة
-        function goBack() {
-            window.history.back();
-        }
-
-        // عرض خطأ
-        function showError(message) {
-            document.getElementById('verdictDocumentContainer').innerHTML = `
-                <div style="text-align: center; padding: 60px 20px;">
-                    <div style="font-size: 48px; margin-bottom: 16px; color: #ef4444;">⚠️</div>
-                    <h3>${message}</h3>
-                    <button class="btn btn-primary" onclick="goBack()">
-                        العودة للأحكام
-                    </button>
-                </div>
-            `;
-
-            document.getElementById('aiExplanationContainer').innerHTML = '';
         }
 
         // تحميل الحكم عند فتح الصفحة
