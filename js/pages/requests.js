@@ -251,7 +251,7 @@ function renderAssistantResult() {
             
             <div class="result-recommendation">
                 <div class="recommendation-badge">
-                    <span>${result.caseType.icon}</span>
+                    <div style="width: 20px; height: 20px; display: flex; align-items: center;">${result.caseType.icon}</div>
                     نوع الدعوى المقترح
                 </div>
                 <h2 class="recommendation-title">${result.caseType.name}</h2>
@@ -338,7 +338,7 @@ function analyzeAnswers() {
             break;
         case 'disciplinary':
             description = 'دعوى للطعن في جزاء تأديبي صادر بحقك من جهة عملك الحكومية.';
-            caseType = { primary: 5, name: 'دعوى تأديبية', icon: '⚖️' };
+            caseType = { primary: 5, name: 'دعوى تأديبية', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 7V3M7 8l-4 4 4 4M17 8l4 4-4 4"/></svg>` };
             break;
     }
 
@@ -675,7 +675,7 @@ function renderStep2() {
                         <label class="party-card ${selectedType === type.id ? 'selected-type' : ''}" style="cursor: pointer; margin: 0; padding: 16px;">
                             <input type="radio" name="case-type" value="${type.id}" style="display: none;" ${selectedType === type.id ? 'checked' : ''}>
                             <div style="display: flex; align-items: center; gap: 12px;">
-                                <span style="font-size: 24px;">${type.icon}</span>
+                                <div style="width: 24px; height: 24px; display: flex; align-items: center;">${type.icon}</div>
                                 <span style="font-weight: 600;">${type.name}</span>
                             </div>
                         </label>

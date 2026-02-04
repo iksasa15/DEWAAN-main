@@ -15,11 +15,11 @@ const AppData = {
     },
 
     caseTypes: [
-        { id: 1, name: 'دعاوى الاستحقاق', icon: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z' },
-        { id: 2, name: 'إلغاء القرار الإداري', icon: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z' },
-        { id: 3, name: 'التعويض', icon: 'M12 1v22m5-18H7h10ZM7 17h10H7Z' },
-        { id: 4, name: 'العقود الإدارية', icon: 'M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7' },
-        { id: 5, name: 'الدعاوى التأديبية', icon: 'M12 7V3M7 8l-4 4 4 4M17 8l4 4-4 4' }
+        { id: 1, name: 'دعاوى الاستحقاق', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>` },
+        { id: 2, name: 'إلغاء القرار الإداري', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>` },
+        { id: 3, name: 'التعويض', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 1v22m5-18H7h10ZM7 17h10H7Z"/></svg>` },
+        { id: 4, name: 'العقود الإدارية', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/></svg>` },
+        { id: 5, name: 'الدعاوى التأديبية', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 7V3M7 8l-4 4 4 4M17 8l4 4-4 4"/></svg>` }
     ],
 
     cases: [

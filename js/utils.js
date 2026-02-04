@@ -56,3 +56,25 @@ function initAnimations() {
     `;
     document.head.appendChild(style);
 }
+
+// المساعد الصوتي
+function speak(text) {
+    if (!('speechSynthesis' in window)) return;
+
+    // إلغاء أي حديث جارٍ
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'ar-SA';
+    utterance.rate = 0.9; // سرعة أبطأ قليلاً لسهولة الفهم
+    utterance.pitch = 1.0;
+
+    // محاولة اختيار صوت عربي إذا توفر
+    const voices = window.speechSynthesis.getVoices();
+    const arabicVoice = voices.find(v => v.lang.startsWith('ar'));
+    if (arabicVoice) {
+        utterance.voice = arabicVoice;
+    }
+
+    window.speechSynthesis.speak(utterance);
+}
