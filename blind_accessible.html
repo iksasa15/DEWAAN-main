@@ -18,97 +18,109 @@
     <link rel="stylesheet" href="css/chatbot.css">
 
     <style>
-        /* أنماط الوصول (Accessibility) */
+        /* أنماط تباين عالية جداً - مخصصة لضعاف البصر والمكفوفين */
+        :root {
+            --bg-primary: #ffffff;
+            --text-primary: #000000;
+            --primary-900: #1a3a32;
+            --secondary-500: #ad9660;
+            --primary-500: #347565;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 110%;
+            /* تحسين المقروئية */
+        }
+
         .skip-link {
             position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--primary-900);
-            color: white;
-            padding: 8px;
+            top: -100px;
+            right: 0;
+            background: #000;
+            color: #fff;
+            padding: 15px;
             z-index: 10000;
-            transition: top 0.3s;
-            text-decoration: none;
-            border-radius: 0 0 4px 0;
+            text-decoration: underline;
+            font-weight: bold;
         }
 
         .skip-link:focus {
             top: 0;
         }
 
-        /* أنماط خاصة بالنسخة الناطقة */
+        /* تلميح مرئي للمنطقة النشطة - يسهل لمرافق الكفيف معرفة ما يُقرأ */
         .tts-active {
-            outline: 3px solid var(--primary-500) !important;
-            outline-offset: 2px;
-            background-color: rgba(61, 137, 119, 0.1) !important;
-            border-radius: 4px;
-            box-shadow: 0 0 10px rgba(61, 137, 119, 0.3);
-            transition: all 0.3s ease;
+            outline: 5px solid #000000 !important;
+            outline-offset: 4px;
+            background-color: #ffff00 !important;
+            /* خلفية صفراء فاقعة للتمييز */
+            color: #000 !important;
         }
 
         .reading-indicator {
             position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: var(--primary-900);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: bold;
+            bottom: 30px;
+            right: 30px;
+            background: #000;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: 800;
             display: none;
             z-index: 9999;
-            box-shadow: var(--shadow-lg);
-            align-items: center;
-            gap: 10px;
-            font-size: 14px;
+            border: 2px solid #fff;
+            font-size: 18px;
         }
 
         .reading-indicator.active {
             display: flex;
-            animation: slideIn 0.3s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
         }
 
         .accessibility-controls {
-            position: fixed;
-            top: 100px;
-            left: 20px;
-            z-index: 1000;
+            position: sticky;
+            top: 0;
+            background: #f8f9fa;
+            padding: 15px;
+            border-bottom: 2px solid #000;
             display: flex;
-            flex-direction: column;
-            gap: 10px;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1001;
         }
 
         .a11y-btn {
-            background: white;
-            border: 1px solid var(--gray-300);
-            padding: 10px;
-            border-radius: 50%;
+            background: #000;
+            color: #fff;
+            padding: 15px 25px;
+            border: 2px solid #000;
+            border-radius: 8px;
             cursor: pointer;
-            box-shadow: var(--shadow-md);
-            font-size: 20px;
-            width: 50px;
-            height: 50px;
+            font-size: 18px;
+            font-weight: bold;
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 10px;
             transition: all 0.2s;
         }
 
-        .a11y-btn:hover {
-            transform: scale(1.1);
-            background: var(--primary-50);
+        .a11y-btn:hover,
+        .a11y-btn:focus {
+            background: #fff;
+            color: #000;
+            outline: 3px solid #000;
+        }
+
+        /* إخفاء الزخارف عن قارئ الشاشة */
+        [aria-hidden="true"] {
+            pointer-events: none;
+        }
+
+        /* تحسين تباين البطاقات في النسخة المبسطة */
+        .card {
+            border: 2px solid #000 !important;
+            margin-bottom: 20px;
         }
     </style>
 </head>

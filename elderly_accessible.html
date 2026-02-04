@@ -24,16 +24,20 @@
         */
 
         :root {
-            /* تعديل الألوان لزيادة التباين */
+            /* تباين فائق مع الحفاظ على الهوية */
+            --primary-900: #0d1f1a;
+            --primary-800: #1a3a32;
+            --secondary-500: #ad9660;
             --text-primary: #000000;
-            --text-secondary: #333333;
-            --border-light: #999999;
+            --text-secondary: #222222;
+            --bg-primary: #f8faf9;
         }
 
         body {
-            font-size: 130%;
-            /* تكبير الخط الأساسي بنسبة 30% */
-            line-height: 1.8;
+            font-size: 150%;
+            /* تكبير الخط بنسبة 50% كحد أدنى */
+            line-height: 1.6;
+            background-color: var(--bg-primary);
         }
 
         /* تكبير العناوين */
@@ -128,21 +132,21 @@
         }
 
         .a11y-btn {
-            background: white;
-            border: 2px solid var(--primary-700);
-            padding: 10px;
-            border-radius: 50%;
+            background: var(--white);
+            border: 3px solid var(--primary-800);
+            padding: 15px;
+            border-radius: 15px;
             cursor: pointer;
-            box-shadow: var(--shadow-md);
-            font-size: 20px;
-            width: 50px;
-            height: 50px;
+            box-shadow: var(--shadow-lg);
+            font-size: 24px;
+            width: 70px;
+            height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.2s;
             color: var(--primary-900);
-            font-weight: bold;
+            font-weight: 900;
         }
 
         .a11y-btn:hover {
