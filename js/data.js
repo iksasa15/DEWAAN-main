@@ -4,7 +4,7 @@ const AppData = {
     currentSection: 'home',
     currentStep: 1,
     totalSteps: 5, // تم تغييرها من 4 إلى 5
-    
+
     // حالة التحقق
     verificationStatus: {
         status: 'pending', // pending, in_progress, verified, rejected
@@ -13,15 +13,15 @@ const AppData = {
         verificationCode: '',
         notes: ''
     },
-    
+
     caseTypes: [
-        { id: 1, name: 'دعاوى الاستحقاق', icon: '📋' },
-        { id: 2, name: 'إلغاء القرار الإداري', icon: '❌' },
-        { id: 3, name: 'التعويض', icon: '💰' },
-        { id: 4, name: 'العقود الإدارية', icon: '📝' },
-        { id: 5, name: 'الدعاوى التأديبية', icon: '⚖️' }
+        { id: 1, name: 'دعاوى الاستحقاق', icon: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z' },
+        { id: 2, name: 'إلغاء القرار الإداري', icon: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z' },
+        { id: 3, name: 'التعويض', icon: 'M12 1v22m5-18H7h10ZM7 17h10H7Z' },
+        { id: 4, name: 'العقود الإدارية', icon: 'M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7' },
+        { id: 5, name: 'الدعاوى التأديبية', icon: 'M12 7V3M7 8l-4 4 4 4M17 8l4 4-4 4' }
     ],
-    
+
     cases: [
         {
             id: 'QC-2025-001542',
@@ -32,7 +32,7 @@ const AppData = {
             filingDate: '2025-01-10',
             nextSession: '2025-01-25',
             sessionTime: '09:30 صباحاً',
-            plaintiff: 'محمد أحمد العمري',
+            plaintiff: 'العنود الفيفي',
             defendant: 'وزارة الموارد البشرية'
         },
         {
@@ -59,7 +59,7 @@ const AppData = {
             defendant: 'وزارة المالية'
         }
     ],
-    
+
     verdicts: [
         {
             id: 'VRD-2025-0542',
@@ -73,7 +73,7 @@ const AppData = {
             appealDeadline: '2025-02-12'
         }
     ],
-    
+
     objectionReasons: [
         { id: 1, name: 'مخالفة أحكام الشريعة الإسلامية' },
         { id: 2, name: 'مخالفة النظام' },
@@ -83,6 +83,6 @@ const AppData = {
         { id: 6, name: 'القصور في التسبيب' },
         { id: 7, name: 'الإخلال بحق الدفاع' }
     ],
-    
+
     uploadedFiles: []
 };

@@ -9,69 +9,69 @@ const SmartAssistantData = {
         {
             id: 'problem_type',
             question: 'ما هي طبيعة المشكلة التي تواجهها؟',
-            icon: '🤔',
+            icon: `<svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
             options: [
-                { value: 'decision', label: 'صدر قرار إداري ضدي', icon: '📋' },
-                { value: 'employment', label: 'مشكلة وظيفية (ترقية، راتب، فصل)', icon: '💼' },
-                { value: 'contract', label: 'خلاف على عقد مع جهة حكومية', icon: '📝' },
-                { value: 'compensation', label: 'أطالب بتعويض من جهة حكومية', icon: '💰' },
-                { value: 'service', label: 'حُرمت من خدمة أو رخصة', icon: '🚫' },
-                { value: 'disciplinary', label: 'صدر بحقي جزاء تأديبي', icon: '⚠️' }
+                { value: 'decision', label: 'صدر قرار إداري ضدي', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>` },
+                { value: 'employment', label: 'مشكلة وظيفية (ترقية، راتب، فصل)', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>` },
+                { value: 'contract', label: 'خلاف على عقد مع جهة حكومية', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>` },
+                { value: 'compensation', label: 'أطالب بتعويض من جهة حكومية', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><line x1="12" y1="18" x2="12" y2="20"/><line x1="12" y1="4" x2="12" y2="6"/></svg>` },
+                { value: 'service', label: 'حُرمت من خدمة أو رخصة', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>` },
+                { value: 'disciplinary', label: 'صدر بحقي جزاء تأديبي', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>` }
             ]
         },
         {
             id: 'entity_type',
             question: 'ما هي الجهة التي لديك مشكلة معها؟',
-            icon: '🏛️',
+            icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M3 7v1a3 3 0 0 0 6 0V7m6 0v1a3 3 0 0 0 6 0V7M3 7l9-4 9 4M5 21V11m14 10V11M9 21V11m6 21V11"/></svg>`,
             options: [
-                { value: 'ministry', label: 'وزارة', icon: '🏢' },
-                { value: 'municipality', label: 'أمانة أو بلدية', icon: '🏙️' },
-                { value: 'university', label: 'جامعة أو مؤسسة تعليمية', icon: '🎓' },
-                { value: 'hospital', label: 'مستشفى أو جهة صحية حكومية', icon: '🏥' },
-                { value: 'security', label: 'جهة أمنية', icon: '🛡️' },
-                { value: 'other_gov', label: 'جهة حكومية أخرى', icon: '🏛️' }
+                { value: 'ministry', label: 'وزارة', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="18"/><line x1="15" y1="22" x2="15" y2="18"/><line x1="18" y1="6" x2="6" y2="6"/><line x1="18" y1="10" x2="6" y2="10"/><line x1="18" y1="14" x2="6" y2="14"/></svg>` },
+                { value: 'municipality', label: 'أمانة أو بلدية', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M17 18a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2"/><rect x="3" y="2" width="18" height="16" rx="2"/><circle cx="12" cy="10" r="2"/></svg>` },
+                { value: 'university', label: 'جامعة أو مؤسسة تعليمية', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>` },
+                { value: 'hospital', label: 'مستشفى أو جهة صحية حكومية', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M19 14c1.49 0 2.87.47 4 1.26V8c0-1.1-.9-2-2-2h-5c0-1.66-1.34-3-3-3S10 4.34 10 6H5c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h8.26c-.79-1.13-1.26-2.51-1.26-4 0-3.87 3.13-7 7-7z"/><path d="M19 16h-2v2h-2v2h2v2h2v-2h2v-2h-2z"/></svg>` },
+                { value: 'security', label: 'جهة أمنية', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>` },
+                { value: 'other_gov', label: 'جهة حكومية أخرى', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M3 7v1a3 3 0 0 0 6 0V7m6 0v1a3 3 0 0 0 6 0V7M3 7l9-4 9 4M5 21V11m14 10V11M9 21V11m6 21V11"/></svg>` }
             ]
         },
         {
             id: 'time_passed',
             question: 'متى حدثت المشكلة أو صدر القرار؟',
-            icon: '📅',
+            icon: `<svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
             options: [
-                { value: 'recent', label: 'خلال آخر 60 يوماً', icon: '✅' },
-                { value: 'months', label: 'من 60 يوم إلى 6 أشهر', icon: '⚠️' },
-                { value: 'long', label: 'أكثر من 6 أشهر', icon: '❌' }
+                { value: 'recent', label: 'خلال آخر 60 يوماً', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>` },
+                { value: 'months', label: 'من 60 يوم إلى 6 أشهر', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>` },
+                { value: 'long', label: 'أكثر من 6 أشهر', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>` }
             ]
         },
         {
             id: 'grievance_filed',
             question: 'هل تقدمت بتظلم للجهة الإدارية؟',
-            icon: '📨',
+            icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
             options: [
-                { value: 'yes_responded', label: 'نعم، وتم الرد علي', icon: '📬' },
-                { value: 'yes_no_response', label: 'نعم، ولم يتم الرد خلال 60 يوماً', icon: '⏳' },
-                { value: 'no', label: 'لا، لم أتقدم بتظلم', icon: '❌' }
+                { value: 'yes_responded', label: 'نعم، وتم الرد علي', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/><path d="M16 19h6"/><path d="m19 16 3 3-3 3"/></svg>` },
+                { value: 'yes_no_response', label: 'نعم، ولم يتم الرد خلال 60 يوماً', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>` },
+                { value: 'no', label: 'لا، لم أتقدم بتظلم', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>` }
             ]
         },
         {
             id: 'request_type',
             question: 'ماذا تريد من المحكمة؟',
-            icon: '⚖️',
+            icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 7V3M7 8l-4 4 4 4M17 8l4 4-4 4"/></svg>`,
             options: [
-                { value: 'cancel', label: 'إلغاء القرار الصادر ضدي', icon: '🚫' },
-                { value: 'compensation', label: 'تعويض مالي عن الضرر', icon: '💵' },
-                { value: 'both', label: 'إلغاء القرار والتعويض معاً', icon: '📋💰' },
-                { value: 'enforce', label: 'إلزام الجهة بتنفيذ شيء معين', icon: '✅' }
+                { value: 'cancel', label: 'إلغاء القرار الصادر ضدي', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>` },
+                { value: 'compensation', label: 'تعويض مالي عن الضرر', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>` },
+                { value: 'both', label: 'إلغاء القرار والتعويض معاً', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 7V3M7 8l-4 4 4 4M17 8l4 4-4 4"/><circle cx="12" cy="18" r="3"/></svg>` },
+                { value: 'enforce', label: 'إلزام الجهة بتنفيذ شيء معين', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>` }
             ]
         }
     ],
     caseTypeMapping: {
         // تحديد نوع الدعوى بناءً على الإجابات
-        'decision': { primary: 1, name: 'إلغاء قرار إداري', icon: '📋' },
-        'employment': { primary: 2, name: 'دعوى وظيفية', icon: '💼' },
-        'contract': { primary: 3, name: 'عقود إدارية', icon: '📝' },
-        'compensation': { primary: 4, name: 'تعويضات', icon: '💰' },
-        'service': { primary: 1, name: 'إلغاء قرار إداري', icon: '📋' },
-        'disciplinary': { primary: 5, name: 'دعوى تأديبية', icon: '⚖️' }
+        'decision': { primary: 1, name: 'إلغاء قرار إداري', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>` },
+        'employment': { primary: 2, name: 'دعوى وظيفية', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>` },
+        'contract': { primary: 3, name: 'عقود إدارية', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>` },
+        'compensation': { primary: 4, name: 'تعويضات', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><line x1="12" y1="18" x2="12" y2="20"/><line x1="12" y1="4" x2="12" y2="6"/></svg>` },
+        'service': { primary: 1, name: 'إلغاء قرار إداري', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>` },
+        'disciplinary': { primary: 5, name: 'دعوى تأديبية', icon: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 7V3M7 8l-4 4 4 4M17 8l4 4-4 4"/></svg>` }
     }
 };
 
@@ -87,18 +87,24 @@ function renderRequestsPage() {
         <!-- اختيار طريقة تقديم الطلب -->
         <div id="submission-method-selection" class="form-section">
             <h3 class="section-title">
-                <div class="section-icon">🚀</div>
+                <div class="section-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
                 اختر طريقة تقديم الطلب
             </h3>
             <div class="submission-methods">
                 <div class="method-card" role="button" tabindex="0" onclick="selectSubmissionMethod('smart')" onkeydown="if(event.key === 'Enter' || event.key === ' ') selectSubmissionMethod('smart')">
-                    <div class="method-icon" aria-hidden="true">🤖</div>
+                    <div class="method-icon" aria-hidden="true">
+                        <svg class="icon-svg icon-svg-lg" viewBox="0 0 24 24"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+                    </div>
                     <h4 class="method-title">المساعد الذكي</h4>
                     <p class="method-description">أجب على بعض الأسئلة البسيطة وسنساعدك في تحديد نوع الدعوى المناسبة وملء البيانات</p>
                     <div class="method-badge recommended">موصى به</div>
                 </div>
                 <div class="method-card" role="button" tabindex="0" onclick="selectSubmissionMethod('manual')" onkeydown="if(event.key === 'Enter' || event.key === ' ') selectSubmissionMethod('manual')">
-                    <div class="method-icon" aria-hidden="true">📝</div>
+                    <div class="method-icon" aria-hidden="true">
+                        <svg class="icon-svg icon-svg-lg" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    </div>
                     <h4 class="method-title">التقديم اليدوي</h4>
                     <p class="method-description">قم بملء جميع البيانات والخطوات يدوياً إذا كنت تعرف نوع الدعوى المطلوبة</p>
                     <div class="method-badge">للمتقدمين</div>
@@ -143,12 +149,12 @@ function renderRequestsPage() {
         <!-- أزرار التنقل -->
         <div class="form-section" style="display: none; justify-content: space-between;" id="navigation-buttons">
             <button class="btn btn-secondary" id="prev-btn" onclick="prevStep()" style="visibility: hidden;">
-                <span>→</span>
+                <svg class="icon-svg" style="margin-left: 8px;" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
                 السابق
             </button>
             <button class="btn btn-primary" id="next-btn" onclick="nextStep()">
                 التالي
-                <span>←</span>
+                <svg class="icon-svg" style="margin-right: 8px; transform: rotate(180deg);" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </button>
         </div>
     `;
@@ -160,7 +166,9 @@ function renderSmartAssistant() {
             <!-- رأس المساعد الذكي -->
             <div class="assistant-header">
                 <div class="assistant-avatar">
-                    <div class="avatar-icon">🤖</div>
+                    <div class="avatar-icon">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+                    </div>
                     <div class="avatar-pulse"></div>
                 </div>
                 <div class="assistant-info">
@@ -168,7 +176,7 @@ function renderSmartAssistant() {
                     <p>سأساعدك في تحديد نوع الدعوى المناسبة لحالتك</p>
                 </div>
                 <button class="btn btn-outline btn-sm" onclick="exitSmartAssistant()">
-                    <span>✕</span>
+                    <svg class="icon-svg" style="margin-left: 4px;" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                     إلغاء
                 </button>
             </div>
@@ -189,12 +197,12 @@ function renderSmartAssistant() {
             <!-- أزرار التنقل -->
             <div class="assistant-navigation">
                 <button class="btn btn-secondary" id="assistant-prev-btn" onclick="prevAssistantQuestion()" style="visibility: hidden;">
-                    <span>→</span>
+                    <svg class="icon-svg" style="margin-left: 8px;" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
                     السابق
                 </button>
                 <button class="btn btn-primary" id="assistant-next-btn" onclick="nextAssistantQuestion()" disabled>
                     التالي
-                    <span>←</span>
+                    <svg class="icon-svg" style="margin-right: 8px; transform: rotate(180deg);" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </button>
             </div>
         </div>
@@ -235,7 +243,9 @@ function renderAssistantResult() {
     return `
         <div class="assistant-result-card">
             <div class="result-header">
-                <div class="result-icon">🎯</div>
+                <div class="result-icon">
+                    <svg class="icon-svg icon-svg-lg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                </div>
                 <h3>تحليل حالتك</h3>
             </div>
             
@@ -464,8 +474,8 @@ function updateAssistantUI() {
     prevBtn.style.visibility = currentIndex > 0 ? 'visible' : 'hidden';
     nextBtn.disabled = !SmartAssistantData.answers[currentQ.id];
     nextBtn.innerHTML = currentIndex === totalQuestions - 1
-        ? '<span>🎯</span> عرض النتيجة'
-        : 'التالي <span>←</span>';
+        ? `<svg class="icon-svg" style="margin-left: 8px;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> عرض النتيجة`
+        : 'التالي <svg class="icon-svg" style="margin-right: 8px; transform: rotate(180deg);" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
 }
 
 function showAssistantResult() {
@@ -476,7 +486,7 @@ function showAssistantResult() {
 
     // تحديث شريط التقدم
     progressFill.style.width = '100%';
-    progressText.textContent = 'اكتمل التحليل ✅';
+    progressText.innerHTML = 'اكتمل التحليل <svg class="icon-svg" style="margin-right: 4px; width: 14px; height: 14px;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>';
 
     // إخفاء أزرار التنقل
     navDiv.style.display = 'none';
@@ -520,13 +530,15 @@ function renderStep1() {
     return `
         <div class="form-section">
             <h3 class="section-title">
-                <div class="section-icon">👤</div>
+                <div class="section-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
                 بيانات المدعي
             </h3>
             <div class="party-card">
                 <div class="party-header">
                     <div class="party-title">
-                        <span>👤</span>
+                        <svg class="icon-svg" style="margin-left: 8px; width: 18px; height: 18px;" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                         المدعي
                     </div>
                     <span class="party-badge">شخص طبيعي</span>
@@ -538,7 +550,7 @@ function renderStep1() {
                     </div>
                     <div class="form-group">
                         <label class="form-label required">الاسم الكامل</label>
-                        <input type="text" class="form-control" value="محمد أحمد العمري" readonly>
+                        <input type="text" class="form-control" value="العنود الفيفي" readonly>
                     </div>
                 </div>
                 <div class="form-row">
@@ -560,7 +572,9 @@ function renderStep1() {
         
         <div class="form-section">
             <h3 class="section-title">
-                <div class="section-icon">👔</div>
+                <div class="section-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="18" y1="8" x2="23" y2="13"/><line x1="23" y1="8" x2="18" y2="13"/></svg>
+                </div>
                 بيانات الوكيل (اختياري)
             </h3>
             <div class="checkbox-group" style="margin-bottom: 20px;">
@@ -595,13 +609,15 @@ function renderStep1() {
         
         <div class="form-section">
             <h3 class="section-title">
-                <div class="section-icon">🏛️</div>
+                <div class="section-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M3 7v1a3 3 0 0 0 6 0V7m6 0v1a3 3 0 0 0 6 0V7M3 7l9-4 9 4M5 21V11m14 10V11M9 21V11m6 21V11"/></svg>
+                </div>
                 بيانات المدعى عليه (الجهة الإدارية)
             </h3>
             <div class="party-card">
                 <div class="party-header">
                     <div class="party-title">
-                        <span>🏛️</span>
+                        <svg class="icon-svg" style="margin-left: 8px; width: 18px; height: 18px;" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M3 7v1a3 3 0 0 0 6 0V7m6 0v1a3 3 0 0 0 6 0V7M3 7l9-4 9 4M5 21V11m14 10V11M9 21V11m6 21V11"/></svg>
                         الجهة الإدارية
                     </div>
                     <span class="party-badge" style="background: var(--danger-100); color: var(--danger-500);">جهة حكومية</span>
@@ -626,7 +642,7 @@ function renderStep1() {
                 </div>
             </div>
             <button class="btn btn-outline btn-sm" onclick="addDefendant()">
-                <span>➕</span>
+                <svg class="icon-svg" style="margin-left: 6px;" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                 إضافة مدعى عليه آخر
             </button>
         </div>
@@ -639,13 +655,15 @@ function renderStep2() {
     return `
         <div class="form-section">
             <h3 class="section-title">
-                <div class="section-icon">📋</div>
+                <div class="section-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                </div>
                 تصنيف الدعوى
             </h3>
             
             ${selectedType ? `
-                <div class="alert alert-success" style="margin-bottom: 20px;">
-                    <span>✅</span>
+                <div class="alert alert-success" style="margin-bottom: 20px; display: flex; align-items: center; gap: 12px; border-radius: 12px;">
+                    <svg class="icon-svg" style="color: var(--success-500);" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
                     <div>تم تحديد نوع الدعوى بناءً على إجاباتك في المساعد الذكي. يمكنك تغييره إذا رغبت.</div>
                 </div>
             ` : ''}
@@ -668,7 +686,9 @@ function renderStep2() {
         
         <div class="form-section">
             <h3 class="section-title">
-                <div class="section-icon">📝</div>
+                <div class="section-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                </div>
                 تفاصيل الدعوى
             </h3>
             <div class="form-group">
@@ -702,12 +722,14 @@ function renderStep3() {
     return `
         <div class="form-section">
             <h3 class="section-title">
-                <div class="section-icon">📎</div>
+                <div class="section-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+                </div>
                 المستندات والمرفقات
             </h3>
             
-            <div class="alert alert-info">
-                <span>ℹ️</span>
+            <div class="alert alert-info" style="display: flex; align-items: center; gap: 12px; border-radius: 12px;">
+                <svg class="icon-svg" style="color: var(--info-500);" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
                 <div>
                     <strong>المستندات المطلوبة:</strong>
                     صورة الهوية، صورة القرار المطعون فيه، أي مستندات داعمة للدعوى
@@ -715,7 +737,9 @@ function renderStep3() {
             </div>
             
             <div class="file-upload-area" id="file-upload-area">
-                <div class="file-upload-icon">📁</div>
+                <div class="file-upload-icon">
+                    <svg class="icon-svg icon-svg-lg" style="opacity: 0.5;" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                </div>
                 <div class="file-upload-text">اسحب الملفات وأفلتها هنا أو انقر للاختيار</div>
                 <div class="file-upload-hint">PDF, JPG, PNG - الحد الأقصى 10 ميجابايت لكل ملف</div>
                 <input type="file" id="file-input" multiple accept=".pdf,.jpg,.jpeg,.png" style="display: none;">
@@ -728,7 +752,9 @@ function renderStep3() {
         
         <div class="form-section">
             <h3 class="section-title">
-                <div class="section-icon">📑</div>
+                <div class="section-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2H2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2H12z"/><path d="M2 7h16"/><path d="M12 2v12"/></svg>
+                </div>
                 وصف المستندات
             </h3>
             <div id="file-descriptions">
@@ -750,12 +776,14 @@ function renderStep4() {
     return `
         <div class="form-section">
             <h3 class="section-title">
-                <div class="section-icon">🔐</div>
+                <div class="section-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
                 التحقق من البيانات
             </h3>
             
-            <div class="alert alert-info">
-                <span>ℹ️</span>
+            <div class="alert alert-info" style="display: flex; align-items: center; gap: 12px; border-radius: 12px;">
+                <svg class="icon-svg" style="color: var(--info-500);" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
                 <div>
                     <strong>خطوة التحقق:</strong>
                     سيتواصل معك أحد موظفي المحكمة للتحقق من بياناتك قبل إتمام تقديم الدعوى
@@ -770,7 +798,7 @@ function renderStep4() {
             <!-- معلومات التواصل -->
             <div class="party-card" style="margin-top: 24px;">
                 <h4 style="margin-bottom: 16px; color: var(--primary-700); display: flex; align-items: center; gap: 8px;">
-                    <span>📱</span>
+                    <svg class="icon-svg" style="width: 18px; height: 18px;" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
                     معلومات التواصل المسجلة
                 </h4>
                 <div class="form-row">
@@ -791,7 +819,7 @@ function renderStep4() {
             <!-- إدخال رمز التحقق -->
             <div class="party-card" style="margin-top: 24px;" id="verification-code-section">
                 <h4 style="margin-bottom: 16px; color: var(--primary-700); display: flex; align-items: center; gap: 8px;">
-                    <span>🔑</span>
+                    <svg class="icon-svg" style="width: 18px; height: 18px;" viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.778-7.778zM12 5.741l2.859 2.859M21 2l-2 2m0 0l-10.141 10.141M19 4l-2 2m0 0l-1 1"/></svg>
                     رمز التحقق
                 </h4>
                 <div class="form-group">
@@ -802,7 +830,7 @@ function renderStep4() {
                                maxlength="6" 
                                style="max-width: 300px; font-size: 18px; letter-spacing: 4px; text-align: center;">
                         <button class="btn btn-primary" onclick="verifyCode()">
-                            <span>✅</span>
+                            <svg class="icon-svg" style="margin-left: 6px;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
                             تحقق
                         </button>
                     </div>
@@ -813,7 +841,7 @@ function renderStep4() {
             <!-- ملاحظات إضافية -->
             <div class="party-card" style="margin-top: 24px; background: var(--warning-100); border-color: var(--warning-500);">
                 <h4 style="margin-bottom: 12px; color: #92400e; display: flex; align-items: center; gap: 8px;">
-                    <span>💡</span>
+                    <svg class="icon-svg" style="color: #d97706; width: 18px; height: 18px;" viewBox="0 0 24 24"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                     تعليمات مهمة
                 </h4>
                 <ul style="margin: 0; padding-right: 20px; color: #92400e; line-height: 1.8;">
@@ -849,7 +877,7 @@ function renderStep4() {
 function renderVerificationStatus(status) {
     const statusConfig = {
         pending: {
-            icon: '⏳',
+            icon: `<svg class="icon-svg icon-svg-xl" style="color: var(--warning-500);" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
             title: 'في انتظار التواصل',
             description: 'طلبك قيد المراجعة وسيتواصل معك أحد الموظفين قريباً',
             color: 'var(--warning-500)',
@@ -857,7 +885,7 @@ function renderVerificationStatus(status) {
             showLoader: true
         },
         in_progress: {
-            icon: '📞',
+            icon: `<svg class="icon-svg icon-svg-xl" style="color: var(--info-500);" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.28-2.28a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`,
             title: 'جاري التواصل',
             description: 'الموظف يحاول التواصل معك الآن، يرجى الرد على المكالمة',
             color: 'var(--info-500)',
@@ -865,7 +893,7 @@ function renderVerificationStatus(status) {
             showLoader: true
         },
         verified: {
-            icon: '✅',
+            icon: `<svg class="icon-svg icon-svg-xl" style="color: var(--success-500);" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
             title: 'تم التحقق بنجاح',
             description: 'تم التحقق من بياناتك بنجاح، يمكنك الآن إتمام تقديم الدعوى',
             color: 'var(--success-500)',
@@ -873,7 +901,7 @@ function renderVerificationStatus(status) {
             showLoader: false
         },
         rejected: {
-            icon: '❌',
+            icon: `<svg class="icon-svg icon-svg-xl" style="color: var(--danger-500);" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>`,
             title: 'لم يتم التحقق',
             description: 'تعذر التحقق من البيانات، يرجى مراجعة الملاحظات والمحاولة مرة أخرى',
             color: 'var(--danger-500)',
@@ -886,7 +914,7 @@ function renderVerificationStatus(status) {
 
     return `
         <div style="background: ${config.bgColor}; border: 2px solid ${config.color}; border-radius: 16px; padding: 32px; text-align: center;">
-            <div style="font-size: 64px; margin-bottom: 16px;">${config.icon}</div>
+            <div style="margin-bottom: 24px; display: flex; justify-content: center;">${config.icon}</div>
             <h3 style="color: ${config.color}; font-size: 24px; margin-bottom: 8px;">${config.title}</h3>
             <p style="color: var(--text-secondary); font-size: 16px; margin-bottom: 16px;">${config.description}</p>
             
@@ -913,7 +941,7 @@ function renderVerificationStatus(status) {
                     <div style="color: var(--text-secondary);">لم يتم الرد على المكالمات المتكررة. يرجى التأكد من صحة رقم الجوال.</div>
                 </div>
                 <button class="btn btn-primary" style="margin-top: 16px;" onclick="retryVerification()">
-                    <span>🔄</span>
+                    <svg class="icon-svg" style="margin-left: 8px;" viewBox="0 0 24 24"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
                     إعادة طلب التحقق
                 </button>
             ` : ''}
@@ -929,27 +957,29 @@ function renderStep5() {
     return `
         <div class="form-section">
             <h3 class="section-title">
-                <div class="section-icon">✅</div>
+                <div class="section-icon">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
                 مراجعة البيانات والتأكيد
             </h3>
             
             ${!isVerified ? `
-                <div class="alert alert-danger">
-                    <span>⚠️</span>
+                <div class="alert alert-danger" style="display: flex; align-items: center; gap: 12px; border-radius: 12px;">
+                    <svg class="icon-svg" style="color: var(--danger-500);" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                     <div>
                         <strong>تنبيه:</strong> يجب إتمام خطوة التحقق قبل تقديم الدعوى. 
                         <a href="#" onclick="goToStep(4); return false;" style="color: inherit; text-decoration: underline;">العودة لخطوة التحقق</a>
                     </div>
                 </div>
             ` : `
-                <div class="alert alert-success">
-                    <span>✅</span>
+                <div class="alert alert-success" style="display: flex; align-items: center; gap: 12px; border-radius: 12px;">
+                    <svg class="icon-svg" style="color: var(--success-500);" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
                     <div>تم التحقق من بياناتك بنجاح! يمكنك الآن إتمام تقديم الدعوى.</div>
                 </div>
             `}
             
-            <div class="alert alert-warning">
-                <span>⚠️</span>
+            <div class="alert alert-warning" style="display: flex; align-items: center; gap: 12px; border-radius: 12px;">
+                <svg class="icon-svg" style="color: var(--warning-500);" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <div>يرجى مراجعة جميع البيانات قبل إرسال الطلب. لن تتمكن من تعديل البيانات بعد الإرسال.</div>
             </div>
             
@@ -958,7 +988,7 @@ function renderStep5() {
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
                     <div>
                         <div style="color: var(--text-muted); font-size: 13px;">المدعي</div>
-                        <div style="font-weight: 600;">محمد أحمد العمري</div>
+                        <div style="font-weight: 600;">العنود الفيفي</div>
                     </div>
                     <div>
                         <div style="color: var(--text-muted); font-size: 13px;">المدعى عليه</div>
@@ -994,7 +1024,7 @@ function renderStep5() {
         
         <div class="form-section" style="text-align: center;">
             <button class="btn btn-success btn-lg" onclick="submitCase()" ${!isVerified ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}>
-                <span>✅</span>
+                <svg class="icon-svg" style="margin-left: 8px;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
                 تقديم الدعوى
             </button>
             ${!isVerified ? '<p style="color: var(--text-muted); margin-top: 12px;">يجب إتمام التحقق أولاً</p>' : ''}
