@@ -213,17 +213,95 @@
 
                 <!-- قسم الشرح المبسط -->
                 <div class="verdict-section">
-                    <div class="verdict-section-header ai-section-header">
-                        <h2>
-                            🤖 الشرح الذكي للحكم
-                            <span class="ai-badge">Powered by GPT</span>
-                        </h2>
-                        <p>شرح مبسط وواضح للحكم وتبعاته</p>
+                    <div class="verdict-section-header ai-section-header"
+                        style="display: flex; align-items: center; justify-content: space-between;">
+                        <div>
+                            <h2>
+                                توضيح الحكم
+                                <span class="ai-badge">Powered by GPT</span>
+                            </h2>
+                            <p>شرح مبسط وواضح للحكم وتبعاته</p>
+                        </div>
+                        <button id="readVerdictBtn" class="btn"
+                            style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; gap: 8px; padding: 8px 16px;">
+                            <svg class="icon-svg" style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                            <span>استماع للحكم</span>
+                        </button>
                     </div>
                     <div class="verdict-section-body" id="aiExplanationContainer" style="padding: 24px;">
-                        <div style="text-align: center; padding: 60px 20px; color: var(--text-muted);">
-                            <div style="font-size: 48px; margin-bottom: 16px;">⏳</div>
-                            <p>جاري تحميل قسم الشرح...</p>
+                        <div class="verdict-explanation">
+                            <p class="intro-text"
+                                style="font-weight: bold; margin-bottom: 16px; color: var(--text-primary);">يتناول الحكم
+                                الصادر في القضية رقم 1/2885/ق لعام 1409هـ دعوى أقامها قاضٍ سابق ضد وزارة العدل، يطالب
+                                فيها بتعديل أسباب إنهاء خدمته.<br>إليك تفسير وتحليل منطوق هذا الحكم وأسبابه:</p>
+
+                            <div class="explanation-section" style="margin-bottom: 24px;">
+                                <h3 style="color: var(--primary-color); margin-bottom: 12px; font-size: 18px;">1. ملخص
+                                    موضوع الدعوى</h3>
+                                <ul style="list-style-type: none; padding: 0;">
+                                    <li style="margin-bottom: 8px;"><strong>المدعي:</strong> ملازم قضائي سابق عُين في
+                                        عدة محاكم لكنه لم يرغب في العمل بالسلك القضائي.</li>
+                                    <li style="margin-bottom: 8px;"><strong>المطالبة:</strong> طالب المدعي بتعديل "سبب"
+                                        إنهاء خدمته الوارد في خطاب وزير العدل المرفوع للمقام السامي.</li>
+                                    <li style="margin-bottom: 8px;"><strong>جوهر الخلاف:</strong> تضمن خطاب الوزير أن
+                                        إنهاء الخدمة سببه "عدم الصلاحية للقضاء"، بينما طالب المدعي بتعديله ليكون بناءً
+                                        على "الاستقالة" أو رغبته الشخصية.</li>
+                                </ul>
+                            </div>
+
+                            <div class="explanation-section" style="margin-bottom: 24px;">
+                                <h3 style="color: var(--primary-color); margin-bottom: 12px; font-size: 18px;">2. وقائع
+                                    القضية</h3>
+                                <ul style="list-style-type: none; padding: 0;">
+                                    <li style="margin-bottom: 8px;"><strong>طلب الإعفاء:</strong> تقدم المدعي بعدة
+                                        التماسات لإعفائه من القضاء لعدم رغبته في العمل.</li>
+                                    <li style="margin-bottom: 8px;"><strong>قرار مجلس القضاء:</strong> وافق المجلس
+                                        بالإجماع على "إخلاء طرفه" بناءً على رغبته.</li>
+                                    <li style="margin-bottom: 8px;"><strong>خطاب الوزير:</strong> عند استفسار المقام
+                                        السامي عن السبب، أوضح وزير العدل أن المجلس ظهر له "عدم صلاحية" المدعي للقضاء،
+                                        وهو ما أدى لصدور أمر ملكي بإعفائه.</li>
+                                    <li style="margin-bottom: 8px;"><strong>دفاع المدعي:</strong> ادعى أن عبارة "عدم
+                                        الصلاحية" أثرت على وضعه الوظيفي ولم يكن لها أصل في قرار مجلس القضاء، واعتبرها
+                                        إساءة له بسبب إلحاحه في طلب الاستقالة.</li>
+                                </ul>
+                            </div>
+
+                            <div class="explanation-section" style="margin-bottom: 24px;">
+                                <h3 style="color: var(--primary-color); margin-bottom: 12px; font-size: 18px;">3. رد
+                                    وزارة العدل</h3>
+                                <p style="margin-bottom: 8px;">دفعت الوزارة بعدم قبول الدعوى لعدة أسباب، منها:</p>
+                                <ul style="list-style-type: none; padding: 0;">
+                                    <li style="margin-bottom: 8px;"><strong>عدم الاختصاص:</strong> أن هذه الدعوى لا
+                                        تندرج ضمن اختصاصات ديوان المظالم.</li>
+                                    <li style="margin-bottom: 8px;"><strong>الصلاحية الفنية:</strong> استندت الوزارة إلى
+                                        خطابات سابقة للمدعي نفسه، ذكر فيها أنه يعاني من أمراض جسيمة، وأزمات نفسية، وقلق
+                                        فكري، وضعف جسماني يمنعه من مزاولة القضاء، مما يثبت فعلياً "عدم صلاحيته" طبياً
+                                        ونفسياً لهذا العمل.</li>
+                                </ul>
+                            </div>
+
+                            <div class="explanation-section">
+                                <h3 style="color: var(--primary-color); margin-bottom: 12px; font-size: 18px;">4. أسباب
+                                    الحكم ومنطوقه</h3>
+                                <p style="margin-bottom: 8px;">انتهى ديوان المظالم إلى عدم اختصاصه بنظر الدعوى ، واستند
+                                    في ذلك إلى القواعد التالية:</p>
+                                <ul style="list-style-type: none; padding: 0;">
+                                    <li style="margin-bottom: 8px;"><strong>طبيعة الإجراء:</strong> اعتبرت الدائرة أن
+                                        خطاب وزير العدل المرفوع للمقام السامي هو مجرد "اقتراح" وليس قراراً إدارياً
+                                        نهائياً يمكن الطعن فيه.</li>
+                                    <li style="margin-bottom: 8px;"><strong>السيادة التنظيمية:</strong> إن تعيين القضاة
+                                        وإنهاء خدماتهم هو شأن خاص بمجلس القضاء ويصدر به أمر ملكي، والقضاء الإداري (ديوان
+                                        المظالم) لا يملك التعقيب على الأوامر الملكية أو إجراءات تعيين وإعفاء القضاة.
+                                    </li>
+                                    <li style="margin-bottom: 8px;"><strong>سلطة الإدارة في التسبيب:</strong> من حق
+                                        الإدارة تسبيب قراراتها، والديوان لا يتدخل في تعديل الأسباب طالما أن القرار في
+                                        مجمله سليم.</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -266,7 +344,7 @@
     <!-- JavaScript Files -->
     <script src="js/data.js"></script>
     <script src="js/utils.js"></script>
-    <script src="js/components/verdict-ai-explainer.js"></script>
+
 
     <script>
         // الحصول على معرف الحكم من URL
@@ -279,7 +357,6 @@
                 // عرض الحكم الافتراضي
                 document.getElementById('pageTitle').textContent = 'عرض صك الحكم';
                 document.getElementById('verdictInfo').textContent = 'المستند الرسمي للحكم القضائي';
-                displayAIInitialState();
                 return;
             }
 
@@ -287,7 +364,6 @@
             if (!verdict) {
                 document.getElementById('pageTitle').textContent = 'عرض صك الحكم';
                 document.getElementById('verdictInfo').textContent = 'المستند الرسمي للحكم القضائي';
-                displayAIInitialState();
                 return;
             }
 
@@ -296,281 +372,70 @@
             document.getElementById('verdictInfo').textContent = `صادر من ${verdict.court} بتاريخ ${verdict.date}`;
             document.title = `صك الحكم ${verdict.id} - ديوان المظالم`;
 
-            // عرض الحالة الأولية للشرح
-            displayAIInitialState();
-        }
-
-        // عرض الحالة الأولية للشرح
-        function displayAIInitialState() {
-            const container = document.getElementById('aiExplanationContainer');
-            const savedApiKey = localStorage.getItem('chatgpt_api_key') || '';
-            const apiKeyStatus = savedApiKey ? '✓ تم الحفظ' : 'غير محفوظ';
-            const apiKeyStatusColor = savedApiKey ? '#10b981' : '#ef4444';
-
-            container.innerHTML = `
-                <div class="ai-initial-state">
-                    <div class="ai-initial-icon" style="font-size: 48px; margin-bottom: 16px;">🤖</div>
-                    <h3>هل تحتاج شرحاً مبسطاً للحكم؟</h3>
-                    <p>يمكن للذكاء الاصطناعي أن يشرح لك الحكم بطريقة سهلة ومبسطة، مع توضيح حقوقك والتزاماتك والخطوات التالية المتاحة.</p>
-                    
-                    <!-- إعدادات API -->
-                    <div style="background: #f8f9fc; border-radius: 12px; padding: 20px; margin: 20px 0; border: 2px solid #e0e4e8;">
-                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
-                            <span style="font-size: 20px;">🔑</span>
-                            <h4 style="margin: 0; font-size: 16px; color: var(--text-primary);">إعدادات ChatGPT API</h4>
-                            <span style="margin-right: auto; font-size: 12px; font-weight: 600; color: ${apiKeyStatusColor};">${apiKeyStatus}</span>
-                        </div>
-                        <div style="margin-bottom: 12px;">
-                            <label for="apiKeyInput" style="display: block; margin-bottom: 8px; font-size: 14px; color: var(--text-secondary); font-weight: 500;">
-                                مفتاح API الخاص بك
-                            </label>
-                            <input 
-                                type="password" 
-                                id="apiKeyInput" 
-                                class="form-input" 
-                                placeholder="sk-..." 
-                                value="${savedApiKey}"
-                                style="width: 100%; padding: 12px; border: 2px solid #e0e4e8; border-radius: 8px; font-size: 14px; font-family: monospace; direction: ltr; text-align: left;"
-                            />
-                        </div>
-                        <div style="display: flex; gap: 8px; align-items: center;">
-                            <button class="btn btn-outline" onclick="saveApiKey()" style="flex: 1;">
-                                <span>💾</span>
-                                حفظ المفتاح
-                            </button>
-                            <button class="btn btn-outline" onclick="toggleApiKeyVisibility()" style="padding: 12px 16px;">
-                                <span id="toggleIcon">👁️</span>
-                            </button>
-                        </div>
-                        <p style="font-size: 12px; color: var(--text-muted); margin: 12px 0 0 0; line-height: 1.5;">
-                            💡 يتم حفظ المفتاح محلياً في متصفحك فقط ولا يتم إرساله إلى أي خادم
-                        </p>
-                    </div>
-                    
-                    <button class="btn btn-primary btn-large" onclick="requestAIExplanationForPage()">
-                        <span>✨</span>
-                        احصل على الشرح المبسط الآن
-                    </button>
-                </div>
-            `;
-        }
-
-
-        // حفظ مفتاح API
-        function saveApiKey() {
-            const apiKeyInput = document.getElementById('apiKeyInput');
-            const apiKey = apiKeyInput.value.trim();
-
-            if (!apiKey) {
-                showNotification('يرجى إدخال مفتاح API', 'warning');
-                return;
+            // Reset Speech when loading new verdict (though page reload handles this, good practice)
+            if (window.speechSynthesis.speaking) {
+                window.speechSynthesis.cancel();
             }
-
-            if (!apiKey.startsWith('sk-')) {
-                showNotification('مفتاح API غير صحيح. يجب أن يبدأ بـ sk-', 'error');
-                return;
-            }
-
-            localStorage.setItem('chatgpt_api_key', apiKey);
-            showNotification('تم حفظ مفتاح API بنجاح', 'success');
-
-            // تحديث الحالة
-            displayAIInitialState();
         }
 
-        // إظهار/إخفاء مفتاح API
-        function toggleApiKeyVisibility() {
-            const apiKeyInput = document.getElementById('apiKeyInput');
-            const toggleIcon = document.getElementById('toggleIcon');
+        // --- Text to Speech Logic ---
+        const readBtn = document.getElementById('readVerdictBtn');
+        let speechUtterance = null;
+        let isSpeaking = false;
 
-            if (apiKeyInput.type === 'password') {
-                apiKeyInput.type = 'text';
-                toggleIcon.textContent = '🙈';
+        function toggleSpeech() {
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                updateButtonState(false);
             } else {
-                apiKeyInput.type = 'password';
-                toggleIcon.textContent = '👁️';
-            }
-        }
+                const text = document.getElementById('aiExplanationContainer').innerText;
+                speechUtterance = new SpeechSynthesisUtterance(text);
+                speechUtterance.lang = 'ar-SA'; // Arabic
 
-        // طلب الشرح من AI
-        async function requestAIExplanationForPage() {
-            // التحقق من وجود مفتاح API
-            const apiKey = localStorage.getItem('chatgpt_api_key');
-            if (!apiKey) {
-                showNotification('يرجى إدخال وحفظ مفتاح ChatGPT API أولاً', 'warning');
-                return;
-            }
-
-            const container = document.getElementById('aiExplanationContainer');
-
-            // عرض حالة التحميل
-            container.innerHTML = `
-                <div style="text-align: center; padding: 60px 20px;">
-                    <div style="font-size: 48px; margin-bottom: 16px;">⏳</div>
-                    <h3>جاري تحليل صك الحكم...</h3>
-                    <p style="color: var(--text-muted);">يتم الآن قراءة المستند وإرساله إلى ChatGPT للحصول على الشرح المبسط</p>
-                    <div style="margin-top: 20px;">
-                        <div class="loading-spinner" style="width: 40px; height: 40px; border: 4px solid #e0e4e8; border-top-color: var(--primary-color); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto;"></div>
-                    </div>
-                </div>
-            `;
-
-            try {
-                // قراءة ملف PDF
-                const response = await fetch('Ahmed.pdf');
-                const blob = await response.blob();
-
-                // تحويل PDF إلى base64
-                const reader = new FileReader();
-                reader.readAsDataURL(blob);
-
-                reader.onloadend = async function () {
-                    const base64data = reader.result.split(',')[1];
-
-                    // إرسال الطلب إلى ChatGPT API
-                    try {
-                        const chatResponse = await fetch('https://api.openai.com/v1/chat/completions', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${apiKey}`
-                            },
-                            body: JSON.stringify({
-                                model: 'gpt-4o',
-                                messages: [
-                                    {
-                                        role: 'user',
-                                        content: [
-                                            {
-                                                type: 'text',
-                                                text: `أنت محامي خبير متخصص في القانون السعودي. قم بتحليل صك الحكم المرفق وقدم شرحاً مبسطاً وواضحاً يتضمن:
-
-1. **ملخص الحكم**: اشرح منطوق الحكم بلغة بسيطة
-2. **الأطراف**: من هم أطراف القضية
-3. **الحقوق والالتزامات**: ما هي حقوق والتزامات كل طرف
-4. **الخطوات التالية**: ما هي الإجراءات المتاحة (استئناف، تنفيذ، إلخ)
-5. **المواعيد المهمة**: أي مواعيد أو مهل زمنية يجب الانتباه لها
-
-اجعل الشرح واضحاً ومفهوماً لشخص غير متخصص في القانون.`
-                                            },
-                                            {
-                                                type: 'image_url',
-                                                image_url: {
-                                                    url: `data:application/pdf;base64,${base64data}`
-                                                }
-                                            }
-                                        ]
-                                    }
-                                ],
-                                max_tokens: 2000,
-                                temperature: 0.7
-                            })
-                        });
-
-                        if (!chatResponse.ok) {
-                            const error = await chatResponse.json();
-                            throw new Error(error.error?.message || 'فشل الاتصال بـ ChatGPT API');
-                        }
-
-                        const data = await chatResponse.json();
-                        const explanation = data.choices[0].message.content;
-
-                        // عرض الشرح
-                        displayAIExplanation(explanation);
-                        showNotification('تم الحصول على الشرح بنجاح', 'success');
-
-                    } catch (error) {
-                        console.error('خطأ في ChatGPT API:', error);
-                        container.innerHTML = `
-                            <div style="text-align: center; padding: 60px 20px;">
-                                <div style="font-size: 48px; margin-bottom: 16px; color: #ef4444;">⚠️</div>
-                                <h3>حدث خطأ أثناء الحصول على الشرح</h3>
-                                <p style="color: var(--text-muted);">${error.message}</p>
-                                <button class="btn btn-primary" onclick="displayAIInitialState()">
-                                    المحاولة مرة أخرى
-                                </button>
-                            </div>
-                        `;
-                        showNotification('فشل الاتصال بـ ChatGPT API', 'error');
-                    }
+                speechUtterance.onend = () => {
+                    isSpeaking = false;
+                    updateButtonState(false);
                 };
 
-                reader.onerror = function () {
-                    container.innerHTML = `
-                        <div style="text-align: center; padding: 60px 20px;">
-                            <div style="font-size: 48px; margin-bottom: 16px; color: #ef4444;">⚠️</div>
-                            <h3>فشل قراءة ملف PDF</h3>
-                            <p style="color: var(--text-muted);">تعذر قراءة ملف الحكم</p>
-                            <button class="btn btn-primary" onclick="displayAIInitialState()">
-                                المحاولة مرة أخرى
-                            </button>
-                        </div>
-                    `;
-                    showNotification('فشل قراءة ملف PDF', 'error');
+                speechUtterance.onerror = (e) => {
+                    console.error('Speech synthesis error:', e);
+                    isSpeaking = false;
+                    updateButtonState(false);
                 };
 
-            } catch (error) {
-                console.error('خطأ في قراءة PDF:', error);
-                container.innerHTML = `
-                    <div style="text-align: center; padding: 60px 20px;">
-                        <div style="font-size: 48px; margin-bottom: 16px; color: #ef4444;">⚠️</div>
-                        <h3>فشل تحميل ملف PDF</h3>
-                        <p style="color: var(--text-muted);">تأكد من وجود ملف Ahmed.pdf</p>
-                        <button class="btn btn-primary" onclick="displayAIInitialState()">
-                            المحاولة مرة أخرى
-                        </button>
-                    </div>
-                `;
-                showNotification('فشل تحميل ملف PDF', 'error');
+                window.speechSynthesis.speak(speechUtterance);
+                isSpeaking = true;
+                updateButtonState(true);
             }
         }
 
-        // عرض الشرح من AI
-        function displayAIExplanation(explanation) {
-            const container = document.getElementById('aiExplanationContainer');
+        function updateButtonState(speaking) {
+            const span = readBtn.querySelector('span');
+            const icon = readBtn.querySelector('svg');
 
-            // تحويل النص إلى HTML مع تنسيق
-            const formattedExplanation = explanation
-                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                .replace(/\n\n/g, '</p><p>')
-                .replace(/\n/g, '<br>');
-
-            container.innerHTML = `
-                <div style="padding: 24px;">
-                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 12px; margin-bottom: 24px;">
-                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
-                            <span style="font-size: 32px;">🤖</span>
-                            <h3 style="margin: 0; color: white;">الشرح الذكي للحكم</h3>
-                        </div>
-                        <p style="margin: 0; opacity: 0.95; font-size: 14px;">تم إنشاؤه بواسطة ChatGPT</p>
-                    </div>
-                    
-                    <div style="background: #f8f9fc; border-radius: 12px; padding: 24px; line-height: 1.8; color: var(--text-primary);">
-                        <p>${formattedExplanation}</p>
-                    </div>
-                    
-                    <div style="margin-top: 24px; display: flex; gap: 12px;">
-                        <button class="btn btn-primary" onclick="displayAIInitialState()">
-                            <span>🔄</span>
-                            طلب شرح جديد
-                        </button>
-                        <button class="btn btn-outline" onclick="copyExplanation()">
-                            <span>📋</span>
-                            نسخ الشرح
-                        </button>
-                    </div>
-                </div>
-            `;
+            if (speaking) {
+                span.textContent = 'إيقاف القراءة';
+                // Stop icon
+                icon.innerHTML = '<rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>';
+            } else {
+                span.textContent = 'استماع للحكم';
+                // Speaker icon
+                icon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>';
+            }
         }
 
-        // نسخ الشرح
-        function copyExplanation() {
-            const container = document.getElementById('aiExplanationContainer');
-            const text = container.innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                showNotification('تم نسخ الشرح', 'success');
-            });
+        if (readBtn) {
+            readBtn.addEventListener('click', toggleSpeech);
         }
+
+        // Stop speaking when leaving the page
+        window.addEventListener('beforeunload', () => {
+            if (window.speechSynthesis) {
+                window.speechSynthesis.cancel();
+            }
+        });
+
 
         // تحميل الحكم عند فتح الصفحة
         window.addEventListener('DOMContentLoaded', loadVerdict);
