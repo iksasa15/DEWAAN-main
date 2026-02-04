@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام الخدمات القضائية الإلكترونية - نسخة كبار السن</title>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/controls.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/modals.css">
+    <link rel="stylesheet" href="css/tables.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+
+    <style>
+        /* 
+           تحسينات خاصة بكبار السن 
+           Elderly Accessibility Overrides
+        */
+
+        :root {
+            /* تعديل الألوان لزيادة التباين */
+            --text-primary: #000000;
+            --text-secondary: #333333;
+            --border-light: #999999;
+        }
+
+        body {
+            font-size: 130%;
+            /* تكبير الخط الأساسي بنسبة 30% */
+            line-height: 1.8;
+        }
+
+        /* تكبير العناوين */
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2.4rem;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* تحسين الأزرار */
+        button,
+        .btn,
+        .nav-item a {
+            padding: 15px 30px !important;
+            font-size: 1.3rem !important;
+            font-weight: bold !important;
+            border-radius: 12px !important;
+        }
+
+        /* تكبير عناصر القائمة */
+        .nav-item {
+            margin: 0 10px;
+        }
+
+        .header-main {
+            padding: 30px 0;
+        }
+
+        /* تحسين النماذج */
+        input,
+        select,
+        textarea {
+            padding: 18px !important;
+            font-size: 1.3rem !important;
+            border: 2px solid #555 !important;
+            /* حدود أكثر وضوحاً */
+            border-radius: 10px !important;
+            background-color: #fff !important;
+        }
+
+        label {
+            font-size: 1.4rem !important;
+            margin-bottom: 10px !important;
+            color: #000 !important;
+            font-weight: 800 !important;
+        }
+
+        /* جعل البطاقات أكثر وضوحاً */
+        .card {
+            border: 2px solid #ccc !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+            padding: 30px !important;
+        }
+
+        /* روابط أكثر وضوحاً */
+        a {
+            text-decoration: underline !important;
+            color: var(--primary-800);
+        }
+
+        .nav-item a {
+            text-decoration: none !important;
+        }
+
+        .nav-item.active a {
+            background-color: var(--primary-100);
+            border: 2px solid var(--primary-700);
+        }
+
+        /* شريط تحكم بالحجم */
+        .size-controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 10px;
+            border: 2px solid #333;
+            border-radius: 15px;
+            display: flex;
+            gap: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .size-btn {
+            width: 50px;
+            height: 50px;
+            font-size: 24px !important;
+            padding: 0 !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-50);
+            border: 2px solid var(--primary-700) !important;
+            cursor: pointer;
+        }
+
+        .size-btn:hover {
+            background: var(--primary-200);
+        }
+
+        /* تحسين التباين في التذييل */
+        .footer {
+            background-color: #f0f0f0;
+            color: #000;
+            border-top: 44px solid var(--primary-900);
+        }
+
+        .footer h3 {
+            color: #000;
+        }
+
+        .footer a {
+            color: #000 !important;
+            font-weight: bold;
+        }
+
+        /* إلغاء تثبيت الهيدر عند النزول */
+        .header {
+            position: static !important;
+        }
+
+        /* إخفاء العناصر غير الهامة جداً لتقليل التشويش إذا لزم الأمر
+           حالياً سنبقي كل شيء لكن بوضوح أكبر 
+        */
+    </style>
+</head>
+
+<body>
+    <!-- أدوات تكبير الخط -->
+    <div class="size-controls">
+        <button class="size-btn" onclick="adjustSize(1)" title="تكبير الخط">A+</button>
+        <button class="size-btn" onclick="adjustSize(-1)" title="تصغير الخط">A-</button>
+        <button class="size-btn" onclick="resetSize()" title="الحجم الافتراضي">↺</button>
+        <a href="accessibility_selection.html" class="size-btn" title="العودة"
+            style="text-decoration: none !important;">↩️</a>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <span style="font-size: 1.2rem;">📞 للمساعدة اتصل بـ: <strong>920001234</strong></span>
+                <span>📅 الجمعة، 17 يناير 2025</span>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container">
+                <div class="logo">
+                    <div class="logo-icon" style="font-size: 60px;">⚖️</div>
+                    <div class="logo-text">
+                        <h1>ديوان المظالم</h1>
+                        <p style="font-size: 1.5rem;">نظام الخدمات القضائية الإلكترونية</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <div class="user-menu" style="padding: 15px;">
+                        <div class="user-avatar" style="width: 60px; height: 60px; font-size: 24px;">م</div>
+                        <div class="user-info">
+                            <div class="user-name" style="font-size: 1.4rem;">محمد العمري</div>
+                            <div class="user-role" style="font-size: 1.1rem;">مستفيد</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-list">
+                    <li class="nav-item active">
+                        <a href="#" data-section="home">
+                            <span class="nav-icon" style="font-size: 1.5em;">🏠</span>
+                            الرئيسية
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" data-section="requests">
+                            <span class="nav-icon" style="font-size: 1.5em;">📝</span>
+                            تقديم الطلبات
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" data-section="cases">
+                            <span class="nav-icon" style="font-size: 1.5em;">📂</span>
+                            القضايا
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" data-section="verdicts">
+                            <span class="nav-icon" style="font-size: 1.5em;">⚖️</span>
+                            الأحكام
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container" id="main-content">
+            <!-- المحتوى يتم تحميله ديناميكياً -->
+            <!-- سيتم تحميل المحتوى من JavaScript -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>⚖️ ديوان المظالم</h3>
+                    <p>منصة إلكترونية متكاملة لخدمتكم</p>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط مساعدة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">تقديم دعوى جديدة</a></li>
+                        <li><a href="#">متابعة قضاياي</a></li>
+                        <li><a href="#">الدعم الفني والمساعدة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>اتصل بنا</h3>
+                    <ul class="footer-links">
+                        <li>📞 920001234</li>
+                        <li>📍 الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة © 2025 ديوان المظالم</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/pages/home.js"></script>
+    <script src="js/pages/requests.js"></script>
+    <script src="js/pages/cases.js"></script>
+    <script src="js/pages/verdicts.js"></script>
+    <script src="js/components/stepper.js"></script>
+    <script src="js/components/fileUpload.js"></script>
+    <script src="js/components/modals.js"></script>
+    <script src="js/components/chatbot.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Elderly Controls Script -->
+    <script>
+        // إزالة إعادة التوجيه التلقائي إن وجدت
+        // التحكم في حجم الخط
+        let currentZoom = 130;
+
+        function adjustSize(change) {
+            currentZoom += (change * 10);
+            if (currentZoom < 100) currentZoom = 100;
+            if (currentZoom > 200) currentZoom = 200;
+
+            // نغير حجم الخط في العنصر الجذري (html) لكي تتأثر وحدات rem
+            document.documentElement.style.fontSize = currentZoom + '%';
+        }
+
+        function resetSize() {
+            currentZoom = 130;
+            // نغير حجم الخط في العنصر الجذري (html)
+            document.documentElement.style.fontSize = currentZoom + '%';
+        }
+
+        // مساعدة صوتية عند التحميل
+        function announceLoad() {
+            if ('speechSynthesis' in window) {
+                const text = "مرحباً بكم. هذه النسخة مخصصة لكبار السن بخط كبير وواضح. يمكنكم زيادة حجم الخط من الأزرار أعلى اليسار.";
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ar-SA';
+                // window.speechSynthesis.speak(utterance); // اختياري، قد يكون مزعجاً إذا لم يطلب
+            }
+        }
+
+        window.addEventListener('load', () => {
+            // يمكن تفعيل التنبيه الصوتي هنا
+        });
+    </script>
+</body>
+
+</html>
