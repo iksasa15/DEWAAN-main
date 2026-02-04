@@ -18,9 +18,28 @@
     <link rel="stylesheet" href="css/chatbot.css">
 
     <style>
+        /* أنماط الوصول (Accessibility) */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-900);
+            color: white;
+            padding: 8px;
+            z-index: 10000;
+            transition: top 0.3s;
+            text-decoration: none;
+            border-radius: 0 0 4px 0;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
         /* أنماط خاصة بالنسخة الناطقة */
         .tts-active {
             outline: 3px solid var(--primary-500) !important;
+            outline-offset: 2px;
             background-color: rgba(61, 137, 119, 0.1) !important;
             border-radius: 4px;
             box-shadow: 0 0 10px rgba(61, 137, 119, 0.3);
@@ -95,16 +114,22 @@
 </head>
 
 <body>
+    <!-- رابط تخطي إلى المحتوى الرئيسي -->
+    <a href="#main-content" class="skip-link">تجاوز إلى المحتوى الرئيسي</a>
+
     <!-- مؤشر القراءة -->
-    <div id="reading-indicator" class="reading-indicator">
-        🔊 جاري القراءة...
+    <div id="reading-indicator" class="reading-indicator" role="status" aria-live="polite">
+        <span aria-hidden="true">🔊</span> جاري القراءة...
     </div>
 
     <!-- أزرار التحكم -->
-    <div class="accessibility-controls">
-        <button class="a11y-btn" onclick="stopSpeaking()" title="إيقاف القراءة">🔇</button>
-        <button class="a11y-btn" onclick="document.location.reload()" title="إعادة تحميل الصفحة">🔄</button>
-        <a href="accessibility_selection.html" class="a11y-btn" title="العودة للاختيار">↩️</a>
+    <div class="accessibility-controls" role="group" aria-label="أدوات الوصول">
+        <button class="a11y-btn" onclick="stopSpeaking()" title="إيقاف القراءة" aria-label="إيقاف القراءة"><span
+                aria-hidden="true">🔇</span></button>
+        <button class="a11y-btn" onclick="document.location.reload()" title="إعادة تحميل الصفحة"
+            aria-label="إعادة تحميل الصفحة"><span aria-hidden="true">🔄</span></button>
+        <a href="accessibility_selection.html" class="a11y-btn" title="العودة للاختيار"
+            aria-label="العودة لصفحة الاختيار"><span aria-hidden="true">↩️</span></a>
     </div>
 
     <!-- Header -->

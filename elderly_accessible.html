@@ -169,6 +169,24 @@
             position: static !important;
         }
 
+        /* أنماط الوصول (Accessibility) */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-900);
+            color: white;
+            padding: 8px;
+            z-index: 10000;
+            transition: top 0.3s;
+            text-decoration: none;
+            border-radius: 0 0 4px 0;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
         /* إخفاء العناصر غير الهامة جداً لتقليل التشويش إذا لزم الأمر
            حالياً سنبقي كل شيء لكن بوضوح أكبر 
         */
@@ -176,14 +194,21 @@
 </head>
 
 <body>
+    <!-- رابط تخطي إلى المحتوى الرئيسي -->
+    <a href="#main-content" class="skip-link">تجاوز إلى المحتوى الرئيسي</a>
+
     <!-- أدوات تكبير الخط -->
-    <div class="size-controls">
-        <button class="size-btn" onclick="adjustSize(1)" title="تكبير الخط">A+</button>
-        <button class="size-btn" onclick="adjustSize(-1)" title="تصغير الخط">A-</button>
-        <button class="size-btn" onclick="resetSize()" title="الحجم الافتراضي">↺</button>
-        <button id="mic-btn" class="size-btn" onclick="toggleVoice()" title="تحدث لتكبير الصفحة">🎤</button>
-        <a href="accessibility_selection.html" class="size-btn" title="العودة"
-            style="text-decoration: none !important;">↩️</a>
+    <div class="size-controls" role="group" aria-label="أدوات التحكم في العرض">
+        <button class="size-btn" onclick="adjustSize(1)" title="تكبير الخط" aria-label="تكبير الخط"><span
+                aria-hidden="true">A+</span></button>
+        <button class="size-btn" onclick="adjustSize(-1)" title="تصغير الخط" aria-label="تصغير الخط"><span
+                aria-hidden="true">A-</span></button>
+        <button class="size-btn" onclick="resetSize()" title="الحجم الافتراضي"
+            aria-label="استعادة الحجم الافتراضي"><span aria-hidden="true">↺</span></button>
+        <button id="mic-btn" class="size-btn" onclick="toggleVoice()" title="تحدث لتكبير الصفحة"
+            aria-label="تشغيل التحكم الصوتي"><span aria-hidden="true">🎤</span></button>
+        <a href="accessibility_selection.html" class="size-btn" title="العودة" style="text-decoration: none !important;"
+            aria-label="العودة لصفحة الاختيار"><span aria-hidden="true">↩️</span></a>
     </div>
 
     <!-- Header -->

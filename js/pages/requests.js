@@ -91,14 +91,14 @@ function renderRequestsPage() {
                 اختر طريقة تقديم الطلب
             </h3>
             <div class="submission-methods">
-                <div class="method-card" onclick="selectSubmissionMethod('smart')">
-                    <div class="method-icon">🤖</div>
+                <div class="method-card" role="button" tabindex="0" onclick="selectSubmissionMethod('smart')" onkeydown="if(event.key === 'Enter' || event.key === ' ') selectSubmissionMethod('smart')">
+                    <div class="method-icon" aria-hidden="true">🤖</div>
                     <h4 class="method-title">المساعد الذكي</h4>
                     <p class="method-description">أجب على بعض الأسئلة البسيطة وسنساعدك في تحديد نوع الدعوى المناسبة وملء البيانات</p>
                     <div class="method-badge recommended">موصى به</div>
                 </div>
-                <div class="method-card" onclick="selectSubmissionMethod('manual')">
-                    <div class="method-icon">📝</div>
+                <div class="method-card" role="button" tabindex="0" onclick="selectSubmissionMethod('manual')" onkeydown="if(event.key === 'Enter' || event.key === ' ') selectSubmissionMethod('manual')">
+                    <div class="method-icon" aria-hidden="true">📝</div>
                     <h4 class="method-title">التقديم اليدوي</h4>
                     <p class="method-description">قم بملء جميع البيانات والخطوات يدوياً إذا كنت تعرف نوع الدعوى المطلوبة</p>
                     <div class="method-badge">للمتقدمين</div>
@@ -204,20 +204,24 @@ function renderSmartAssistant() {
 function renderAssistantQuestion(questionIndex) {
     const question = SmartAssistantData.questions[questionIndex];
     const selectedAnswer = SmartAssistantData.answers[question.id];
-    
+
     return `
         <div class="assistant-question-card">
             <div class="question-header">
                 <span class="question-icon">${question.icon}</span>
                 <h3 class="question-text">${question.question}</h3>
             </div>
-            <div class="options-grid">
+            <div class="options-grid" role="radiogroup" aria-label="${question.question}">
                 ${question.options.map(option => `
                     <div class="option-card ${selectedAnswer === option.value ? 'selected' : ''}" 
-                         onclick="selectAssistantOption('${question.id}', '${option.value}')">
-                        <div class="option-icon">${option.icon}</div>
+                         role="radio"
+                         aria-checked="${selectedAnswer === option.value}"
+                         tabindex="0"
+                         onclick="selectAssistantOption('${question.id}', '${option.value}')"
+                         onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectAssistantOption('${question.id}', '${option.value}'); }">
+                        <div class="option-icon" aria-hidden="true">${option.icon}</div>
                         <div class="option-label">${option.label}</div>
-                        <div class="option-check">✓</div>
+                        <div class="option-check" aria-hidden="true">✓</div>
                     </div>
                 `).join('')}
             </div>
@@ -227,7 +231,7 @@ function renderAssistantQuestion(questionIndex) {
 
 function renderAssistantResult() {
     const result = analyzeAnswers();
-    
+
     return `
         <div class="assistant-result-card">
             <div class="result-header">
@@ -266,9 +270,9 @@ function renderAssistantResult() {
                 <h4>📋 ملخص إجاباتك</h4>
                 <div class="summary-grid">
                     ${Object.entries(SmartAssistantData.answers).map(([key, value]) => {
-                        const question = SmartAssistantData.questions.find(q => q.id === key);
-                        const option = question.options.find(o => o.value === value);
-                        return `
+        const question = SmartAssistantData.questions.find(q => q.id === key);
+        const option = question.options.find(o => o.value === value);
+        return `
                             <div class="summary-item">
                                 <span class="summary-icon">${question.icon}</span>
                                 <div class="summary-content">
@@ -277,7 +281,7 @@ function renderAssistantResult() {
                                 </div>
                             </div>
                         `;
-                    }).join('')}
+    }).join('')}
                 </div>
             </div>
             
@@ -298,15 +302,15 @@ function renderAssistantResult() {
 function analyzeAnswers() {
     const answers = SmartAssistantData.answers;
     const mapping = SmartAssistantData.caseTypeMapping;
-    
+
     // تحديد نوع الدعوى الأساسي
     let caseType = mapping[answers.problem_type] || mapping['decision'];
     let warnings = [];
     let tips = [];
     let description = '';
-    
+
     // تحليل الإجابات وتقديم النصائح
-    switch(answers.problem_type) {
+    switch (answers.problem_type) {
         case 'decision':
             description = 'دعوى لإلغاء قرار إداري صادر من جهة حكومية تراه مخالفاً للنظام أو مضراً بمصالحك.';
             break;
@@ -327,28 +331,28 @@ function analyzeAnswers() {
             caseType = { primary: 5, name: 'دعوى تأديبية', icon: '⚖️' };
             break;
     }
-    
+
     // تحذيرات بناءً على الوقت
     if (answers.time_passed === 'long') {
         warnings.push('مضى أكثر من 6 أشهر على القرار، قد يكون هناك مشكلة في قبول الدعوى من حيث المدة. ننصح باستشارة محامي.');
     } else if (answers.time_passed === 'months') {
         warnings.push('تأكد من تقديم الدعوى في أقرب وقت لتجنب مشاكل المدة النظامية.');
     }
-    
+
     // تحذيرات بناءً على التظلم
     if (answers.grievance_filed === 'no') {
         warnings.push('في بعض الحالات يُشترط التظلم للجهة الإدارية قبل رفع الدعوى. ننصح بالتحقق من ذلك.');
         tips.push('يمكنك تقديم تظلم للجهة الإدارية أولاً وانتظار الرد قبل رفع الدعوى.');
     }
-    
+
     // نصائح عامة
     tips.push('احتفظ بنسخ من جميع المستندات والمراسلات.');
     tips.push('تأكد من صحة بيانات الجهة المدعى عليها.');
-    
+
     if (answers.request_type === 'compensation' || answers.request_type === 'both') {
         tips.push('قم بتوثيق جميع الأضرار المادية والمعنوية التي لحقت بك.');
     }
-    
+
     return {
         caseType,
         description,
@@ -364,12 +368,12 @@ function selectSubmissionMethod(method) {
     const stepperDiv = document.getElementById('stepper');
     const stepContentDiv = document.getElementById('step-content');
     const navButtonsDiv = document.getElementById('navigation-buttons');
-    
+
     if (method === 'smart') {
         SmartAssistantData.isActive = true;
         SmartAssistantData.currentQuestion = 0;
         SmartAssistantData.answers = {};
-        
+
         selectionDiv.style.display = 'none';
         assistantDiv.style.display = 'block';
         stepperDiv.style.display = 'none';
@@ -388,22 +392,22 @@ function selectSubmissionMethod(method) {
 function exitSmartAssistant() {
     const selectionDiv = document.getElementById('submission-method-selection');
     const assistantDiv = document.getElementById('smart-assistant-container');
-    
+
     SmartAssistantData.isActive = false;
     SmartAssistantData.currentQuestion = 0;
     SmartAssistantData.answers = {};
-    
+
     selectionDiv.style.display = 'block';
     assistantDiv.style.display = 'none';
 }
 
 function selectAssistantOption(questionId, value) {
     SmartAssistantData.answers[questionId] = value;
-    
+
     // تحديث واجهة الخيارات
     const container = document.getElementById('assistant-question-container');
     container.innerHTML = renderAssistantQuestion(SmartAssistantData.currentQuestion);
-    
+
     // تفعيل زر التالي
     const nextBtn = document.getElementById('assistant-next-btn');
     if (nextBtn) {
@@ -413,15 +417,15 @@ function selectAssistantOption(questionId, value) {
 
 function nextAssistantQuestion() {
     const currentQ = SmartAssistantData.questions[SmartAssistantData.currentQuestion];
-    
+
     // التحقق من اختيار إجابة
     if (!SmartAssistantData.answers[currentQ.id]) {
         showNotification('الرجاء اختيار إجابة للمتابعة', 'error');
         return;
     }
-    
+
     SmartAssistantData.currentQuestion++;
-    
+
     if (SmartAssistantData.currentQuestion >= SmartAssistantData.questions.length) {
         // عرض النتيجة
         showAssistantResult();
@@ -443,24 +447,24 @@ function updateAssistantUI() {
     const progressText = document.getElementById('assistant-progress-text');
     const prevBtn = document.getElementById('assistant-prev-btn');
     const nextBtn = document.getElementById('assistant-next-btn');
-    
+
     const currentIndex = SmartAssistantData.currentQuestion;
     const totalQuestions = SmartAssistantData.questions.length;
     const currentQ = SmartAssistantData.questions[currentIndex];
-    
+
     // تحديث المحتوى
     container.innerHTML = renderAssistantQuestion(currentIndex);
-    
+
     // تحديث شريط التقدم
     const progress = ((currentIndex + 1) / totalQuestions) * 100;
     progressFill.style.width = `${progress}%`;
     progressText.textContent = `السؤال ${currentIndex + 1} من ${totalQuestions}`;
-    
+
     // تحديث الأزرار
     prevBtn.style.visibility = currentIndex > 0 ? 'visible' : 'hidden';
     nextBtn.disabled = !SmartAssistantData.answers[currentQ.id];
-    nextBtn.innerHTML = currentIndex === totalQuestions - 1 
-        ? '<span>🎯</span> عرض النتيجة' 
+    nextBtn.innerHTML = currentIndex === totalQuestions - 1
+        ? '<span>🎯</span> عرض النتيجة'
         : 'التالي <span>←</span>';
 }
 
@@ -469,14 +473,14 @@ function showAssistantResult() {
     const progressFill = document.getElementById('assistant-progress-fill');
     const progressText = document.getElementById('assistant-progress-text');
     const navDiv = document.querySelector('.assistant-navigation');
-    
+
     // تحديث شريط التقدم
     progressFill.style.width = '100%';
     progressText.textContent = 'اكتمل التحليل ✅';
-    
+
     // إخفاء أزرار التنقل
     navDiv.style.display = 'none';
-    
+
     // عرض النتيجة
     container.innerHTML = renderAssistantResult();
 }
@@ -484,10 +488,10 @@ function showAssistantResult() {
 function restartAssistant() {
     SmartAssistantData.currentQuestion = 0;
     SmartAssistantData.answers = {};
-    
+
     const navDiv = document.querySelector('.assistant-navigation');
     navDiv.style.display = 'flex';
-    
+
     updateAssistantUI();
 }
 
@@ -496,18 +500,18 @@ function proceedWithRecommendation(caseTypeId) {
     if (typeof AppData !== 'undefined') {
         AppData.selectedCaseType = caseTypeId;
     }
-    
+
     // الانتقال للنموذج العادي
     const assistantDiv = document.getElementById('smart-assistant-container');
     const stepperDiv = document.getElementById('stepper');
     const stepContentDiv = document.getElementById('step-content');
     const navButtonsDiv = document.getElementById('navigation-buttons');
-    
+
     assistantDiv.style.display = 'none';
     stepperDiv.style.display = 'flex';
     stepContentDiv.style.display = 'block';
     navButtonsDiv.style.display = 'flex';
-    
+
     // تحديث خطوة تصنيف الدعوى لتكون محددة مسبقاً
     showNotification('تم تحديد نوع الدعوى بناءً على إجاباتك. يمكنك تعديله إذا رغبت.', 'success');
 }
@@ -631,7 +635,7 @@ function renderStep1() {
 
 function renderStep2() {
     const selectedType = typeof AppData !== 'undefined' && AppData.selectedCaseType ? AppData.selectedCaseType : null;
-    
+
     return `
         <div class="form-section">
             <h3 class="section-title">
@@ -742,7 +746,7 @@ function renderStep3() {
 // ✅ الخطوة الجديدة - خطوة التحقق
 function renderStep4() {
     const status = typeof AppData !== 'undefined' ? AppData.verificationStatus.status : 'pending';
-    
+
     return `
         <div class="form-section">
             <h3 class="section-title">
@@ -877,9 +881,9 @@ function renderVerificationStatus(status) {
             showLoader: false
         }
     };
-    
+
     const config = statusConfig[status] || statusConfig.pending;
-    
+
     return `
         <div style="background: ${config.bgColor}; border: 2px solid ${config.color}; border-radius: 16px; padding: 32px; text-align: center;">
             <div style="font-size: 64px; margin-bottom: 16px;">${config.icon}</div>
@@ -921,7 +925,7 @@ function renderVerificationStatus(status) {
 function renderStep5() {
     // التحقق من حالة التحقق قبل السماح بالإرسال
     const isVerified = typeof AppData !== 'undefined' && AppData.verificationStatus.status === 'verified';
-    
+
     return `
         <div class="form-section">
             <h3 class="section-title">
@@ -1002,15 +1006,15 @@ function renderStep5() {
 function verifyCode() {
     const codeInput = document.getElementById('verification-code-input');
     const code = codeInput ? codeInput.value : '';
-    
+
     if (code.length !== 6) {
         showNotification('يرجى إدخال رمز التحقق المكون من 6 أرقام', 'error');
         return;
     }
-    
+
     // محاكاة التحقق من الرمز
     showNotification('جاري التحقق من الرمز...', 'info');
-    
+
     setTimeout(() => {
         if (code === '123456') { // رمز تجريبي
             if (typeof AppData !== 'undefined') {
@@ -1029,14 +1033,14 @@ function simulateVerification(status) {
         AppData.verificationStatus.status = status;
     }
     updateVerificationUI();
-    
+
     const messages = {
         pending: 'تم تغيير الحالة إلى: في الانتظار',
         in_progress: 'تم تغيير الحالة إلى: جاري التواصل',
         verified: 'تم تغيير الحالة إلى: تم التحقق',
         rejected: 'تم تغيير الحالة إلى: مرفوض'
     };
-    
+
     showNotification(messages[status], 'info');
 }
 
@@ -1045,7 +1049,7 @@ function updateVerificationUI() {
     if (statusContainer && typeof AppData !== 'undefined') {
         statusContainer.innerHTML = renderVerificationStatus(AppData.verificationStatus.status);
     }
-    
+
     // تحديث أزرار التنقل
     updateNavigationButtons();
 }
@@ -1072,7 +1076,7 @@ function goToStep(stepNumber) {
 
 function updateNavigationButtons() {
     const nextBtn = document.getElementById('next-btn');
-    
+
     // في خطوة التحقق، لا يمكن المتابعة إلا بعد التحقق
     if (typeof AppData !== 'undefined' && AppData.currentStep === 4 && nextBtn) {
         const isVerified = AppData.verificationStatus.status === 'verified';
@@ -1100,15 +1104,15 @@ function submitCase() {
         showNotification('يجب إتمام خطوة التحقق قبل تقديم الدعوى', 'error');
         return;
     }
-    
+
     const termsCheckbox = document.getElementById('terms-agree');
     if (!termsCheckbox || !termsCheckbox.checked) {
         showNotification('يجب الموافقة على الإقرار قبل تقديم الدعوى', 'error');
         return;
     }
-    
+
     showNotification('جاري تقديم الدعوى...', 'info');
-    
+
     setTimeout(() => {
         if (typeof showSuccessModal === 'function') {
             showSuccessModal();
