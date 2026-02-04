@@ -527,6 +527,8 @@ function proceedWithRecommendation(caseTypeId) {
 }
 
 function renderStep1() {
+    const data = (typeof AppData !== 'undefined' && AppData.formData) ? AppData.formData : {};
+
     return `
         <div class="form-section">
             <h3 class="section-title">
@@ -546,26 +548,26 @@ function renderStep1() {
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label required">رقم الهوية / الإقامة</label>
-                        <input type="text" class="form-control" placeholder="أدخل رقم الهوية">
+                        <input type="text" class="form-control" name="party_id" placeholder="أدخل رقم الهوية" value="${data.party_id || ''}">
                     </div>
                     <div class="form-group">
                         <label class="form-label required">الاسم الكامل</label>
-                        <input type="text" class="form-control" value="العنود الفيفي" readonly>
+                        <input type="text" class="form-control" name="party_name" value="${data.party_name || 'العنود الفيفي'}" readonly>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label required">رقم الجوال</label>
-                        <input type="tel" class="form-control" placeholder="05xxxxxxxx">
+                        <input type="tel" class="form-control" name="party_phone" placeholder="05xxxxxxxx" value="${data.party_phone || ''}">
                     </div>
                     <div class="form-group">
                         <label class="form-label required">البريد الإلكتروني</label>
-                        <input type="email" class="form-control" placeholder="example@email.com">
+                        <input type="email" class="form-control" name="party_email" placeholder="example@email.com" value="${data.party_email || ''}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-label required">العنوان</label>
-                    <input type="text" class="form-control" placeholder="المدينة، الحي، الشارع">
+                    <input type="text" class="form-control" name="party_address" placeholder="المدينة، الحي، الشارع" value="${data.party_address || ''}">
                 </div>
             </div>
         </div>
@@ -578,29 +580,29 @@ function renderStep1() {
                 بيانات الوكيل (اختياري)
             </h3>
             <div class="checkbox-group" style="margin-bottom: 20px;">
-                <input type="checkbox" class="checkbox" id="has-agent" onchange="toggleAgentForm()">
+                <input type="checkbox" class="checkbox" id="has-agent" name="has_agent" onchange="toggleAgentForm()" ${data.has_agent ? 'checked' : ''}>
                 <label for="has-agent">لدي وكيل / محامي</label>
             </div>
-            <div id="agent-form" style="display: none;">
+            <div id="agent-form" style="display: ${data.has_agent ? 'block' : 'none'};">
                 <div class="party-card">
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label required">رقم رخصة المحاماة</label>
-                            <input type="text" class="form-control" placeholder="أدخل رقم الرخصة">
+                            <input type="text" class="form-control" name="agent_license" placeholder="أدخل رقم الرخصة" value="${data.agent_license || ''}">
                         </div>
                         <div class="form-group">
                             <label class="form-label required">اسم المحامي</label>
-                            <input type="text" class="form-control" placeholder="الاسم الكامل">
+                            <input type="text" class="form-control" name="agent_name" placeholder="الاسم الكامل" value="${data.agent_name || ''}">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label required">رقم الجوال</label>
-                            <input type="tel" class="form-control" placeholder="05xxxxxxxx">
+                            <input type="tel" class="form-control" name="agent_phone" placeholder="05xxxxxxxx" value="${data.agent_phone || ''}">
                         </div>
                         <div class="form-group">
                             <label class="form-label">رقم الوكالة</label>
-                            <input type="text" class="form-control" placeholder="رقم صك الوكالة">
+                            <input type="text" class="form-control" name="agent_doc" placeholder="رقم صك الوكالة" value="${data.agent_doc || ''}">
                         </div>
                     </div>
                 </div>
@@ -625,19 +627,19 @@ function renderStep1() {
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label required">اسم الجهة</label>
-                        <select class="form-control form-select">
+                        <select class="form-control form-select" name="defendant_entity">
                             <option value="">اختر الجهة الإدارية</option>
-                            <option value="1">وزارة الموارد البشرية والتنمية الاجتماعية</option>
-                            <option value="2">وزارة المالية</option>
-                            <option value="3">وزارة التعليم</option>
-                            <option value="4">وزارة الصحة</option>
-                            <option value="5">أمانة منطقة الرياض</option>
-                            <option value="6">أمانة منطقة مكة المكرمة</option>
+                            <option value="1" ${data.defendant_entity === '1' ? 'selected' : ''}>وزارة الموارد البشرية والتنمية الاجتماعية</option>
+                            <option value="2" ${data.defendant_entity === '2' ? 'selected' : ''}>وزارة المالية</option>
+                            <option value="3" ${data.defendant_entity === '3' ? 'selected' : ''}>وزارة التعليم</option>
+                            <option value="4" ${data.defendant_entity === '4' ? 'selected' : ''}>وزارة الصحة</option>
+                            <option value="5" ${data.defendant_entity === '5' ? 'selected' : ''}>أمانة منطقة الرياض</option>
+                            <option value="6" ${data.defendant_entity === '6' ? 'selected' : ''}>أمانة منطقة مكة المكرمة</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label class="form-label">الإدارة / الفرع</label>
-                        <input type="text" class="form-control" placeholder="اسم الإدارة أو الفرع">
+                        <input type="text" class="form-control" name="defendant_dept" placeholder="اسم الإدارة أو الفرع" value="${data.defendant_dept || ''}">
                     </div>
                 </div>
             </div>
@@ -651,6 +653,10 @@ function renderStep1() {
 
 function renderStep2() {
     const selectedType = typeof AppData !== 'undefined' && AppData.selectedCaseType ? AppData.selectedCaseType : null;
+    const data = (typeof AppData !== 'undefined' && AppData.formData) ? AppData.formData : {};
+
+    // Use saved case type if available and no smart assistant selection
+    const currentCaseType = data.case_type ? parseInt(data.case_type) : selectedType;
 
     return `
         <div class="form-section">
@@ -672,8 +678,8 @@ function renderStep2() {
                 <label class="form-label required">نوع الدعوى</label>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 12px;">
                     ${AppData.caseTypes.map(type => `
-                        <label class="party-card ${selectedType === type.id ? 'selected-type' : ''}" style="cursor: pointer; margin: 0; padding: 16px;">
-                            <input type="radio" name="case-type" value="${type.id}" style="display: none;" ${selectedType === type.id ? 'checked' : ''}>
+                        <label class="party-card ${currentCaseType === type.id ? 'selected-type' : ''}" style="cursor: pointer; margin: 0; padding: 16px;">
+                            <input type="radio" name="case_type" value="${type.id}" style="display: none;" ${currentCaseType === type.id ? 'checked' : ''}>
                             <div style="display: flex; align-items: center; gap: 12px;">
                                 <div style="width: 24px; height: 24px; display: flex; align-items: center;">${type.icon}</div>
                                 <span style="font-weight: 600;">${type.name}</span>
@@ -693,25 +699,25 @@ function renderStep2() {
             </h3>
             <div class="form-group">
                 <label class="form-label required">موضوع الدعوى</label>
-                <input type="text" class="form-control" placeholder="اكتب عنواناً مختصراً للدعوى">
+                <input type="text" class="form-control" name="case_subject" placeholder="اكتب عنواناً مختصراً للدعوى" value="${data.case_subject || ''}">
             </div>
             <div class="form-group">
                 <label class="form-label required">وقائع الدعوى</label>
-                <textarea class="form-control" rows="5" placeholder="اشرح تفاصيل الدعوى ووقائعها بشكل مفصل..."></textarea>
+                <textarea class="form-control" name="case_details" rows="5" placeholder="اشرح تفاصيل الدعوى ووقائعها بشكل مفصل...">${data.case_details || ''}</textarea>
                 <div class="form-hint">اذكر التسلسل الزمني للأحداث والوقائع المتعلقة بالدعوى</div>
             </div>
             <div class="form-group">
                 <label class="form-label required">الطلبات</label>
-                <textarea class="form-control" rows="3" placeholder="حدد طلباتك من المحكمة بشكل واضح..."></textarea>
+                <textarea class="form-control" name="case_requests" rows="3" placeholder="حدد طلباتك من المحكمة بشكل واضح...">${data.case_requests || ''}</textarea>
             </div>
             <div class="form-row">
                 <div class="form-group">
                     <label class="form-label">رقم القرار المطعون فيه</label>
-                    <input type="text" class="form-control" placeholder="إن وجد">
+                    <input type="text" class="form-control" name="decision_number" placeholder="إن وجد" value="${data.decision_number || ''}">
                 </div>
                 <div class="form-group">
                     <label class="form-label">تاريخ القرار</label>
-                    <input type="date" class="form-control">
+                    <input type="date" class="form-control" name="decision_date" value="${data.decision_date || ''}">
                 </div>
             </div>
         </div>
@@ -769,185 +775,87 @@ function renderStep3() {
     `;
 }
 
-// ✅ الخطوة الجديدة - خطوة التحقق
+// ✅ الخطوة الجديدة - التحقق من البيانات
 function renderStep4() {
-    const status = typeof AppData !== 'undefined' ? AppData.verificationStatus.status : 'pending';
+    const data = (typeof AppData !== 'undefined' && AppData.formData) ? AppData.formData : {};
 
+    // التأكد من استدعاء التحقق لتحديث الحالة
+    validateRequestData();
+    const isComplete = AppData.verificationStatus.status === 'verified';
+
+    // تجميع الحقول الناقصة للعرض
+    let requiredFields = [...REQUEST_REQUIRED_FIELDS];
+    if (!requiredFields.find(f => f.name === 'case_type')) {
+        requiredFields.push({ name: 'case_type', label: 'نوع الدعوى', type: 'select', options: AppData.caseTypes.map(t => ({ value: t.id, label: t.name })) });
+    }
+
+    const missingFields = requiredFields.filter(field => !data[field.name] || data[field.name].trim() === '');
+
+    // تحديث حالة الزر التالي فوراً
+    setTimeout(updateNavigationButtons, 0);
+
+    // إذا كانت البيانات مكتملة
+    if (isComplete) {
+        return `
+            <div class="form-section" style="text-align: center; padding: 48px;">
+                <div style="margin-bottom: 24px;">
+                    <svg class="icon-svg icon-svg-xl" style="color: var(--success-500); width: 64px; height: 64px;" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <h3 style="margin-bottom: 12px; color: var(--success-700);">بياناتك مكتملة!</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 24px;">تم التحقق من اكتمال جميع البيانات المطلوبة.</p>
+                <div class="alert alert-success" style="display: inline-flex; align-items: center; gap: 8px;">
+                     يمكنك الانتقال للخطوة التالية لتقديم الدعوى
+                </div>
+            </div>
+         `;
+    }
+
+    // إذا كانت هناك حقول ناقصة
     return `
         <div class="form-section">
             <h3 class="section-title">
-                <div class="section-icon">
-                    <svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <div class="section-icon" style="background: var(--warning-100); color: var(--warning-600);">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 </div>
-                التحقق من البيانات
+                استكمال البيانات الناقصة
             </h3>
             
-            <div class="alert alert-info" style="display: flex; align-items: center; gap: 12px; border-radius: 12px;">
-                <svg class="icon-svg" style="color: var(--info-500);" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-                <div>
-                    <strong>خطوة التحقق:</strong>
-                    سيتواصل معك أحد موظفي المحكمة للتحقق من بياناتك قبل إتمام تقديم الدعوى
-                </div>
+            <div class="alert alert-warning" style="margin-bottom: 24px; border-radius: 12px;">
+                 يرجى تعبئة الحقول التالية لاستكمال طلبك.
             </div>
             
-            <!-- حالة الانتظار -->
-            <div class="verification-status-card" id="verification-status">
-                ${renderVerificationStatus(status)}
-            </div>
-            
-            <!-- معلومات التواصل -->
-            <div class="party-card" style="margin-top: 24px;">
-                <h4 style="margin-bottom: 16px; color: var(--primary-700); display: flex; align-items: center; gap: 8px;">
-                    <svg class="icon-svg" style="width: 18px; height: 18px;" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-                    معلومات التواصل المسجلة
-                </h4>
-                <div class="form-row">
-                    <div class="form-group" style="margin-bottom: 0;">
-                        <label class="form-label">رقم الجوال</label>
-                        <div style="font-weight: 600; font-size: 16px;">05xxxxxxxx</div>
+            <div class="party-card" style="border-color: var(--warning-200);">
+                ${missingFields.map(field => `
+                    <div class="form-group">
+                        <label class="form-label required">${field.label}</label>
+                        ${renderFieldInput(field)}
                     </div>
-                    <div class="form-group" style="margin-bottom: 0;">
-                        <label class="form-label">البريد الإلكتروني</label>
-                        <div style="font-weight: 600; font-size: 16px;">m.alomari@email.com</div>
-                    </div>
-                </div>
-                <div class="form-hint" style="margin-top: 12px;">
-                    ⚠️ تأكد من صحة بيانات التواصل حتى يتمكن الموظف من الوصول إليك
-                </div>
+                `).join('')}
             </div>
             
-            <!-- إدخال رمز التحقق -->
-            <div class="party-card" style="margin-top: 24px;" id="verification-code-section">
-                <h4 style="margin-bottom: 16px; color: var(--primary-700); display: flex; align-items: center; gap: 8px;">
-                    <svg class="icon-svg" style="width: 18px; height: 18px;" viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.778-7.778zM12 5.741l2.859 2.859M21 2l-2 2m0 0l-10.141 10.141M19 4l-2 2m0 0l-1 1"/></svg>
-                    رمز التحقق
-                </h4>
-                <div class="form-group">
-                    <label class="form-label required">أدخل رمز التحقق المرسل من الموظف</label>
-                    <div style="display: flex; gap: 12px; align-items: flex-start;">
-                        <input type="text" class="form-control" id="verification-code-input" 
-                               placeholder="أدخل الرمز المكون من 6 أرقام" 
-                               maxlength="6" 
-                               style="max-width: 300px; font-size: 18px; letter-spacing: 4px; text-align: center;">
-                        <button class="btn btn-primary" onclick="verifyCode()">
-                            <svg class="icon-svg" style="margin-left: 6px;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                            تحقق
-                        </button>
-                    </div>
-                    <div class="form-hint">سيتم إرسال رمز التحقق عبر رسالة نصية أو الهاتف</div>
-                </div>
-            </div>
-            
-            <!-- ملاحظات إضافية -->
-            <div class="party-card" style="margin-top: 24px; background: var(--warning-100); border-color: var(--warning-500);">
-                <h4 style="margin-bottom: 12px; color: #92400e; display: flex; align-items: center; gap: 8px;">
-                    <svg class="icon-svg" style="color: #d97706; width: 18px; height: 18px;" viewBox="0 0 24 24"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                    تعليمات مهمة
-                </h4>
-                <ul style="margin: 0; padding-right: 20px; color: #92400e; line-height: 1.8;">
-                    <li>سيتواصل معك الموظف خلال ساعات العمل الرسمية (8 صباحاً - 4 مساءً)</li>
-                    <li>تأكد من أن هاتفك متاح لاستقبال المكالمات</li>
-                    <li>جهّز المستندات الأصلية للتحقق إن طُلب منك</li>
-                    <li>في حال عدم التواصل خلال 24 ساعة، يرجى الاتصال بالدعم الفني</li>
-                </ul>
-            </div>
-        </div>
-        
-        <!-- للمحاكاة: أزرار تغيير الحالة (يمكن إزالتها في الإنتاج) -->
-        <div class="form-section" style="background: var(--gray-100); border: 2px dashed var(--gray-300);">
-            <h4 style="margin-bottom: 16px; color: var(--text-muted);">🧪 محاكاة حالة التحقق (للتجربة فقط)</h4>
-            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                <button class="btn btn-sm btn-outline" onclick="simulateVerification('pending')">
-                    ⏳ في الانتظار
-                </button>
-                <button class="btn btn-sm btn-outline" onclick="simulateVerification('in_progress')">
-                    📞 جاري التواصل
-                </button>
-                <button class="btn btn-sm btn-success" onclick="simulateVerification('verified')">
-                    ✅ تم التحقق
-                </button>
-                <button class="btn btn-sm btn-danger" onclick="simulateVerification('rejected')">
-                    ❌ مرفوض
-                </button>
+            <div class="form-hint" style="margin-top: 16px; text-align: center;">
+                اضغط "التالي" أو انتقل للخطوة التالية لحفظ البيانات والتحقق مرة أخرى
             </div>
         </div>
     `;
 }
 
-function renderVerificationStatus(status) {
-    const statusConfig = {
-        pending: {
-            icon: `<svg class="icon-svg icon-svg-xl" style="color: var(--warning-500);" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
-            title: 'في انتظار التواصل',
-            description: 'طلبك قيد المراجعة وسيتواصل معك أحد الموظفين قريباً',
-            color: 'var(--warning-500)',
-            bgColor: 'var(--warning-100)',
-            showLoader: true
-        },
-        in_progress: {
-            icon: `<svg class="icon-svg icon-svg-xl" style="color: var(--info-500);" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.28-2.28a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`,
-            title: 'جاري التواصل',
-            description: 'الموظف يحاول التواصل معك الآن، يرجى الرد على المكالمة',
-            color: 'var(--info-500)',
-            bgColor: 'var(--info-100)',
-            showLoader: true
-        },
-        verified: {
-            icon: `<svg class="icon-svg icon-svg-xl" style="color: var(--success-500);" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
-            title: 'تم التحقق بنجاح',
-            description: 'تم التحقق من بياناتك بنجاح، يمكنك الآن إتمام تقديم الدعوى',
-            color: 'var(--success-500)',
-            bgColor: 'var(--success-100)',
-            showLoader: false
-        },
-        rejected: {
-            icon: `<svg class="icon-svg icon-svg-xl" style="color: var(--danger-500);" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>`,
-            title: 'لم يتم التحقق',
-            description: 'تعذر التحقق من البيانات، يرجى مراجعة الملاحظات والمحاولة مرة أخرى',
-            color: 'var(--danger-500)',
-            bgColor: 'var(--danger-100)',
-            showLoader: false
-        }
-    };
-
-    const config = statusConfig[status] || statusConfig.pending;
-
-    return `
-        <div style="background: ${config.bgColor}; border: 2px solid ${config.color}; border-radius: 16px; padding: 32px; text-align: center;">
-            <div style="margin-bottom: 24px; display: flex; justify-content: center;">${config.icon}</div>
-            <h3 style="color: ${config.color}; font-size: 24px; margin-bottom: 8px;">${config.title}</h3>
-            <p style="color: var(--text-secondary); font-size: 16px; margin-bottom: 16px;">${config.description}</p>
-            
-            ${config.showLoader ? `
-                <div style="display: flex; justify-content: center; margin-top: 20px;">
-                    <div class="verification-loader"></div>
-                </div>
-                <p style="color: var(--text-muted); font-size: 14px; margin-top: 16px;">
-                    رقم الطلب: <strong>REQ-2025-001987</strong>
-                </p>
-            ` : ''}
-            
-            ${status === 'verified' ? `
-                <div style="margin-top: 20px; padding: 16px; background: var(--white); border-radius: 12px; display: inline-block;">
-                    <div style="color: var(--text-muted); font-size: 13px;">تم التحقق بواسطة</div>
-                    <div style="font-weight: 600; color: var(--text-primary);">أ. عبدالله المحمد</div>
-                    <div style="color: var(--text-muted); font-size: 12px;">الساعة 10:30 صباحاً</div>
-                </div>
-            ` : ''}
-            
-            ${status === 'rejected' ? `
-                <div style="margin-top: 20px; padding: 16px; background: var(--white); border-radius: 12px; text-align: right;">
-                    <div style="color: var(--danger-500); font-weight: 600; margin-bottom: 8px;">سبب الرفض:</div>
-                    <div style="color: var(--text-secondary);">لم يتم الرد على المكالمات المتكررة. يرجى التأكد من صحة رقم الجوال.</div>
-                </div>
-                <button class="btn btn-primary" style="margin-top: 16px;" onclick="retryVerification()">
-                    <svg class="icon-svg" style="margin-left: 8px;" viewBox="0 0 24 24"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-                    إعادة طلب التحقق
-                </button>
-            ` : ''}
-        </div>
-    `;
+function renderFieldInput(field) {
+    if (field.type === 'textarea') {
+        return `<textarea class="form-control" name="${field.name}" rows="3" placeholder="أدخل ${field.label}..."></textarea>`;
+    }
+    if (field.type === 'select') {
+        return `
+            <select class="form-control form-select" name="${field.name}">
+                <option value="">اختر ${field.label}</option>
+                ${field.options.map(opt => `<option value="${opt.value}">${opt.label}</option>`).join('')}
+            </select>
+        `;
+    }
+    return `<input type="${field.type}" class="form-control" name="${field.name}" placeholder="أدخل ${field.label}">`;
 }
+
+
 
 // الخطوة الأخيرة - التأكيد والإرسال
 function renderStep5() {
@@ -1032,65 +940,7 @@ function renderStep5() {
     `;
 }
 
-// وظائف التحقق
-function verifyCode() {
-    const codeInput = document.getElementById('verification-code-input');
-    const code = codeInput ? codeInput.value : '';
 
-    if (code.length !== 6) {
-        showNotification('يرجى إدخال رمز التحقق المكون من 6 أرقام', 'error');
-        return;
-    }
-
-    // محاكاة التحقق من الرمز
-    showNotification('جاري التحقق من الرمز...', 'info');
-
-    setTimeout(() => {
-        if (code === '123456') { // رمز تجريبي
-            if (typeof AppData !== 'undefined') {
-                AppData.verificationStatus.status = 'verified';
-            }
-            updateVerificationUI();
-            showNotification('تم التحقق بنجاح! يمكنك الآن المتابعة', 'success');
-        } else {
-            showNotification('رمز التحقق غير صحيح، يرجى المحاولة مرة أخرى', 'error');
-        }
-    }, 1500);
-}
-
-function simulateVerification(status) {
-    if (typeof AppData !== 'undefined') {
-        AppData.verificationStatus.status = status;
-    }
-    updateVerificationUI();
-
-    const messages = {
-        pending: 'تم تغيير الحالة إلى: في الانتظار',
-        in_progress: 'تم تغيير الحالة إلى: جاري التواصل',
-        verified: 'تم تغيير الحالة إلى: تم التحقق',
-        rejected: 'تم تغيير الحالة إلى: مرفوض'
-    };
-
-    showNotification(messages[status], 'info');
-}
-
-function updateVerificationUI() {
-    const statusContainer = document.getElementById('verification-status');
-    if (statusContainer && typeof AppData !== 'undefined') {
-        statusContainer.innerHTML = renderVerificationStatus(AppData.verificationStatus.status);
-    }
-
-    // تحديث أزرار التنقل
-    updateNavigationButtons();
-}
-
-function retryVerification() {
-    if (typeof AppData !== 'undefined') {
-        AppData.verificationStatus.status = 'pending';
-    }
-    updateVerificationUI();
-    showNotification('تم إعادة طلب التحقق، سيتواصل معك الموظف قريباً', 'info');
-}
 
 function goToStep(stepNumber) {
     if (typeof AppData !== 'undefined') {
@@ -1157,4 +1007,71 @@ function showNotification(message, type) {
     } else {
         alert(message);
     }
+}
+
+// حفظ بيانات الخطوة الحالية
+function saveStepData() {
+    if (typeof AppData === 'undefined') return;
+    if (!AppData.formData) AppData.formData = {};
+
+    const container = document.getElementById('step-content');
+    if (!container) return;
+
+    const inputs = container.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+        if (!input.name) return;
+
+        if (input.type === 'checkbox') {
+            AppData.formData[input.name] = input.checked;
+        } else if (input.type === 'radio') {
+            if (input.checked) AppData.formData[input.name] = input.value;
+        } else {
+            AppData.formData[input.name] = input.value;
+        }
+    });
+
+    // التحقق من صحة البيانات وتحديث الحالة
+    if (typeof validateRequestData === 'function') {
+        validateRequestData();
+    }
+}
+
+// تعريف الحقول المطلوبة وقواعد التحقق
+const REQUEST_REQUIRED_FIELDS = [
+    { name: 'party_id', label: 'رقم الهوية / الإقامة', type: 'text' },
+    { name: 'party_phone', label: 'رقم الجوال', type: 'tel' },
+    { name: 'party_email', label: 'البريد الإلكتروني', type: 'email' },
+    { name: 'party_address', label: 'العنوان', type: 'text' },
+    {
+        name: 'defendant_entity', label: 'الجهة الإدارية', type: 'select', options: [
+            { value: '1', label: 'وزارة الموارد البشرية والتنمية الاجتماعية' },
+            { value: '2', label: 'وزارة المالية' },
+            { value: '3', label: 'وزارة التعليم' },
+            { value: '4', label: 'وزارة الصحة' },
+            { value: '5', label: 'أمانة منطقة الرياض' },
+            { value: '6', label: 'أمانة منطقة مكة المكرمة' }
+        ]
+    },
+    // case_type يتم التعامل معه بشكل خاص لأنه قد يأتي من AppData.caseTypes
+    { name: 'case_subject', label: 'موضوع الدعوى', type: 'text' },
+    { name: 'case_details', label: 'وقائع الدعوى', type: 'textarea' },
+    { name: 'case_requests', label: 'الطلبات', type: 'textarea' }
+];
+
+function validateRequestData() {
+    if (typeof AppData === 'undefined') return false;
+
+    const data = AppData.formData || {};
+
+    // إضافة case_type للقائمة ديناميكياً
+    const allFields = [...REQUEST_REQUIRED_FIELDS];
+    if (typeof AppData.caseTypes !== 'undefined' && !allFields.find(f => f.name === 'case_type')) {
+        allFields.push({ name: 'case_type', label: 'نوع الدعوى', type: 'select', options: AppData.caseTypes.map(t => ({ value: t.id, label: t.name })) });
+    }
+
+    const missingFields = allFields.filter(field => !data[field.name] || data[field.name].trim() === '');
+    const isComplete = missingFields.length === 0;
+
+    AppData.verificationStatus.status = isComplete ? 'verified' : 'pending';
+    return isComplete;
 }

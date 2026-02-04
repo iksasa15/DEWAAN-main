@@ -50,9 +50,12 @@ function updateStepperUI() {
 
 function nextStep() {
     // منع المتابعة إذا لم يتم التحقق في الخطوة 4
-    if (AppData.currentStep === 4 && AppData.verificationStatus.status !== 'verified') {
-        showNotification('يجب إتمام التحقق قبل المتابعة', 'warning');
-        return;
+    // NOTE: validation logic will change later, but for now we keep it or rely on renderStep4 updates.
+    // Actually, we are removing the blocking verification.
+
+    // Save current step data
+    if (typeof saveStepData === 'function') {
+        saveStepData();
     }
 
     if (AppData.currentStep < AppData.totalSteps) {
@@ -66,6 +69,11 @@ function nextStep() {
 }
 
 function prevStep() {
+    // Save current step data
+    if (typeof saveStepData === 'function') {
+        saveStepData();
+    }
+
     if (AppData.currentStep > 1) {
         AppData.currentStep--;
         updateStepContent();
