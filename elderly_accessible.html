@@ -181,6 +181,7 @@
         <button class="size-btn" onclick="adjustSize(1)" title="تكبير الخط">A+</button>
         <button class="size-btn" onclick="adjustSize(-1)" title="تصغير الخط">A-</button>
         <button class="size-btn" onclick="resetSize()" title="الحجم الافتراضي">↺</button>
+        <button id="mic-btn" class="size-btn" onclick="toggleVoice()" title="تحدث لتكبير الصفحة">🎤</button>
         <a href="accessibility_selection.html" class="size-btn" title="العودة"
             style="text-decoration: none !important;">↩️</a>
     </div>
@@ -321,11 +322,75 @@
         // مساعدة صوتية عند التحميل
         function announceLoad() {
             if ('speechSynthesis' in window) {
-                const text = "مرحباً بكم. هذه النسخة مخصصة لكبار السن بخط كبير وواضح. يمكنكم زيادة حجم الخط من الأزرار أعلى اليسار.";
+                const text = "مرحباً بكم. هذه النسخة مخصصة لكبار السن بخط كبير وواضح. يمكنكم المتحدث لتكبير الصفحة.";
                 const utterance = new SpeechSynthesisUtterance(text);
                 utterance.lang = 'ar-SA';
-                // window.speechSynthesis.speak(utterance); // اختياري، قد يكون مزعجاً إذا لم يطلب
+                // window.speechSynthesis.speak(utterance); 
             }
+        }
+
+        // التعرف الصوتي
+        let recognition;
+        const micBtn = document.getElementById('mic-btn');
+
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.lang = 'ar-SA';
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            recognition.onstart = function () {
+                micBtn.style.backgroundColor = '#dc2626';
+                micBtn.style.color = 'white';
+                micBtn.title = "جاري الاستماع...";
+            };
+
+            recognition.onend = function () {
+                micBtn.style.backgroundColor = '';
+                micBtn.style.color = '';
+                micBtn.title = "تحدث لتكبير الصفحة";
+            };
+
+            recognition.onresult = function (event) {
+                const transcript = event.results[0][0].transcript.trim();
+                console.log("سمعت: " + transcript);
+
+                if (transcript.includes('كبر') || transcript.includes('تكبير') || transcript.includes('زيادة') || transcript.includes('أكبر')) {
+                    adjustSize(1);
+                    speakFeedback("تم تكبير الصفحة");
+                } else if (transcript.includes('صغر') || transcript.includes('تصغير') || transcript.includes('نقص') || transcript.includes('أصغر')) {
+                    adjustSize(-1);
+                    speakFeedback("تم تصغير الصفحة");
+                } else if (transcript.includes('عادي') || transcript.includes('أصلي') || transcript.includes('رجوع') || transcript.includes('افتراضي')) {
+                    resetSize();
+                    speakFeedback("تم استعادة الحجم الاصلي");
+                }
+            };
+
+            recognition.onerror = function (event) {
+                console.error(event.error);
+                micBtn.style.backgroundColor = '';
+                micBtn.style.color = '';
+            };
+        }
+
+        function toggleVoice() {
+            if (recognition) {
+                try {
+                    recognition.start();
+                } catch (e) {
+                    console.error(e);
+                }
+            } else {
+                alert("التعرف الصوتي غير مدعوم في هذا المتصفح");
+            }
+        }
+
+        function speakFeedback(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ar-SA';
+            window.speechSynthesis.speak(utterance);
         }
 
         window.addEventListener('load', () => {
