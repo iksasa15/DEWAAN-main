@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صك الحكم - ديوان المظالم</title>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/controls.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/verdict-viewer.css">
+
+    <style>
+        /* صفحة عرض الحكم الكاملة */
+        body {
+            background: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .verdict-page-header {
+            background: linear-gradient(135deg, var(--primary-color), #1e3a5f);
+            color: white;
+            padding: 24px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .verdict-page-header .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .verdict-page-title {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .verdict-page-title h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .verdict-page-content {
+            max-width: 1400px;
+            margin: 32px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .verdict-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .verdict-section-header {
+            padding: 20px 24px;
+            border-bottom: 2px solid #e0e4e8;
+            background: linear-gradient(to bottom, white, #f8f9fc);
+        }
+
+        .verdict-section-header h2 {
+            margin: 0 0 8px 0;
+            font-size: 20px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .verdict-section-header p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .verdict-section-body {
+            padding: 24px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .ai-section-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .ai-section-header h2 {
+            color: white;
+        }
+
+        .ai-section-header p {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        @media (max-width: 968px) {
+            .verdict-page-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="verdict-page-header">
+        <div class="container">
+            <div class="verdict-page-title">
+                <span style="font-size: 32px;">⚖️</span>
+                <h1 id="pageTitle">عرض صك الحكم</h1>
+            </div>
+            <button class="back-button" onclick="goBack()">
+                <span>←</span>
+                العودة للأحكام
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="verdict-page-content">
+        <!-- قسم صك الحكم -->
+        <div class="verdict-section">
+            <div class="verdict-section-header">
+                <h2>📄 صك الحكم الرسمي</h2>
+                <p id="verdictInfo">المستند الرسمي للحكم القضائي</p>
+            </div>
+            <div class="verdict-section-body" id="verdictDocumentContainer">
+                <div style="text-align: center; padding: 60px 20px; color: var(--text-muted);">
+                    <div style="font-size: 48px; margin-bottom: 16px;">⏳</div>
+                    <p>جاري تحميل صك الحكم...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم الشرح المبسط -->
+        <div class="verdict-section">
+            <div class="verdict-section-header ai-section-header">
+                <h2>
+                    🤖 الشرح الذكي للحكم
+                    <span class="ai-badge">Powered by GPT</span>
+                </h2>
+                <p>شرح مبسط وواضح للحكم وتبعاته</p>
+            </div>
+            <div class="verdict-section-body" id="aiExplanationContainer">
+                <div style="text-align: center; padding: 60px 20px; color: var(--text-muted);">
+                    <div style="font-size: 48px; margin-bottom: 16px;">⏳</div>
+                    <p>جاري تحميل قسم الشرح...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/components/verdict-ai-explainer.js"></script>
+
+    <script>
+        // الحصول على معرف الحكم من URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const verdictId = urlParams.get('id');
+
+        // تحميل بيانات الحكم
+        function loadVerdict() {
+            if (!verdictId) {
+                showError('لم يتم تحديد الحكم');
+                return;
+            }
+
+            const verdict = AppData.verdicts.find(v => v.id === verdictId);
+            if (!verdict) {
+                showError('لم يتم العثور على الحكم');
+                return;
+            }
+
+            // تحديث العنوان
+            document.getElementById('pageTitle').textContent = `${verdict.type} - ${verdict.id}`;
+            document.getElementById('verdictInfo').textContent = `صادر من ${verdict.court} بتاريخ ${verdict.date}`;
+            document.title = `صك الحكم ${verdict.id} - ديوان المظالم`;
+
+            // عرض صك الحكم
+            displayVerdictDocument(verdict);
+
+            // عرض الحالة الأولية للشرح
+            displayAIInitialState(verdict);
+        }
+
+        // عرض صك الحكم
+        function displayVerdictDocument(verdict) {
+            const container = document.getElementById('verdictDocumentContainer');
+
+            if (verdict.fullText) {
+                container.innerHTML = `
+                    <div class="verdict-document">
+                        <div class="verdict-document-header">
+                            <div class="verdict-seal">⚖️</div>
+                            <h2>المملكة العربية السعودية</h2>
+                            <h3>ديوان المظالم</h3>
+                            <h3>${verdict.court}</h3>
+                        </div>
+                        
+                        <div class="verdict-document-body">
+                            ${formatVerdictText(verdict.fullText)}
+                        </div>
+                        
+                        <div class="verdict-document-footer">
+                            <div class="verdict-actions-bottom">
+                                <button class="btn btn-primary" onclick="downloadVerdictPDF()">
+                                    <span>⬇️</span>
+                                    تحميل PDF
+                                </button>
+                                <button class="btn btn-outline" onclick="printVerdictPDF()">
+                                    <span>🖨️</span>
+                                    طباعة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 60px 20px;">
+                        <div style="font-size: 48px; margin-bottom: 16px;">📄</div>
+                        <h3>النص الكامل غير متوفر</h3>
+                        <p style="color: var(--text-muted);">يمكنك تحميل صك الحكم من الزر أدناه</p>
+                        <button class="btn btn-primary" onclick="downloadVerdictPDF()">
+                            <span>⬇️</span>
+                            تحميل PDF
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        // عرض الحالة الأولية للشرح
+        function displayAIInitialState(verdict) {
+            const container = document.getElementById('aiExplanationContainer');
+            container.innerHTML = `
+                <div class="ai-initial-state">
+                    <div class="ai-initial-icon">🤖</div>
+                    <h3>هل تحتاج شرحاً مبسطاً للحكم؟</h3>
+                    <p>يمكن للذكاء الاصطناعي أن يشرح لك الحكم بطريقة سهلة ومبسطة، مع توضيح حقوقك والتزاماتك والخطوات التالية المتاحة.</p>
+                    <button class="btn btn-primary btn-large" onclick="requestAIExplanationForPage()">
+                        <span>✨</span>
+                        احصل على الشرح المبسط الآن
+                    </button>
+                </div>
+            `;
+        }
+
+        // طلب الشرح من AI
+        function requestAIExplanationForPage() {
+            const verdict = AppData.verdicts.find(v => v.id === verdictId);
+            if (!verdict) return;
+
+            const container = document.getElementById('aiExplanationContainer');
+            const aiSection = { querySelector: () => container };
+
+            verdictAIExplainer.explainVerdict(verdict, aiSection);
+        }
+
+        // تنسيق نص الحكم
+        function formatVerdictText(text) {
+            return text
+                .split('\n')
+                .map(line => {
+                    line = line.trim();
+                    if (!line) return '<br>';
+
+                    if (line.includes('باسم الله الرحمن الرحيم')) {
+                        return `<p class="verdict-bismillah">${line}</p>`;
+                    }
+
+                    if (line.startsWith('رقم الحكم:') || line.startsWith('رقم القضية:') || line.startsWith('تاريخ الجلسة:')) {
+                        return `<p class="verdict-meta-line"><strong>${line}</strong></p>`;
+                    }
+
+                    if (line.endsWith(':') && line.length < 50) {
+                        return `<h4 class="verdict-section-title">${line}</h4>`;
+                    }
+
+                    if (/^\d+\./.test(line)) {
+                        return `<p class="verdict-list-item">${line}</p>`;
+                    }
+
+                    return `<p class="verdict-text">${line}</p>`;
+                })
+                .join('');
+        }
+
+        // تحميل PDF
+        function downloadVerdictPDF() {
+            showNotification('جاري تحميل صك الحكم...', 'info');
+            setTimeout(() => {
+                showNotification('تم تحميل صك الحكم بنجاح', 'success');
+            }, 1500);
+        }
+
+        // طباعة
+        function printVerdictPDF() {
+            window.print();
+        }
+
+        // العودة للصفحة السابقة
+        function goBack() {
+            window.history.back();
+        }
+
+        // عرض خطأ
+        function showError(message) {
+            document.getElementById('verdictDocumentContainer').innerHTML = `
+                <div style="text-align: center; padding: 60px 20px;">
+                    <div style="font-size: 48px; margin-bottom: 16px; color: #ef4444;">⚠️</div>
+                    <h3>${message}</h3>
+                    <button class="btn btn-primary" onclick="goBack()">
+                        العودة للأحكام
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('aiExplanationContainer').innerHTML = '';
+        }
+
+        // تحميل الحكم عند فتح الصفحة
+        window.addEventListener('DOMContentLoaded', loadVerdict);
+    </script>
+</body>
+
+</html>

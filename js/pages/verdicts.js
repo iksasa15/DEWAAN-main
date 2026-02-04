@@ -84,7 +84,8 @@ function renderVerdictCard(verdict) {
 }
 
 function viewVerdictDocument(verdictId) {
-    showNotification('جاري تحميل صك الحكم...', 'info');
+    // إعادة التوجيه إلى صفحة عرض الحكم
+    window.location.href = `verdict-view.html?id=${verdictId}`;
 }
 
 function requestExecution(verdictId) {
