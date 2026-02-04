@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل استخدام نافذة الدعم الفني</title>
+    <link rel="stylesheet" href="css/support-chat.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .guide-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #667eea;
+            margin: 0 0 30px 0;
+            text-align: center;
+            font-size: 32px;
+        }
+
+        h2 {
+            color: #667eea;
+            margin: 30px 0 15px 0;
+            font-size: 24px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #764ba2;
+            margin: 20px 0 10px 0;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 15px;
+            margin: 10px 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-radius: 12px;
+            position: relative;
+            padding-right: 50px;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .steps {
+            counter-reset: step-counter;
+            list-style: none;
+            padding: 0;
+        }
+
+        .steps li {
+            counter-increment: step-counter;
+            padding: 20px;
+            margin: 15px 0;
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            position: relative;
+            padding-right: 70px;
+        }
+
+        .steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .note {
+            background: #fff3cd;
+            border-right: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .warning {
+            background: #f8d7da;
+            border-right: 4px solid #dc3545;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .success {
+            background: #d4edda;
+            border-right: 4px solid #28a745;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .timer {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .timer-number {
+            font-size: 60px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 10px 0;
+        }
+
+        .timer-label {
+            font-size: 18px;
+            color: #666;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #e83e8c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="guide-card">
+            <h1>🎧 دليل استخدام نافذة الدعم الفني</h1>
+
+            <div class="timer">
+                <div class="timer-number" id="timer">30</div>
+                <div class="timer-label">ثانية متبقية لظهور النافذة</div>
+            </div>
+
+            <h2>📋 الميزات الرئيسية</h2>
+            <ul class="feature-list">
+                <li><strong>ظهور تلقائي:</strong> تظهر النافذة تلقائياً بعد 30 ثانية من فتح الصفحة</li>
+                <li><strong>الرسائل النصية:</strong> إمكانية كتابة وإرسال الرسائل النصية للدعم الفني</li>
+                <li><strong>التسجيل الصوتي:</strong> تسجيل رسائل صوتية لشرح المشكلة بالتفصيل</li>
+                <li><strong>الاستماع للصوتيات:</strong> تشغيل الرسائل الصوتية المسجلة والاستماع لها ✨ NEW!</li>
+                <li><strong>ردود تلقائية ذكية:</strong> الحصول على ردود فورية من النظام</li>
+                <li><strong>تصميم عصري:</strong> واجهة مستخدم جذابة وسهلة الاستخدام</li>
+            </ul>
+
+            <h2>📝 كيفية الاستخدام</h2>
+
+            <h3>إرسال رسالة نصية:</h3>
+            <ol class="steps">
+                <li>انقر على أيقونة الدعم 💬 في الزاوية اليسرى السفلى</li>
+                <li>اكتب رسالتك في حقل الإدخال</li>
+                <li>اضغط <code>Enter</code> أو انقر على زر الإرسال ➤</li>
+            </ol>
+
+            <h3>تسجيل رسالة صوتية:</h3>
+            <ol class="steps">
+                <li>انقر على زر الميكروفون 🎤</li>
+                <li>امنح الإذن للمتصفح للوصول إلى الميكروفون</li>
+                <li>ابدأ بالتحدث وشرح مشكلتك</li>
+                <li>انقر على زر الإيقاف ⏹️ عند الانتهاء</li>
+                <li>سيتم إرسال الرسالة الصوتية تلقائياً</li>
+            </ol>
+
+            <div class="success">
+                <strong>✨ ميزة جديدة: الاستماع للرسائل الصوتية</strong><br>
+                بعد إرسال الرسالة الصوتية، يمكنك:
+                <ul>
+                    <li>الضغط على زر التشغيل ▶️ للاستماع للرسالة</li>
+                    <li>الزر سيتحول إلى ⏸️ أثناء التشغيل مع لون أخضر</li>
+                    <li>الضغط عليه مرة أخرى لإيقاف التشغيل</li>
+                    <li>يتم إيقاف التشغيل تلقائياً عند انتهاء الرسالة</li>
+                </ul>
+            </div>
+
+            <h3>إلغاء التسجيل:</h3>
+            <div class="note">
+                💡 إذا أردت إلغاء التسجيل قبل إرساله، اضغط على زر "إلغاء" الذي يظهر أثناء التسجيل
+            </div>
+
+            <h2>⚠️ ملاحظات مهمة</h2>
+            <div class="warning">
+                <strong>تنبيه:</strong>
+                <ul>
+                    <li>تحتاج إلى السماح للمتصفح بالوصول إلى الميكروفون لاستخدام ميزة التسجيل الصوتي</li>
+                    <li>الرسائل الصوتية يتم حفظها محلياً في المتصفح ويمكن الاستماع لها في أي وقت</li>
+                    <li>يتم إيقاف أي رسالة صوتية قيد التشغيل عند تشغيل رسالة جديدة</li>
+                    <li>النافذة تدعم جميع المتصفحات الحديثة</li>
+                </ul>
+            </div>
+
+            <h2>🔧 التكامل مع الموقع</h2>
+            <p>لإضافة هذه الميزة في أي صفحة، قم بإضافة الملفات التالية:</p>
+            <pre style="background: #f4f4f4; padding: 20px; border-radius: 8px; overflow-x: auto;">
+&lt;!-- في قسم &lt;head&gt; --&gt;
+&lt;link rel="stylesheet" href="css/support-chat.css"&gt;
+
+&lt;!-- قبل نهاية &lt;/body&gt; --&gt;
+&lt;script src="js/components/support-chat.js"&gt;&lt;/script&gt;
+            </pre>
+
+            <div class="success" style="margin-top: 30px; text-align: center;">
+                <strong>✅ تم تفعيل نافذة الدعم الفني في هذه الصفحة</strong><br>
+                <p>انتظر 30 ثانية أو افتح الملف <code>index.html</code> لرؤية النافذة في العمل!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/components/support-chat.js"></script>
+    <script>
+        // Countdown timer
+        let timeLeft = 30;
+        const timerElement = document.getElementById('timer');
+
+        const countdown = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = timeLeft;
+
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                timerElement.textContent = '🎉';
+                timerElement.nextElementSibling.textContent = 'ظهرت النافذة! جرب الميزات الآن';
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>

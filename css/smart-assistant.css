@@ -1,0 +1,479 @@
+/* smart-assistant.css - أنماط المساعد الذكي */
+
+/* اختيار طريقة التقديم */
+.submission-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.method-card {
+    background: var(--white);
+    border: 2px solid var(--border-light);
+    border-radius: 20px;
+    padding: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.method-card:hover {
+    border-color: var(--primary-500);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.method-card:hover .method-icon {
+    transform: scale(1.1);
+}
+
+.method-icon {
+    font-size: 56px;
+    margin-bottom: 16px;
+    transition: transform 0.3s ease;
+}
+
+.method-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.method-description {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.method-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--gray-100);
+    color: var(--text-secondary);
+}
+
+.method-badge.recommended {
+    background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+    color: white;
+    animation: pulse-badge 2s infinite;
+}
+
+@keyframes pulse-badge {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* غلاف المساعد الذكي */
+.smart-assistant-wrapper {
+    background: var(--white);
+    border-radius: 24px;
+    box-shadow: var(--shadow-xl);
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+/* رأس المساعد */
+.assistant-header {
+    background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.assistant-avatar {
+    position: relative;
+}
+
+.avatar-icon {
+    width: 64px;
+    height: 64px;
+    background: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.avatar-pulse {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 20px;
+    height: 20px;
+    background: var(--success-500);
+    border-radius: 50%;
+    border: 3px solid white;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.assistant-info {
+    flex: 1;
+}
+
+.assistant-info h3 {
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.assistant-info p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 14px;
+}
+
+.assistant-header .btn-outline {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.assistant-header .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+}
+
+/* شريط التقدم */
+.assistant-progress {
+    padding: 20px 32px;
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.progress-bar {
+    height: 8px;
+    background: var(--gray-200);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-500), var(--accent-500));
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.progress-text {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* بطاقة السؤال */
+.assistant-question-card {
+    padding: 40px 32px;
+}
+
+.question-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.question-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.question-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+
+/* شبكة الخيارات */
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.option-card {
+    background: var(--gray-50);
+    border: 2px solid var(--border-light);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.option-card:hover {
+    border-color: var(--primary-400);
+    background: var(--primary-50);
+    transform: translateY(-2px);
+}
+
+.option-card.selected {
+    border-color: var(--primary-500);
+    background: var(--primary-50);
+    box-shadow: 0 0 0 3px rgba(58, 124, 165, 0.2);
+}
+
+.option-card.selected .option-check {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.option-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.option-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.option-check {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 28px;
+    height: 28px;
+    background: var(--primary-500);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+}
+
+/* أزرار التنقل */
+.assistant-navigation {
+    padding: 24px 32px;
+    background: var(--gray-50);
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    justify-content: space-between;
+}
+
+/* بطاقة النتيجة */
+.assistant-result-card {
+    padding: 40px 32px;
+}
+
+.result-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.result-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+.result-header h3 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.result-recommendation {
+    background: linear-gradient(135deg, var(--primary-50), var(--accent-50));
+    border: 2px solid var(--primary-200);
+    border-radius: 20px;
+    padding: 32px;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.recommendation-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-600);
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.recommendation-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary-700);
+    margin-bottom: 12px;
+}
+
+.recommendation-description {
+    color: var(--text-secondary);
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.result-warnings,
+.result-tips {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-light);
+}
+
+.result-warnings {
+    border-right: 4px solid var(--warning-500);
+}
+
+.result-tips {
+    border-right: 4px solid var(--info-500);
+}
+
+.result-warnings h4,
+.result-tips h4 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.result-warnings ul,
+.result-tips ul {
+    margin: 0;
+    padding-right: 20px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.result-summary {
+    background: var(--gray-50);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.result-summary h4 {
+    font-size: 16px;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.summary-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border-light);
+}
+
+.summary-icon {
+    font-size: 24px;
+}
+
+.summary-content {
+    flex: 1;
+}
+
+.summary-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.summary-value {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.result-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.result-actions .btn-lg {
+    padding: 16px 40px;
+    font-size: 18px;
+}
+
+/* نوع الدعوى المحدد */
+.party-card.selected-type {
+    border-color: var(--primary-500);
+    background: var(--primary-50);
+    box-shadow: 0 0 0 3px rgba(58, 124, 165, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .submission-methods {
+        grid-template-columns: 1fr;
+    }
+
+    .assistant-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .assistant-header .btn-outline {
+        margin-top: 16px;
+    }
+
+    .question-text {
+        font-size: 20px;
+    }
+
+    .options-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .result-actions {
+        flex-direction: column;
+    }
+
+    .result-actions .btn {
+        width: 100%;
+    }
+}

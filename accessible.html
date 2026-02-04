@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<!--
+    ╔═══════════════════════════════════════════════════════════════╗
+    ║  DEWAAN - نسخة ذوي الإعاقة البصرية الكاملة                     ║
+    ║  Full Accessible Version for Screen Reader Users              ║
+    ║  WCAG 2.1 Level AAA Compliant                                 ║
+    ╚═══════════════════════════════════════════════════════════════╝
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ديوان المظالم - نسخة ذوي الإعاقة البصرية</title>
+    <meta name="description" content="نظام الخدمات القضائية الإلكترونية - نسخة محسّنة بالكامل لقارئات الشاشة">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            font-size: 1.25rem;
+            line-height: 1.8;
+            background: #000000;
+            color: #ffffff;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        /* رابط التخطي */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            right: 0;
+            background: #ffff00;
+            color: #000000;
+            padding: 1rem 2rem;
+            font-weight: bold;
+            font-size: 1.5rem;
+            z-index: 9999;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* العناوين */
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #ffffff;
+            padding-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem 0;
+            background: #333333;
+            padding: 0.75rem;
+            border-right: 5px solid #ffff00;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin: 1.5rem 0 0.75rem 0;
+            color: #ffff00;
+        }
+
+        /* الروابط */
+        a {
+            color: #ffff00;
+            text-decoration: underline;
+        }
+
+        a:hover,
+        a:focus {
+            background: #ffff00;
+            color: #000000;
+            outline: 3px solid #ffff00;
+        }
+
+        /* التنقل */
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav li {
+            margin: 0.5rem 0;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem;
+            background: #1a1a1a;
+            border-right: 4px solid #3d8977;
+        }
+
+        nav a:focus,
+        nav a:hover {
+            background: #3d8977;
+            color: #ffffff;
+        }
+
+        /* الأزرار */
+        button {
+            background: #ffff00;
+            color: #000000;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0.5rem 0;
+            width: 100%;
+        }
+
+        button:hover,
+        button:focus {
+            background: #ffffff;
+            outline: 4px solid #ffffff;
+        }
+
+        button.secondary {
+            background: #3d8977;
+            color: #ffffff;
+        }
+
+        button.danger {
+            background: #dc2626;
+            color: #ffffff;
+        }
+
+        /* حقول الإدخال */
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.25rem;
+            background: #1a1a1a;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            margin: 0.5rem 0;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: 4px solid #ffff00;
+            border-color: #ffff00;
+        }
+
+        label {
+            display: block;
+            margin-top: 1rem;
+            font-weight: bold;
+            color: #ffff00;
+        }
+
+        /* القوائم الوصفية */
+        dl {
+            background: #111111;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border: 1px solid #333;
+        }
+
+        dt {
+            font-weight: bold;
+            color: #ffff00;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+
+        dt:first-child {
+            margin-top: 0;
+        }
+
+        dd {
+            margin-right: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #333333;
+        }
+
+        /* الجداول */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th,
+        td {
+            padding: 1rem;
+            text-align: right;
+            border: 2px solid #ffffff;
+        }
+
+        th {
+            background: #333333;
+            color: #ffff00;
+        }
+
+        tr:nth-child(even) {
+            background: #1a1a1a;
+        }
+
+        /* الأقسام */
+        section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border: 1px solid #333333;
+            background: #0a0a0a;
+        }
+
+        /* قسم المساعد الصوتي */
+        .voice-assistant {
+            background: #1a3a32;
+            border: 4px solid #ffff00;
+            padding: 2rem;
+        }
+
+        /* حالة التسجيل */
+        .recording-status {
+            background: #ff0000;
+            color: #ffffff;
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            display: none;
+        }
+
+        .recording-status.active {
+            display: block;
+        }
+
+        /* التنبيهات */
+        .alert {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-right: 5px solid;
+        }
+
+        .alert-info {
+            background: #1e3a5f;
+            border-color: #3b82f6;
+        }
+
+        .alert-warning {
+            background: #422006;
+            border-color: #f59e0b;
+        }
+
+        .alert-success {
+            background: #14532d;
+            border-color: #22c55e;
+        }
+
+        .alert-danger {
+            background: #450a0a;
+            border-color: #ef4444;
+        }
+
+        /* قائمة الإجراءات */
+        .actions-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .actions-list li {
+            margin: 0.75rem 0;
+        }
+
+        .actions-list a {
+            display: block;
+            padding: 1.25rem;
+            background: #1a3a32;
+            border-right: 5px solid #3d8977;
+            font-size: 1.1rem;
+        }
+
+        /* الخطوات */
+        .step-indicator {
+            background: #333;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        /* صندوق المعلومات */
+        .info-box {
+            background: #1a1a1a;
+            border: 2px solid #3d8977;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        /* التذييل */
+        footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 2px solid #333333;
+        }
+
+        /* مخفي لقارئ الشاشة فقط */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* فاصل الأقسام */
+        hr {
+            border: none;
+            border-top: 2px solid #333;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- رابط التخطي -->
+    <a href="#main-content" class="skip-link">تخطي إلى المحتوى الرئيسي</a>
+
+    <!-- منطقة الإعلانات الحية -->
+    <div id="live-announcements" role="status" aria-live="assertive" aria-atomic="true" class="sr-only"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         رأس الصفحة
+         ═══════════════════════════════════════════════════════════ -->
+    <header role="banner">
+        <h1>ديوان المظالم - نظام الخدمات القضائية الإلكترونية</h1>
+
+        <p><strong>مرحباً، محمد أحمد العمري</strong> (مستفيد)</p>
+        <p>آخر تسجيل دخول: اليوم، 4 فبراير 2026 - الساعة 5:00 صباحاً</p>
+
+        <hr>
+
+        <!-- التنقل الرئيسي -->
+        <nav aria-label="التنقل الرئيسي">
+            <h2 class="sr-only">قائمة التنقل الرئيسية</h2>
+            <ul>
+                <li><a href="#section-home" aria-current="page">الرئيسية</a></li>
+                <li><a href="#section-requests">تقديم طلب جديد</a></li>
+                <li><a href="#section-cases">قضاياي</a></li>
+                <li><a href="#section-verdicts">الأحكام</a></li>
+                <li><a href="#section-support">الدعم الفني</a></li>
+            </ul>
+        </nav>
+
+        <p><a href="welcome.html">العودة لصفحة اختيار النسخة</a> | <a href="index.html">الانتقال للنسخة العادية</a></p>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         المساعد الصوتي الذكي
+         ═══════════════════════════════════════════════════════════ -->
+    <section class="voice-assistant" role="search" aria-label="المساعد الصوتي الذكي">
+        <h2>المساعد الصوتي الذكي</h2>
+
+        <p><strong>هذا هو الطريق الأسرع لإنجاز معاملاتك.</strong></p>
+        <p>اضغط الزر وتحدث بأمرك مباشرة، أو اكتب ما تريد في الحقل أدناه.</p>
+
+        <div id="recording-status" class="recording-status" role="alert">
+            جاري الاستماع... تحدث الآن
+        </div>
+
+        <button type="button" id="voice-command-btn">
+            ابدأ الأمر الصوتي (اضغط Enter)
+        </button>
+
+        <div class="info-box">
+            <p><strong>الأوامر المتاحة:</strong></p>
+            <ul>
+                <li>"تقديم دعوى جديدة"</li>
+                <li>"عرض قضاياي"</li>
+                <li>"ما حالة قضيتي؟"</li>
+                <li>"الأحكام الصادرة"</li>
+                <li>"موعد الجلسة القادمة"</li>
+                <li>"التواصل مع الدعم"</li>
+            </ul>
+        </div>
+
+        <label for="text-command">أو اكتب أمرك هنا:</label>
+        <input type="text" id="text-command" placeholder="مثال: أريد متابعة قضيتي">
+        <button type="button" id="submit-command">تنفيذ الأمر</button>
+
+        <div id="assistant-response" role="region" aria-live="polite" aria-label="رد المساعد"></div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         المحتوى الرئيسي
+         ═══════════════════════════════════════════════════════════ -->
+    <main id="main-content" role="main">
+
+        <!-- ═══════════ الإشعارات الجديدة ═══════════ -->
+        <section aria-labelledby="notifications-heading">
+            <h2 id="notifications-heading">الإشعارات الجديدة (3 إشعارات)</h2>
+
+            <div class="alert alert-warning" role="alert">
+                <strong>تنبيه مهم:</strong> لديك جلسة قادمة يوم الأحد 9 فبراير 2026 الساعة 9:30 صباحاً في المحكمة
+                الإدارية بالرياض.
+            </div>
+
+            <div class="alert alert-info">
+                <strong>إشعار:</strong> تم تحديث حالة القضية رقم QC-2025-001542 إلى "قيد النظر".
+            </div>
+
+            <div class="alert alert-success">
+                <strong>خبر سار:</strong> صدر حكم في القضية رقم QC-2024-008721. يمكنك الاطلاع عليه في قسم الأحكام.
+            </div>
+        </section>
+
+        <!-- ═══════════ الصفحة الرئيسية ═══════════ -->
+        <section id="section-home" aria-labelledby="home-heading">
+            <h2 id="home-heading">الصفحة الرئيسية - ملخص حسابك</h2>
+
+            <h3>إحصائيات القضايا</h3>
+            <dl>
+                <dt>إجمالي القضايا المسجلة</dt>
+                <dd>3 قضايا</dd>
+
+                <dt>القضايا الجارية حالياً</dt>
+                <dd>2 قضيتان</dd>
+
+                <dt>قضايا في انتظار الجلسة</dt>
+                <dd>قضية واحدة</dd>
+
+                <dt>الأحكام الصادرة</dt>
+                <dd>حكم واحد</dd>
+
+                <dt>آخر تحديث</dt>
+                <dd>اليوم، 4 فبراير 2026</dd>
+            </dl>
+
+            <h3>الإجراءات السريعة</h3>
+            <p>اختر أحد الإجراءات التالية:</p>
+            <ul class="actions-list">
+                <li><a href="#section-requests">تقديم دعوى إدارية جديدة</a></li>
+                <li><a href="#section-cases">متابعة قضاياي الحالية</a></li>
+                <li><a href="#section-verdicts">الاستعلام عن الأحكام الصادرة</a></li>
+                <li><a href="#upcoming-sessions">عرض مواعيد الجلسات القادمة</a></li>
+                <li><a href="#upload-docs">رفع مستندات إضافية</a></li>
+                <li><a href="#section-support">التواصل مع الدعم الفني</a></li>
+            </ul>
+        </section>
+
+        <!-- ═══════════ قسم تقديم الطلبات ═══════════ -->
+        <section id="section-requests" aria-labelledby="requests-heading">
+            <h2 id="requests-heading">تقديم طلب جديد</h2>
+
+            <p>يمكنك تقديم دعوى إدارية جديدة من خلال هذا القسم. العملية تتم على 5 خطوات:</p>
+
+            <ol>
+                <li>اختيار نوع الدعوى</li>
+                <li>إدخال بيانات المدعي</li>
+                <li>إدخال بيانات المدعى عليه</li>
+                <li>تفاصيل الدعوى والمستندات</li>
+                <li>المراجعة والتأكيد</li>
+            </ol>
+
+            <hr>
+
+            <h3>الخطوة 1: اختيار نوع الدعوى</h3>
+            <div class="step-indicator">الخطوة 1 من 5</div>
+
+            <label for="case-type">اختر نوع الدعوى:</label>
+            <select id="case-type">
+                <option value="">-- اختر نوع الدعوى --</option>
+                <option value="1">دعاوى الاستحقاق</option>
+                <option value="2">إلغاء القرار الإداري</option>
+                <option value="3">التعويض</option>
+                <option value="4">العقود الإدارية</option>
+                <option value="5">الدعاوى التأديبية</option>
+            </select>
+
+            <div class="info-box">
+                <p><strong>شرح أنواع الدعاوى:</strong></p>
+                <dl>
+                    <dt>دعاوى الاستحقاق</dt>
+                    <dd>المطالبة بحقوق مالية أو وظيفية</dd>
+
+                    <dt>إلغاء القرار الإداري</dt>
+                    <dd>الطعن في قرار صادر من جهة حكومية</dd>
+
+                    <dt>التعويض</dt>
+                    <dd>المطالبة بتعويض عن ضرر</dd>
+
+                    <dt>العقود الإدارية</dt>
+                    <dd>نزاعات تتعلق بعقود مع جهات حكومية</dd>
+
+                    <dt>الدعاوى التأديبية</dt>
+                    <dd>الطعن في قرارات تأديبية</dd>
+                </dl>
+            </div>
+
+            <button type="button" id="next-step-1">الانتقال للخطوة التالية</button>
+        </section>
+
+        <!-- ═══════════ قسم القضايا ═══════════ -->
+        <section id="section-cases" aria-labelledby="cases-heading">
+            <h2 id="cases-heading">قضاياي المسجلة</h2>
+
+            <p>لديك 3 قضايا مسجلة في النظام:</p>
+
+            <!-- القضية الأولى -->
+            <article aria-labelledby="case1-title">
+                <h3 id="case1-title">القضية رقم: QC-2025-001542</h3>
+                <dl>
+                    <dt>نوع القضية</dt>
+                    <dd>إلغاء قرار إداري</dd>
+
+                    <dt>المحكمة</dt>
+                    <dd>المحكمة الإدارية بالرياض</dd>
+
+                    <dt>الحالة</dt>
+                    <dd><strong>جارية - قيد النظر</strong></dd>
+
+                    <dt>تاريخ التقديم</dt>
+                    <dd>10 يناير 2025</dd>
+
+                    <dt>المدعي</dt>
+                    <dd>محمد أحمد العمري</dd>
+
+                    <dt>المدعى عليه</dt>
+                    <dd>وزارة الموارد البشرية</dd>
+
+                    <dt>الجلسة القادمة</dt>
+                    <dd><strong>25 يناير 2025 - الساعة 9:30 صباحاً</strong></dd>
+                </dl>
+                <button type="button" class="secondary">عرض تفاصيل القضية</button>
+                <button type="button" class="secondary">رفع مستند جديد</button>
+            </article>
+
+            <hr>
+
+            <!-- القضية الثانية -->
+            <article aria-labelledby="case2-title">
+                <h3 id="case2-title">القضية رقم: QC-2025-001328</h3>
+                <dl>
+                    <dt>نوع القضية</dt>
+                    <dd>تعويض</dd>
+
+                    <dt>المحكمة</dt>
+                    <dd>المحكمة الإدارية بجدة</dd>
+
+                    <dt>الحالة</dt>
+                    <dd><strong>في انتظار الجلسة</strong></dd>
+
+                    <dt>تاريخ التقديم</dt>
+                    <dd>5 يناير 2025</dd>
+
+                    <dt>المدعي</dt>
+                    <dd>شركة النور للمقاولات</dd>
+
+                    <dt>المدعى عليه</dt>
+                    <dd>أمانة منطقة مكة المكرمة</dd>
+
+                    <dt>الجلسة القادمة</dt>
+                    <dd><strong>1 فبراير 2025 - الساعة 11:00 صباحاً</strong></dd>
+                </dl>
+                <button type="button" class="secondary">عرض تفاصيل القضية</button>
+            </article>
+
+            <hr>
+
+            <!-- القضية الثالثة -->
+            <article aria-labelledby="case3-title">
+                <h3 id="case3-title">القضية رقم: QC-2024-008721</h3>
+                <dl>
+                    <dt>نوع القضية</dt>
+                    <dd>عقد إداري</dd>
+
+                    <dt>المحكمة</dt>
+                    <dd>المحكمة الإدارية بالدمام</dd>
+
+                    <dt>الحالة</dt>
+                    <dd><strong>منتهية - صدر الحكم</strong></dd>
+
+                    <dt>تاريخ التقديم</dt>
+                    <dd>15 نوفمبر 2024</dd>
+
+                    <dt>تاريخ صدور الحكم</dt>
+                    <dd>12 يناير 2025</dd>
+
+                    <dt>المدعي</dt>
+                    <dd>مؤسسة الفجر التجارية</dd>
+
+                    <dt>المدعى عليه</dt>
+                    <dd>وزارة المالية</dd>
+                </dl>
+                <button type="button" class="secondary">عرض الحكم</button>
+            </article>
+        </section>
+
+        <!-- ═══════════ قسم الأحكام ═══════════ -->
+        <section id="section-verdicts" aria-labelledby="verdicts-heading">
+            <h2 id="verdicts-heading">الأحكام الصادرة</h2>
+
+            <p>لديك حكم واحد صادر:</p>
+
+            <article aria-labelledby="verdict1-title">
+                <h3 id="verdict1-title">الحكم رقم: VRD-2025-0542</h3>
+
+                <dl>
+                    <dt>رقم القضية</dt>
+                    <dd>QC-2024-008721</dd>
+
+                    <dt>نوع الحكم</dt>
+                    <dd>حكم ابتدائي</dd>
+
+                    <dt>تاريخ صدور الحكم</dt>
+                    <dd>12 يناير 2025</dd>
+
+                    <dt>المحكمة</dt>
+                    <dd>المحكمة الإدارية بالدمام</dd>
+
+                    <dt>نتيجة الحكم</dt>
+                    <dd><strong>قبول الدعوى لصالح المدعي</strong></dd>
+
+                    <dt>ملخص الحكم</dt>
+                    <dd>حكمت المحكمة بإلزام المدعى عليها بدفع مبلغ وقدره (500,000) خمسمائة ألف ريال للمدعية، مع إلزامها
+                        بدفع أتعاب المحاماة.</dd>
+
+                    <dt>إمكانية الاعتراض</dt>
+                    <dd><strong>نعم، متاح حتى 12 فبراير 2025</strong></dd>
+                </dl>
+
+                <div class="alert alert-warning">
+                    <strong>تنبيه:</strong> لديك 8 أيام متبقية لتقديم اعتراض على هذا الحكم إن رغبت.
+                </div>
+
+                <button type="button" class="secondary">تحميل صك الحكم</button>
+                <button type="button" class="secondary">طلب تنفيذ الحكم</button>
+                <button type="button">تقديم اعتراض على الحكم</button>
+
+                <h4>أسباب الاعتراض المتاحة:</h4>
+                <ul>
+                    <li>مخالفة أحكام الشريعة الإسلامية</li>
+                    <li>مخالفة النظام</li>
+                    <li>الخطأ في تطبيق النظام</li>
+                    <li>عدم الاختصاص</li>
+                    <li>تنازع الاختصاص</li>
+                    <li>القصور في التسبيب</li>
+                    <li>الإخلال بحق الدفاع</li>
+                </ul>
+            </article>
+        </section>
+
+        <!-- ═══════════ مواعيد الجلسات ═══════════ -->
+        <section id="upcoming-sessions" aria-labelledby="sessions-heading">
+            <h2 id="sessions-heading">مواعيد الجلسات القادمة</h2>
+
+            <table>
+                <caption>جدول الجلسات القادمة - جلستان</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">التاريخ</th>
+                        <th scope="col">الوقت</th>
+                        <th scope="col">رقم القضية</th>
+                        <th scope="col">المحكمة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>25 يناير 2025</td>
+                        <td>9:30 صباحاً</td>
+                        <td>QC-2025-001542</td>
+                        <td>المحكمة الإدارية بالرياض</td>
+                    </tr>
+                    <tr>
+                        <td>1 فبراير 2025</td>
+                        <td>11:00 صباحاً</td>
+                        <td>QC-2025-001328</td>
+                        <td>المحكمة الإدارية بجدة</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ═══════════ رفع المستندات ═══════════ -->
+        <section id="upload-docs" aria-labelledby="upload-heading">
+            <h2 id="upload-heading">رفع مستندات</h2>
+
+            <p>يمكنك رفع مستندات إضافية لقضاياك من هنا.</p>
+
+            <label for="select-case">اختر القضية:</label>
+            <select id="select-case">
+                <option value="">-- اختر القضية --</option>
+                <option value="QC-2025-001542">QC-2025-001542 - إلغاء قرار إداري</option>
+                <option value="QC-2025-001328">QC-2025-001328 - تعويض</option>
+            </select>
+
+            <label for="doc-type">نوع المستند:</label>
+            <select id="doc-type">
+                <option value="">-- اختر نوع المستند --</option>
+                <option value="evidence">مستند إثبات</option>
+                <option value="memo">مذكرة</option>
+                <option value="power">توكيل</option>
+                <option value="other">أخرى</option>
+            </select>
+
+            <label for="doc-file">اختر الملف:</label>
+            <input type="file" id="doc-file" accept=".pdf,.doc,.docx,.jpg,.png">
+
+            <p>الملفات المقبولة: PDF, Word, صور (حد أقصى 10 ميجابايت)</p>
+
+            <button type="button">رفع المستند</button>
+        </section>
+
+        <!-- ═══════════ قسم الدعم الفني ═══════════ -->
+        <section id="section-support" aria-labelledby="support-heading">
+            <h2 id="support-heading">الدعم الفني</h2>
+
+            <p>فريق الدعم الفني متاح لمساعدتك:</p>
+
+            <dl>
+                <dt>رقم الهاتف</dt>
+                <dd><a href="tel:920001234">920001234</a> (متاح 24 ساعة)</dd>
+
+                <dt>البريد الإلكتروني</dt>
+                <dd><a href="mailto:support@bog.gov.sa">support@bog.gov.sa</a></dd>
+
+                <dt>ساعات العمل</dt>
+                <dd>الأحد - الخميس: 8:00 صباحاً - 4:00 مساءً</dd>
+            </dl>
+
+            <h3>إرسال رسالة للدعم</h3>
+
+            <label for="support-subject">الموضوع:</label>
+            <input type="text" id="support-subject" placeholder="اكتب موضوع رسالتك">
+
+            <label for="support-message">الرسالة:</label>
+            <textarea id="support-message" rows="5" placeholder="اكتب رسالتك هنا..."></textarea>
+
+            <button type="button">إرسال الرسالة</button>
+
+            <h3>الأسئلة الشائعة</h3>
+            <dl>
+                <dt>كيف أتابع حالة قضيتي؟</dt>
+                <dd>اذهب لقسم "قضاياي" من القائمة الرئيسية أو قل للمساعد الصوتي "ما حالة قضيتي".</dd>
+
+                <dt>كيف أحضر جلسة إلكترونياً؟</dt>
+                <dd>قبل موعد الجلسة بساعة، سيظهر لك رابط الحضور في صفحة القضية.</dd>
+
+                <dt>ما هي المستندات المطلوبة لتقديم دعوى؟</dt>
+                <dd>الهوية الوطنية، السجل التجاري (للشركات)، القرار المطعون فيه، أي مستندات داعمة.</dd>
+            </dl>
+        </section>
+
+    </main>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         تذييل الصفحة
+         ═══════════════════════════════════════════════════════════ -->
+    <footer role="contentinfo">
+        <h2 class="sr-only">معلومات الاتصال والتذييل</h2>
+
+        <p><strong>ديوان المظالم</strong> - المملكة العربية السعودية</p>
+        <p>الدعم الفني: <a href="tel:920001234">920001234</a></p>
+        <p>البريد: <a href="mailto:support@bog.gov.sa">support@bog.gov.sa</a></p>
+        <p>© 2025 جميع الحقوق محفوظة</p>
+
+        <hr>
+
+        <h3>اختصارات لوحة المفاتيح</h3>
+        <dl>
+            <dt>Alt + H</dt>
+            <dd>الذهاب للرئيسية</dd>
+
+            <dt>Alt + V</dt>
+            <dd>تفعيل الأمر الصوتي</dd>
+
+            <dt>Alt + N</dt>
+            <dd>الانتقال للنسخة العادية</dd>
+        </dl>
+    </footer>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         JavaScript
+         ═══════════════════════════════════════════════════════════ -->
+    <script>
+        // منطقة الإعلانات
+        const announcer = document.getElementById('live-announcements');
+        function announce(msg) {
+            announcer.textContent = '';
+            setTimeout(() => announcer.textContent = msg, 100);
+        }
+
+        // إعلان الترحيب
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                announce('مرحباً محمد العمري. أنت في نسخة ذوي الإعاقة البصرية. لديك 3 إشعارات جديدة. للوصول السريع، استخدم المساعد الصوتي.');
+            }, 1000);
+        });
+
+        // المساعد الصوتي
+        const voiceBtn = document.getElementById('voice-command-btn');
+        const recordingStatus = document.getElementById('recording-status');
+        const assistantResponse = document.getElementById('assistant-response');
+        const textCommand = document.getElementById('text-command');
+
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        let recognition = null;
+
+        if (SpeechRecognition) {
+            recognition = new SpeechRecognition();
+            recognition.lang = 'ar-SA';
+            recognition.continuous = false;
+
+            recognition.onstart = () => {
+                recordingStatus.classList.add('active');
+                voiceBtn.textContent = 'جاري الاستماع...';
+                announce('جاري الاستماع. تحدث بأمرك.');
+            };
+
+            recognition.onend = () => {
+                recordingStatus.classList.remove('active');
+                voiceBtn.textContent = 'ابدأ الأمر الصوتي (اضغط Enter)';
+            };
+
+            recognition.onresult = (e) => {
+                processCommand(e.results[0][0].transcript);
+            };
+
+            recognition.onerror = () => {
+                announce('حدث خطأ. حاول مرة أخرى.');
+                recordingStatus.classList.remove('active');
+                voiceBtn.textContent = 'ابدأ الأمر الصوتي (اضغط Enter)';
+            };
+        }
+
+        voiceBtn.addEventListener('click', () => {
+            if (recognition) {
+                try { recognition.start(); }
+                catch (e) { announce('التعرف الصوتي غير متاح.'); }
+            } else {
+                announce('متصفحك لا يدعم التعرف الصوتي.');
+            }
+        });
+
+        document.getElementById('submit-command').addEventListener('click', () => {
+            const cmd = textCommand.value.trim();
+            if (cmd) processCommand(cmd);
+            else announce('اكتب أمرك أولاً.');
+        });
+
+        textCommand.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && textCommand.value.trim()) {
+                processCommand(textCommand.value.trim());
+            }
+        });
+
+        function processCommand(cmd) {
+            const lower = cmd.toLowerCase();
+            let response = '';
+            let targetSection = null;
+
+            if (lower.includes('دعوى') || lower.includes('طلب') || lower.includes('تقديم')) {
+                response = 'سيتم نقلك لقسم تقديم الطلبات.';
+                targetSection = 'section-requests';
+            } else if (lower.includes('قضايا') || lower.includes('قضيتي') || lower.includes('متابعة')) {
+                response = 'لديك 3 قضايا. 2 جارية و1 صدر حكمها. سيتم نقلك لقسم القضايا.';
+                targetSection = 'section-cases';
+            } else if (lower.includes('حكم') || lower.includes('أحكام')) {
+                response = 'لديك حكم واحد صادر بقبول الدعوى بمبلغ 500 ألف ريال. سيتم نقلك لقسم الأحكام.';
+                targetSection = 'section-verdicts';
+            } else if (lower.includes('جلسة') || lower.includes('موعد')) {
+                response = 'لديك جلستان قادمتان. الأولى يوم 25 يناير الساعة 9:30 صباحاً في الرياض.';
+                targetSection = 'upcoming-sessions';
+            } else if (lower.includes('دعم') || lower.includes('مساعدة') || lower.includes('تواصل')) {
+                response = 'سيتم نقلك لقسم الدعم الفني. رقم الهاتف: 920001234';
+                targetSection = 'section-support';
+            } else if (lower.includes('حالة')) {
+                response = 'القضية الأخيرة رقم QC-2025-001542 حالتها: جارية قيد النظر. الجلسة القادمة 25 يناير.';
+            } else if (lower.includes('رئيسية') || lower.includes('بداية')) {
+                response = 'سيتم نقلك للرئيسية.';
+                targetSection = 'section-home';
+            } else {
+                response = 'لم أفهم أمرك. قل: تقديم دعوى، قضاياي، الأحكام، موعد الجلسة، أو الدعم.';
+            }
+
+            assistantResponse.innerHTML = '<div class="alert alert-info"><strong>المساعد:</strong> ' + response + '</div>';
+            announce(response);
+
+            if (targetSection) {
+                setTimeout(() => {
+                    document.getElementById(targetSection).scrollIntoView();
+                    document.getElementById(targetSection).focus();
+                }, 1500);
+            }
+
+            textCommand.value = '';
+        }
+
+        // اختصارات لوحة المفاتيح
+        document.addEventListener('keydown', (e) => {
+            if (e.altKey && e.key === 'h') {
+                e.preventDefault();
+                document.getElementById('section-home').scrollIntoView();
+                announce('انتقلت للرئيسية');
+            }
+            if (e.altKey && e.key === 'v') {
+                e.preventDefault();
+                voiceBtn.focus();
+                announce('التركيز على زر الأوامر الصوتية.');
+            }
+            if (e.altKey && e.key === 'n') {
+                e.preventDefault();
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+
+</html>
