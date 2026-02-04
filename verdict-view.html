@@ -99,6 +99,16 @@
             font-weight: 500;
         }
 
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
         @media (max-width: 968px) {
             .verdict-page-content {
                 grid-template-columns: 1fr;
@@ -287,17 +297,56 @@
             document.title = `صك الحكم ${verdict.id} - ديوان المظالم`;
 
             // عرض الحالة الأولية للشرح
-            displayAIInitialState(verdict);
+            displayAIInitialState();
         }
 
         // عرض الحالة الأولية للشرح
-        function displayAIInitialState(verdict) {
+        function displayAIInitialState() {
             const container = document.getElementById('aiExplanationContainer');
+            const savedApiKey = localStorage.getItem('chatgpt_api_key') || '';
+            const apiKeyStatus = savedApiKey ? '✓ تم الحفظ' : 'غير محفوظ';
+            const apiKeyStatusColor = savedApiKey ? '#10b981' : '#ef4444';
+
             container.innerHTML = `
                 <div class="ai-initial-state">
                     <div class="ai-initial-icon" style="font-size: 48px; margin-bottom: 16px;">🤖</div>
                     <h3>هل تحتاج شرحاً مبسطاً للحكم؟</h3>
                     <p>يمكن للذكاء الاصطناعي أن يشرح لك الحكم بطريقة سهلة ومبسطة، مع توضيح حقوقك والتزاماتك والخطوات التالية المتاحة.</p>
+                    
+                    <!-- إعدادات API -->
+                    <div style="background: #f8f9fc; border-radius: 12px; padding: 20px; margin: 20px 0; border: 2px solid #e0e4e8;">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                            <span style="font-size: 20px;">🔑</span>
+                            <h4 style="margin: 0; font-size: 16px; color: var(--text-primary);">إعدادات ChatGPT API</h4>
+                            <span style="margin-right: auto; font-size: 12px; font-weight: 600; color: ${apiKeyStatusColor};">${apiKeyStatus}</span>
+                        </div>
+                        <div style="margin-bottom: 12px;">
+                            <label for="apiKeyInput" style="display: block; margin-bottom: 8px; font-size: 14px; color: var(--text-secondary); font-weight: 500;">
+                                مفتاح API الخاص بك
+                            </label>
+                            <input 
+                                type="password" 
+                                id="apiKeyInput" 
+                                class="form-input" 
+                                placeholder="sk-..." 
+                                value="${savedApiKey}"
+                                style="width: 100%; padding: 12px; border: 2px solid #e0e4e8; border-radius: 8px; font-size: 14px; font-family: monospace; direction: ltr; text-align: left;"
+                            />
+                        </div>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <button class="btn btn-outline" onclick="saveApiKey()" style="flex: 1;">
+                                <span>💾</span>
+                                حفظ المفتاح
+                            </button>
+                            <button class="btn btn-outline" onclick="toggleApiKeyVisibility()" style="padding: 12px 16px;">
+                                <span id="toggleIcon">👁️</span>
+                            </button>
+                        </div>
+                        <p style="font-size: 12px; color: var(--text-muted); margin: 12px 0 0 0; line-height: 1.5;">
+                            💡 يتم حفظ المفتاح محلياً في متصفحك فقط ولا يتم إرساله إلى أي خادم
+                        </p>
+                    </div>
+                    
                     <button class="btn btn-primary btn-large" onclick="requestAIExplanationForPage()">
                         <span>✨</span>
                         احصل على الشرح المبسط الآن
@@ -306,20 +355,221 @@
             `;
         }
 
-        // طلب الشرح من AI
-        function requestAIExplanationForPage() {
-            if (!verdictId) {
-                showNotification('يرجى تحديد حكم معين للحصول على الشرح', 'warning');
+
+        // حفظ مفتاح API
+        function saveApiKey() {
+            const apiKeyInput = document.getElementById('apiKeyInput');
+            const apiKey = apiKeyInput.value.trim();
+
+            if (!apiKey) {
+                showNotification('يرجى إدخال مفتاح API', 'warning');
                 return;
             }
 
-            const verdict = AppData.verdicts.find(v => v.id === verdictId);
-            if (!verdict) return;
+            if (!apiKey.startsWith('sk-')) {
+                showNotification('مفتاح API غير صحيح. يجب أن يبدأ بـ sk-', 'error');
+                return;
+            }
+
+            localStorage.setItem('chatgpt_api_key', apiKey);
+            showNotification('تم حفظ مفتاح API بنجاح', 'success');
+
+            // تحديث الحالة
+            displayAIInitialState();
+        }
+
+        // إظهار/إخفاء مفتاح API
+        function toggleApiKeyVisibility() {
+            const apiKeyInput = document.getElementById('apiKeyInput');
+            const toggleIcon = document.getElementById('toggleIcon');
+
+            if (apiKeyInput.type === 'password') {
+                apiKeyInput.type = 'text';
+                toggleIcon.textContent = '🙈';
+            } else {
+                apiKeyInput.type = 'password';
+                toggleIcon.textContent = '👁️';
+            }
+        }
+
+        // طلب الشرح من AI
+        async function requestAIExplanationForPage() {
+            // التحقق من وجود مفتاح API
+            const apiKey = localStorage.getItem('chatgpt_api_key');
+            if (!apiKey) {
+                showNotification('يرجى إدخال وحفظ مفتاح ChatGPT API أولاً', 'warning');
+                return;
+            }
 
             const container = document.getElementById('aiExplanationContainer');
-            const aiSection = { querySelector: () => container };
 
-            verdictAIExplainer.explainVerdict(verdict, aiSection);
+            // عرض حالة التحميل
+            container.innerHTML = `
+                <div style="text-align: center; padding: 60px 20px;">
+                    <div style="font-size: 48px; margin-bottom: 16px;">⏳</div>
+                    <h3>جاري تحليل صك الحكم...</h3>
+                    <p style="color: var(--text-muted);">يتم الآن قراءة المستند وإرساله إلى ChatGPT للحصول على الشرح المبسط</p>
+                    <div style="margin-top: 20px;">
+                        <div class="loading-spinner" style="width: 40px; height: 40px; border: 4px solid #e0e4e8; border-top-color: var(--primary-color); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+                    </div>
+                </div>
+            `;
+
+            try {
+                // قراءة ملف PDF
+                const response = await fetch('Ahmed.pdf');
+                const blob = await response.blob();
+
+                // تحويل PDF إلى base64
+                const reader = new FileReader();
+                reader.readAsDataURL(blob);
+
+                reader.onloadend = async function () {
+                    const base64data = reader.result.split(',')[1];
+
+                    // إرسال الطلب إلى ChatGPT API
+                    try {
+                        const chatResponse = await fetch('https://api.openai.com/v1/chat/completions', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${apiKey}`
+                            },
+                            body: JSON.stringify({
+                                model: 'gpt-4o',
+                                messages: [
+                                    {
+                                        role: 'user',
+                                        content: [
+                                            {
+                                                type: 'text',
+                                                text: `أنت محامي خبير متخصص في القانون السعودي. قم بتحليل صك الحكم المرفق وقدم شرحاً مبسطاً وواضحاً يتضمن:
+
+1. **ملخص الحكم**: اشرح منطوق الحكم بلغة بسيطة
+2. **الأطراف**: من هم أطراف القضية
+3. **الحقوق والالتزامات**: ما هي حقوق والتزامات كل طرف
+4. **الخطوات التالية**: ما هي الإجراءات المتاحة (استئناف، تنفيذ، إلخ)
+5. **المواعيد المهمة**: أي مواعيد أو مهل زمنية يجب الانتباه لها
+
+اجعل الشرح واضحاً ومفهوماً لشخص غير متخصص في القانون.`
+                                            },
+                                            {
+                                                type: 'image_url',
+                                                image_url: {
+                                                    url: `data:application/pdf;base64,${base64data}`
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ],
+                                max_tokens: 2000,
+                                temperature: 0.7
+                            })
+                        });
+
+                        if (!chatResponse.ok) {
+                            const error = await chatResponse.json();
+                            throw new Error(error.error?.message || 'فشل الاتصال بـ ChatGPT API');
+                        }
+
+                        const data = await chatResponse.json();
+                        const explanation = data.choices[0].message.content;
+
+                        // عرض الشرح
+                        displayAIExplanation(explanation);
+                        showNotification('تم الحصول على الشرح بنجاح', 'success');
+
+                    } catch (error) {
+                        console.error('خطأ في ChatGPT API:', error);
+                        container.innerHTML = `
+                            <div style="text-align: center; padding: 60px 20px;">
+                                <div style="font-size: 48px; margin-bottom: 16px; color: #ef4444;">⚠️</div>
+                                <h3>حدث خطأ أثناء الحصول على الشرح</h3>
+                                <p style="color: var(--text-muted);">${error.message}</p>
+                                <button class="btn btn-primary" onclick="displayAIInitialState()">
+                                    المحاولة مرة أخرى
+                                </button>
+                            </div>
+                        `;
+                        showNotification('فشل الاتصال بـ ChatGPT API', 'error');
+                    }
+                };
+
+                reader.onerror = function () {
+                    container.innerHTML = `
+                        <div style="text-align: center; padding: 60px 20px;">
+                            <div style="font-size: 48px; margin-bottom: 16px; color: #ef4444;">⚠️</div>
+                            <h3>فشل قراءة ملف PDF</h3>
+                            <p style="color: var(--text-muted);">تعذر قراءة ملف الحكم</p>
+                            <button class="btn btn-primary" onclick="displayAIInitialState()">
+                                المحاولة مرة أخرى
+                            </button>
+                        </div>
+                    `;
+                    showNotification('فشل قراءة ملف PDF', 'error');
+                };
+
+            } catch (error) {
+                console.error('خطأ في قراءة PDF:', error);
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 60px 20px;">
+                        <div style="font-size: 48px; margin-bottom: 16px; color: #ef4444;">⚠️</div>
+                        <h3>فشل تحميل ملف PDF</h3>
+                        <p style="color: var(--text-muted);">تأكد من وجود ملف Ahmed.pdf</p>
+                        <button class="btn btn-primary" onclick="displayAIInitialState()">
+                            المحاولة مرة أخرى
+                        </button>
+                    </div>
+                `;
+                showNotification('فشل تحميل ملف PDF', 'error');
+            }
+        }
+
+        // عرض الشرح من AI
+        function displayAIExplanation(explanation) {
+            const container = document.getElementById('aiExplanationContainer');
+
+            // تحويل النص إلى HTML مع تنسيق
+            const formattedExplanation = explanation
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/\n/g, '<br>');
+
+            container.innerHTML = `
+                <div style="padding: 24px;">
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 12px; margin-bottom: 24px;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                            <span style="font-size: 32px;">🤖</span>
+                            <h3 style="margin: 0; color: white;">الشرح الذكي للحكم</h3>
+                        </div>
+                        <p style="margin: 0; opacity: 0.95; font-size: 14px;">تم إنشاؤه بواسطة ChatGPT</p>
+                    </div>
+                    
+                    <div style="background: #f8f9fc; border-radius: 12px; padding: 24px; line-height: 1.8; color: var(--text-primary);">
+                        <p>${formattedExplanation}</p>
+                    </div>
+                    
+                    <div style="margin-top: 24px; display: flex; gap: 12px;">
+                        <button class="btn btn-primary" onclick="displayAIInitialState()">
+                            <span>🔄</span>
+                            طلب شرح جديد
+                        </button>
+                        <button class="btn btn-outline" onclick="copyExplanation()">
+                            <span>📋</span>
+                            نسخ الشرح
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // نسخ الشرح
+        function copyExplanation() {
+            const container = document.getElementById('aiExplanationContainer');
+            const text = container.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                showNotification('تم نسخ الشرح', 'success');
+            });
         }
 
         // تحميل الحكم عند فتح الصفحة
