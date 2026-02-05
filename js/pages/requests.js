@@ -548,7 +548,12 @@ function renderStep1() {
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label required">رقم الهوية / الإقامة</label>
-                        <input type="text" class="form-control" name="party_id" placeholder="أدخل رقم الهوية" value="${data.party_id || ''}">
+                        <div class="input-wrapper">
+                            <input type="text" class="form-control" name="party_id" placeholder="أدخل رقم الهوية" value="${data.party_id || ''}">
+                            <button type="button" class="mic-btn" onclick="voiceInputController.toggleRecording(this, 'party_id')" aria-label="تفعيل الكتابة الصوتية">
+                                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                            </button>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label required">الاسم الكامل</label>
@@ -558,16 +563,31 @@ function renderStep1() {
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label required">رقم الجوال</label>
-                        <input type="tel" class="form-control" name="party_phone" placeholder="05xxxxxxxx" value="${data.party_phone || ''}">
+                        <div class="input-wrapper">
+                            <input type="tel" class="form-control" name="party_phone" placeholder="05xxxxxxxx" value="${data.party_phone || ''}">
+                            <button type="button" class="mic-btn" onclick="voiceInputController.toggleRecording(this, 'party_phone')" aria-label="تفعيل الكتابة الصوتية">
+                                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                            </button>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label required">البريد الإلكتروني</label>
-                        <input type="email" class="form-control" name="party_email" placeholder="example@email.com" value="${data.party_email || ''}">
+                        <div class="input-wrapper">
+                            <input type="email" class="form-control" name="party_email" placeholder="example@email.com" value="${data.party_email || ''}">
+                            <button type="button" class="mic-btn" onclick="voiceInputController.toggleRecording(this, 'party_email')" aria-label="تفعيل الكتابة الصوتية">
+                                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-label required">العنوان</label>
-                    <input type="text" class="form-control" name="party_address" placeholder="المدينة، الحي، الشارع" value="${data.party_address || ''}">
+                    <div class="input-wrapper">
+                        <input type="text" class="form-control" name="party_address" placeholder="المدينة، الحي، الشارع" value="${data.party_address || ''}">
+                        <button type="button" class="mic-btn" onclick="voiceInputController.toggleRecording(this, 'party_address')" aria-label="تفعيل الكتابة الصوتية">
+                            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -588,21 +608,41 @@ function renderStep1() {
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label required">رقم رخصة المحاماة</label>
-                            <input type="text" class="form-control" name="agent_license" placeholder="أدخل رقم الرخصة" value="${data.agent_license || ''}">
+                            <div class="input-wrapper">
+                                <input type="text" class="form-control" name="agent_license" placeholder="أدخل رقم الرخصة" value="${data.agent_license || ''}">
+                                <button type="button" class="mic-btn" onclick="voiceInputController.toggleRecording(this, 'agent_license')" aria-label="تفعيل الكتابة الصوتية">
+                                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                                </button>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label required">اسم المحامي</label>
-                            <input type="text" class="form-control" name="agent_name" placeholder="الاسم الكامل" value="${data.agent_name || ''}">
+                            <div class="input-wrapper">
+                                <input type="text" class="form-control" name="agent_name" placeholder="الاسم الكامل" value="${data.agent_name || ''}">
+                                <button type="button" class="mic-btn" onclick="voiceInputController.toggleRecording(this, 'agent_name')" aria-label="تفعيل الكتابة الصوتية">
+                                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label required">رقم الجوال</label>
-                            <input type="tel" class="form-control" name="agent_phone" placeholder="05xxxxxxxx" value="${data.agent_phone || ''}">
+                            <div class="input-wrapper">
+                                <input type="tel" class="form-control" name="agent_phone" placeholder="05xxxxxxxx" value="${data.agent_phone || ''}">
+                                <button type="button" class="mic-btn" onclick="voiceInputController.toggleRecording(this, 'agent_phone')" aria-label="تفعيل الكتابة الصوتية">
+                                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                                </button>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label">رقم الوكالة</label>
-                            <input type="text" class="form-control" name="agent_doc" placeholder="رقم صك الوكالة" value="${data.agent_doc || ''}">
+                            <div class="input-wrapper">
+                                <input type="text" class="form-control" name="agent_doc" placeholder="رقم صك الوكالة" value="${data.agent_doc || ''}">
+                                <button type="button" class="mic-btn" onclick="voiceInputController.toggleRecording(this, 'agent_doc')" aria-label="تفعيل الكتابة الصوتية">
+                                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -639,7 +679,12 @@ function renderStep1() {
                     </div>
                     <div class="form-group">
                         <label class="form-label">الإدارة / الفرع</label>
-                        <input type="text" class="form-control" name="defendant_dept" placeholder="اسم الإدارة أو الفرع" value="${data.defendant_dept || ''}">
+                        <div class="input-wrapper">
+                            <input type="text" class="form-control" name="defendant_dept" placeholder="اسم الإدارة أو الفرع" value="${data.defendant_dept || ''}">
+                            <button type="button" class="mic-btn" onclick="voiceInputController.toggleRecording(this, 'defendant_dept')" aria-label="تفعيل الكتابة الصوتية">
+                                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -699,21 +744,41 @@ function renderStep2() {
             </h3>
             <div class="form-group">
                 <label class="form-label required">موضوع الدعوى</label>
-                <input type="text" class="form-control" name="case_subject" placeholder="اكتب عنواناً مختصراً للدعوى" value="${data.case_subject || ''}">
+                <div class="input-wrapper">
+                    <input type="text" class="form-control" name="case_subject" placeholder="اكتب عنواناً مختصراً للدعوى" value="${data.case_subject || ''}">
+                    <button type="button" class="mic-btn" onclick="voiceInputController.toggleRecording(this, 'case_subject')" aria-label="تفعيل الكتابة الصوتية">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                    </button>
+                </div>
             </div>
             <div class="form-group">
                 <label class="form-label required">وقائع الدعوى</label>
-                <textarea class="form-control" name="case_details" rows="5" placeholder="اشرح تفاصيل الدعوى ووقائعها بشكل مفصل...">${data.case_details || ''}</textarea>
+                <div class="input-wrapper">
+                    <textarea class="form-control" name="case_details" rows="5" placeholder="اشرح تفاصيل الدعوى ووقائعها بشكل مفصل...">${data.case_details || ''}</textarea>
+                    <button type="button" class="mic-btn" onclick="voiceInputController.toggleRecording(this, 'case_details')" aria-label="تفعيل الكتابة الصوتية" style="top: 20px; transform: none;">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                    </button>
+                </div>
                 <div class="form-hint">اذكر التسلسل الزمني للأحداث والوقائع المتعلقة بالدعوى</div>
             </div>
             <div class="form-group">
                 <label class="form-label required">الطلبات</label>
-                <textarea class="form-control" name="case_requests" rows="3" placeholder="حدد طلباتك من المحكمة بشكل واضح...">${data.case_requests || ''}</textarea>
+                <div class="input-wrapper">
+                    <textarea class="form-control" name="case_requests" rows="3" placeholder="حدد طلباتك من المحكمة بشكل واضح...">${data.case_requests || ''}</textarea>
+                    <button type="button" class="mic-btn" onclick="voiceInputController.toggleRecording(this, 'case_requests')" aria-label="تفعيل الكتابة الصوتية" style="top: 20px; transform: none;">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                    </button>
+                </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
                     <label class="form-label">رقم القرار المطعون فيه</label>
-                    <input type="text" class="form-control" name="decision_number" placeholder="إن وجد" value="${data.decision_number || ''}">
+                    <div class="input-wrapper">
+                        <input type="text" class="form-control" name="decision_number" placeholder="إن وجد" value="${data.decision_number || ''}">
+                        <button type="button" class="mic-btn" onclick="voiceInputController.toggleRecording(this, 'decision_number')" aria-label="تفعيل الكتابة الصوتية">
+                            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                        </button>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-label">تاريخ القرار</label>
@@ -767,7 +832,12 @@ function renderStep3() {
                 ${typeof AppData !== 'undefined' && AppData.uploadedFiles ? AppData.uploadedFiles.map((file, index) => `
                     <div class="form-group">
                         <label class="form-label">${file.name}</label>
-                        <input type="text" class="form-control" placeholder="وصف المستند">
+                        <div class="input-wrapper">
+                            <input type="text" class="form-control" name="file_desc_${index}" placeholder="وصف المستند">
+                            <button type="button" class="mic-btn" onclick="voiceInputController.toggleRecording(this, 'file_desc_${index}')" aria-label="تفعيل الكتابة الصوتية">
+                                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                            </button>
+                        </div>
                     </div>
                 `).join('') : ''}
             </div>
@@ -842,7 +912,13 @@ function renderStep4() {
 
 function renderFieldInput(field) {
     if (field.type === 'textarea') {
-        return `<textarea class="form-control" name="${field.name}" rows="3" placeholder="أدخل ${field.label}..."></textarea>`;
+        return `
+            <div class="input-wrapper">
+                <textarea class="form-control" name="${field.name}" rows="3" placeholder="أدخل ${field.label}..."></textarea>
+                <button type="button" class="mic-btn" onclick="voiceInputController.toggleRecording(this, '${field.name}')" aria-label="تفعيل الكتابة الصوتية" style="top: 20px; transform: none;">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                </button>
+            </div>`;
     }
     if (field.type === 'select') {
         return `
@@ -852,7 +928,13 @@ function renderFieldInput(field) {
             </select>
         `;
     }
-    return `<input type="${field.type}" class="form-control" name="${field.name}" placeholder="أدخل ${field.label}">`;
+    return `
+        <div class="input-wrapper">
+            <input type="${field.type}" class="form-control" name="${field.name}" placeholder="أدخل ${field.label}">
+            <button type="button" class="mic-btn" onclick="voiceInputController.toggleRecording(this, '${field.name}')" aria-label="تفعيل الكتابة الصوتية">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+            </button>
+        </div>`;
 }
 
 
